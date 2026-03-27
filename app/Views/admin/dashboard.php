@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/style.css">
 </head>
 <body>
     <h1>Admin Dashboard</h1>
     <p>Xin chào, <?= Auth::user()['name']; ?></p>
-    <a href="/planbookai/public/admin/users">Quản lý user</a><br>
-    <a href="/planbookai/public/logout">Đăng xuất</a>
+    <a href="/LapTrinhWeb-PlanbookAI/public/admin/users">Quản lý user</a><br>
+    <a href="/LapTrinhWeb-PlanbookAI/public/logout">Đăng xuất</a>
+    <script src="/LapTrinhWeb-PlanbookAI/public/js/main.js"></script>
 </body>
 </html>

@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lý người dùng</title>
+    <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/style.css">
 </head>
 <body>
     <h1>Danh sách người dùng</h1>
 
-    <a href="/planbookai/public/admin/users/create">Thêm user</a>
+    <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/create">Thêm user</a>
     <table border="1" cellpadding="10">
         <tr>
             <th>ID</th>
@@ -24,13 +25,14 @@
                 <td><?= $user['email']; ?></td>
                 <td><?= $user['role']; ?></td>
                 <td>
-                    <a href="/planbookai/public/admin/users/edit?id=<?= $user['id']; ?>">Sửa</a>
-                    <a href="/planbookai/public/admin/users/delete?id=<?= $user['id']; ?>" onclick="return confirm('Xóa user này?')">Xóa</a>
+                    <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/edit?id=<?= $user['id']; ?>">Sửa</a>
+                    <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/delete?id=<?= $user['id']; ?>" onclick="return confirm('Xóa user này?')">Xóa</a>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
 
-    <a href="/planbookai/public/admin/dashboard">Về dashboard</a>
+    <a href="/LapTrinhWeb-PlanbookAI/public/admin/dashboard">Về dashboard</a>
+    <script src="/LapTrinhWeb-PlanbookAI/public/js/main.js"></script>
 </body>
 </html>

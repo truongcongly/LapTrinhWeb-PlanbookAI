@@ -7,7 +7,7 @@ Session::start();
 <head>
     <meta charset="UTF-8">
     <title>Đăng ký</title>
-    <link rel="stylesheet" href="/planbookai/public/css/style.css">
+    <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/style.css">
 </head>
 <body>
     <div class="auth-box">
@@ -21,7 +21,7 @@ Session::start();
             <p class="success"><?= Session::get('success'); Session::remove('success'); ?></p>
         <?php endif; ?>
 
-        <form method="POST" action="/planbookai/public/register">
+        <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/register">
             <input type="text" name="name" placeholder="Họ tên" required>
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Mật khẩu" required>
@@ -32,7 +32,8 @@ Session::start();
             <button type="submit">Đăng ký</button>
         </form>
 
-        <p><a href="/planbookai/public/login">Đăng nhập</a></p>
+        <p><a href="/LapTrinhWeb-PlanbookAI/public/login">Đăng nhập</a></p>
     </div>
+    <script src="/LapTrinhWeb-PlanbookAI/public/js/main.js"></script>
 </body>
 </html>
