@@ -66,9 +66,9 @@ composer dump-autoload
 
 ---
 ## 5. Cấu hình database
-- 5.1. File config/database.php
-- <?php
 
+### 5.1. File config/database.php
+<?php
 return [
     'host' => '127.0.0.1',
     'dbname' => 'planbookai',
@@ -76,115 +76,84 @@ return [
     'password' => 'YOUR_PASSWORD'
 ];
 
-- Lưu ý:
-Nếu máy đang dùng MySQL Server riêng thay vì MySQL trong XAMPP, hãy nhập đúng password đang dùng trong MySQL Workbench.
+Lưu ý: Nếu máy đang dùng MySQL Server riêng thay vì MySQL trong XAMPP, hãy nhập đúng password đang dùng trong MySQL Workbench.
 
-- 5.2. File config/app.php
+### 5.2. File config/app.php
 <?php
-
 return [
     'base_url' => 'http://localhost/LapTrinhWeb-PlanbookAI/public'
 ];
 
 ---
+
 ## 6. Cơ sở dữ liệu
-- Tạo database
+
+Tạo database
 
 Có thể chạy trực tiếp file database.sql trong MySQL Workbench hoặc phpMyAdmin.
 
-- Nội dung cơ bản:
+Nội dung cơ bản:
+
+CREATE DATABASE IF NOT EXISTS planbookai;
+USE planbookai;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'teacher', 'user') NOT NULL DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO users (name, email, password, role) VALUES
+('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
+('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher'),
+('User', 'user@planbookai.com', MD5('123456'), 'user');
+
 ---
-- CREATE DATABASE IF NOT EXISTS planbookai;
-- USE planbookai;
 
-- CREATE TABLE users (
-    - id INT AUTO_INCREMENT PRIMARY KEY,
-    - name VARCHAR(100) NOT NULL,
-    - email VARCHAR(100) NOT NULL UNIQUE,
-    - password VARCHAR(255) NOT NULL,
-    - role ENUM('admin', 'teacher', 'user') NOT NULL DEFAULT 'user',
-    - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-- );
-
-- INSERT INTO users (name, email, password, role) VALUES
-- ('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
-- ('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher'),
-- ('User', 'user@planbookai.com', MD5('123456'), 'user');
-
----
 ## 7. Cách chạy dự án
-- 7.1. Đặt project vào thư mục XAMPP
 
-- Project phải nằm ở:
+7.1. Đặt project vào thư mục XAMPP  
+C:\xampp\htdocs\LapTrinhWeb-PlanbookAI
 
-- C:\xampp\htdocs\LapTrinhWeb-PlanbookAI
+7.2. Bật Apache  
+Mở XAMPP Control Panel và bật Apache  
+Không bắt buộc bật MySQL trong XAMPP nếu bạn đang dùng MySQL Server riêng
 
-- 7.2. Bật Apache
-
-- Mở XAMPP Control Panel và bật:
-
-- Apache
-
-- Không bắt buộc bật MySQL trong XAMPP nếu bạn đang dùng MySQL Server riêng (ví dụ MySQL84).
-
-- 7.3. Chạy Composer autoload
-
-- Mở terminal tại thư mục project:
-
-- cd C:\xampp\htdocs\LapTrinhWeb-PlanbookAI
-- composer dump-autoload
+7.3. Chạy Composer autoload  
+cd C:\xampp\htdocs\LapTrinhWeb-PlanbookAI  
+composer dump-autoload
 
 ---
+
 ## 8. Ghi chú về MySQL
 
-- Trên máy phát triển hiện tại, hệ thống có thể đang dùng:
+Apache từ XAMPP  
+MySQL Server riêng (ví dụ MySQL84)  
+MySQL Workbench để quản lý database  
 
-- Apache từ XAMPP
-- MySQL Server riêng (ví dụ MySQL84)
-- MySQL Workbench để quản lý database
-
-- Do đó:
-
-- Nếu MySQL trong XAMPP không khởi động được, có thể do trùng cổng 3306
-- Không bắt buộc phải dùng MySQL của XAMPP nếu đã có MySQL Server riêng chạy ổn định
+Nếu MySQL trong XAMPP không khởi động được, có thể do trùng cổng 3306  
+Không bắt buộc phải dùng MySQL của XAMPP nếu đã có MySQL Server riêng
 
 ---
+
 ## 9. Ghi chú về vendor/
 
-- Sau khi chạy:
-
-- composer dump-autoload
-
-- project sẽ sinh ra thư mục:
-
-- vendor/
-
-- Đây là thư mục bình thường do Composer tạo ra để autoload class.
-- Không phải lỗi.
+Sau khi chạy composer dump-autoload, project sẽ sinh ra thư mục vendor/  
+Đây là thư mục bình thường do Composer tạo ra để autoload class, không phải lỗi
 
 ---
+
 ## 10. Hướng phát triển tiếp theo
 
-- Người 1
-- hoàn thiện logout
-- hoàn thiện phân quyền chặt chẽ hơn
-- đổi từ MD5 sang password_hash() và password_verify()
-- thêm validation tốt hơn
+Người 1: hoàn thiện login,register, dashboard admin,user,teacher
 
-- Người 2
-- Lesson Plan
-- Curriculum Framework
+Người 2: Lesson Plan, Curriculum Framework  
 
-- Người 3
-- Question Bank
-- Exercise Creation
+Người 3: Question Bank, Exercise Creation  
 
-- Người 4
-- Exam Generation
-- Grading
-- Result
+Người 4: Exam Generation, Grading, Result  
 
-- Người 5
-- Workspace
-- Approval
-- UI Integration
+Người 5: Workspace, Approval, UI Integration
