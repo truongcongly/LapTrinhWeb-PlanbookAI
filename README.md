@@ -51,6 +51,7 @@ URL → public/index.php → Router → Controller → Model → View
 
 Dự án sử dụng Composer để tự động nạp class theo chuẩn PSR-4.
 
+```json
 {
     "name": "planbookai/app",
     "autoload": {
@@ -64,10 +65,12 @@ Sau khi thêm hoặc sửa class/namespace, chạy:
 
 composer dump-autoload
 
----
+```
 ## 5. Cấu hình database
 
 ### 5.1. File config/database.php
+
+```php
 <?php
 return [
     'host' => '127.0.0.1',
@@ -75,15 +78,16 @@ return [
     'username' => 'root',
     'password' => 'YOUR_PASSWORD'
 ];
-
+```
 Lưu ý: Nếu máy đang dùng MySQL Server riêng thay vì MySQL trong XAMPP, hãy nhập đúng password đang dùng trong MySQL Workbench.
 
 ### 5.2. File config/app.php
+```php
 <?php
 return [
     'base_url' => 'http://localhost/LapTrinhWeb-PlanbookAI/public'
 ];
-
+```
 ---
 
 ## 6. Cơ sở dữ liệu
@@ -93,7 +97,7 @@ Tạo database
 Có thể chạy trực tiếp file database.sql trong MySQL Workbench hoặc phpMyAdmin.
 
 Nội dung cơ bản:
-
+```sql
 CREATE DATABASE IF NOT EXISTS planbookai;
 USE planbookai;
 
@@ -110,7 +114,7 @@ INSERT INTO users (name, email, password, role) VALUES
 ('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
 ('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher'),
 ('User', 'user@planbookai.com', MD5('123456'), 'user');
-
+```
 ---
 
 ## 7. Cách chạy dự án
