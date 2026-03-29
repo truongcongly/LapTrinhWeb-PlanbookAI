@@ -8,6 +8,7 @@ Dự án được xây dựng nhằm mô phỏng một hệ thống quản lý h
 - **Teacher**
 - **User**
 
+---
 ## 2. Công nghệ sử dụng
 
 ### Backend
@@ -33,16 +34,18 @@ Dự án được xây dựng nhằm mô phỏng một hệ thống quản lý h
 ---
 ## 3. Kiến trúc hệ thống
 
-Hệ thống hoạt động theo luồng:
+- Hệ thống hoạt động theo luồng:
 
 URL → public/index.php → Router → Controller → Model → View
-Giải thích:
-public/index.php: điểm vào chính của ứng dụng
-Router.php: phân tích URL và gọi controller phù hợp
-Controllers/: xử lý logic cho từng module
-Models/: thao tác dữ liệu với database
-Views/: hiển thị giao diện cho người dùng
 
+- Giải thích:
+- public/index.php: điểm vào chính của ứng dụng
+- Router.php: phân tích URL và gọi controller phù hợp
+- Controllers/: xử lý logic cho từng module
+- Models/: thao tác dữ liệu với database
+- Views/: hiển thị giao diện cho người dùng
+
+---
 ## 4. Cấu hình project
 - composer.json
 
@@ -61,9 +64,10 @@ Sau khi thêm hoặc sửa class/namespace, chạy:
 
 composer dump-autoload
 
+---
 ## 5. Cấu hình database
-5.1. File config/database.php
-<?php
+- 5.1. File config/database.php
+- <?php
 
 return [
     'host' => '127.0.0.1',
@@ -72,104 +76,115 @@ return [
     'password' => 'YOUR_PASSWORD'
 ];
 
-Lưu ý:
+- Lưu ý:
 Nếu máy đang dùng MySQL Server riêng thay vì MySQL trong XAMPP, hãy nhập đúng password đang dùng trong MySQL Workbench.
 
-5.2. File config/app.php
+- 5.2. File config/app.php
 <?php
 
 return [
     'base_url' => 'http://localhost/LapTrinhWeb-PlanbookAI/public'
 ];
 
+---
 ## 6. Cơ sở dữ liệu
 - Tạo database
 
 Có thể chạy trực tiếp file database.sql trong MySQL Workbench hoặc phpMyAdmin.
 
-Nội dung cơ bản:
+- Nội dung cơ bản:
+---
+- CREATE DATABASE IF NOT EXISTS planbookai;
+- USE planbookai;
 
-CREATE DATABASE IF NOT EXISTS planbookai;
-USE planbookai;
+- CREATE TABLE users (
+    - id INT AUTO_INCREMENT PRIMARY KEY,
+    - name VARCHAR(100) NOT NULL,
+    - email VARCHAR(100) NOT NULL UNIQUE,
+    - password VARCHAR(255) NOT NULL,
+    - role ENUM('admin', 'teacher', 'user') NOT NULL DEFAULT 'user',
+    - created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+- );
 
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'teacher', 'user') NOT NULL DEFAULT 'user',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+- INSERT INTO users (name, email, password, role) VALUES
+- ('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
+- ('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher'),
+- ('User', 'user@planbookai.com', MD5('123456'), 'user');
 
-INSERT INTO users (name, email, password, role) VALUES
-('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
-('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher'),
-('User', 'user@planbookai.com', MD5('123456'), 'user');
-
+---
 ## 7. Cách chạy dự án
-7.1. Đặt project vào thư mục XAMPP
+- 7.1. Đặt project vào thư mục XAMPP
 
-Project phải nằm ở:
+- Project phải nằm ở:
 
-C:\xampp\htdocs\LapTrinhWeb-PlanbookAI
-7.2. Bật Apache
+- C:\xampp\htdocs\LapTrinhWeb-PlanbookAI
 
-Mở XAMPP Control Panel và bật:
+- 7.2. Bật Apache
 
-Apache
+- Mở XAMPP Control Panel và bật:
 
-Không bắt buộc bật MySQL trong XAMPP nếu bạn đang dùng MySQL Server riêng (ví dụ MySQL84).
+- Apache
 
-7.3. Chạy Composer autoload
+- Không bắt buộc bật MySQL trong XAMPP nếu bạn đang dùng MySQL Server riêng (ví dụ MySQL84).
 
-Mở terminal tại thư mục project:
+- 7.3. Chạy Composer autoload
 
-cd C:\xampp\htdocs\LapTrinhWeb-PlanbookAI
-composer dump-autoload
+- Mở terminal tại thư mục project:
 
+- cd C:\xampp\htdocs\LapTrinhWeb-PlanbookAI
+- composer dump-autoload
+
+---
 ## 8. Ghi chú về MySQL
 
-Trên máy phát triển hiện tại, hệ thống có thể đang dùng:
+- Trên máy phát triển hiện tại, hệ thống có thể đang dùng:
 
-Apache từ XAMPP
-MySQL Server riêng (ví dụ MySQL84)
-MySQL Workbench để quản lý database
+- Apache từ XAMPP
+- MySQL Server riêng (ví dụ MySQL84)
+- MySQL Workbench để quản lý database
 
-Do đó:
+- Do đó:
 
-Nếu MySQL trong XAMPP không khởi động được, có thể do trùng cổng 3306
-Không bắt buộc phải dùng MySQL của XAMPP nếu đã có MySQL Server riêng chạy ổn định
+- Nếu MySQL trong XAMPP không khởi động được, có thể do trùng cổng 3306
+- Không bắt buộc phải dùng MySQL của XAMPP nếu đã có MySQL Server riêng chạy ổn định
 
+---
 ## 9. Ghi chú về vendor/
 
-Sau khi chạy:
+- Sau khi chạy:
 
-composer dump-autoload
+- composer dump-autoload
 
-project sẽ sinh ra thư mục:
+- project sẽ sinh ra thư mục:
 
-vendor/
+- vendor/
 
-Đây là thư mục bình thường do Composer tạo ra để autoload class.
-Không phải lỗi.
+- Đây là thư mục bình thường do Composer tạo ra để autoload class.
+- Không phải lỗi.
 
+---
 ## 10. Hướng phát triển tiếp theo
+
 - Người 1
-hoàn thiện logout
-hoàn thiện phân quyền chặt chẽ hơn
-đổi từ MD5 sang password_hash() và password_verify()
-thêm validation tốt hơn
+- hoàn thiện logout
+- hoàn thiện phân quyền chặt chẽ hơn
+- đổi từ MD5 sang password_hash() và password_verify()
+- thêm validation tốt hơn
+
 - Người 2
-Lesson Plan
-Curriculum Framework
+- Lesson Plan
+- Curriculum Framework
+
 - Người 3
-Question Bank
-Exercise Creation
+- Question Bank
+- Exercise Creation
+
 - Người 4
-Exam Generation
-Grading
-Result
+- Exam Generation
+- Grading
+- Result
+
 - Người 5
-Workspace
-Approval
-UI Integration
+- Workspace
+- Approval
+- UI Integration
