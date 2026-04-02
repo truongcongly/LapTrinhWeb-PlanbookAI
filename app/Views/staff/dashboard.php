@@ -1,68 +1,76 @@
-<?php use App\Core\Auth; ?>
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Dashboard - PlanbookAI</title>
-    <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/style.css">
-</head>
-<body>
-    <div class="dashboard-page">
-        <aside class="sidebar">
-            <div class="sidebar-brand">PlanbookAI</div>
-            <div class="sidebar-role">Staff Panel</div>
+<?php
+use App\Core\Auth;
 
-            <div class="sidebar-menu">
-                <a href="/LapTrinhWeb-PlanbookAI/public/staff/dashboard" class="active">Dashboard</a>
-                <a href="#">Lesson Samples</a>
-                <a href="#">Question Samples</a>
-                <a href="/LapTrinhWeb-PlanbookAI/public/logout">Đăng xuất</a>
-            </div>
-        </aside>
+$title = 'Staff Dashboard';
+$currentUser = Auth::user();
+$pageTitle = 'Staff Dashboard';
+$pageDesc = 'Quản lý nội dung mẫu và hỗ trợ dữ liệu học liệu';
 
-        <main class="main-content">
-            <div class="topbar">
-                <div>
-                    <h1>Staff Dashboard</h1>
-                    <p>Khu vực quản lý nội dung mẫu và hỗ trợ dữ liệu</p>
-                </div>
-                <div class="user-box">
-                    <strong><?= Auth::user()['name']; ?></strong>
-                    <span><?= Auth::user()['email']; ?></span>
+include __DIR__ . '/../layouts/head.php';
+$role = 'staff';
+include __DIR__ . '/../layouts/sidebar.php';
+?>
+
+<div class="main-panel">
+    <?php include __DIR__ . '/../layouts/topbar.php'; ?>
+
+    <div class="page-body">
+        <div class="row g-4">
+            <div class="col-md-6 col-xl-4">
+                <div class="card stat-card bg-soft-warning">
+                    <div class="card-body d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-secondary small">Lesson samples</div>
+                            <h3 class="mt-2 mb-1">12</h3>
+                            <div class="small text-warning">Mẫu nội dung đang có</div>
+                        </div>
+                        <div class="icon-box icon-warning">
+                            <i class="bi bi-journal-text"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="card-grid">
-                <div class="card">
-                    <h3>Giáo án mẫu</h3>
-                    <div class="big-number">00</div>
-                    <p>Số lượng nội dung mẫu hiện có</p>
-                </div>
-
-                <div class="card">
-                    <h3>Câu hỏi mẫu</h3>
-                    <div class="big-number">00</div>
-                    <p>Dữ liệu mẫu phục vụ giáo viên</p>
-                </div>
-
-                <div class="card">
-                    <h3>Vai trò</h3>
-                    <div class="big-number">Staff</div>
-                    <p>Tác nhân hỗ trợ nội dung hệ thống</p>
+            <div class="col-md-6 col-xl-4">
+                <div class="card stat-card bg-soft-info">
+                    <div class="card-body d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-secondary small">Question samples</div>
+                            <h3 class="mt-2 mb-1">45</h3>
+                            <div class="small text-info">Câu hỏi mẫu sẵn dùng</div>
+                        </div>
+                        <div class="icon-box icon-info">
+                            <i class="bi bi-patch-question"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="panel">
-                <h2>Thao tác nhanh</h2>
-                <div class="quick-actions">
-                    <a href="#">Tạo giáo án mẫu</a>
-                    <a href="#">Tạo câu hỏi mẫu</a>
+            <div class="col-md-6 col-xl-4">
+                <div class="card stat-card bg-soft-success">
+                    <div class="card-body d-flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-secondary small">Support status</div>
+                            <h3 class="mt-2 mb-1">Ready</h3>
+                            <div class="small text-success">Sẵn sàng hỗ trợ giáo viên</div>
+                        </div>
+                        <div class="icon-box icon-success">
+                            <i class="bi bi-check2-circle"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </main>
+        </div>
+
+        <div class="card panel-card mt-4">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">Thao tác nhanh</h5>
+                <a class="quick-link" href="#"><i class="bi bi-plus-circle"></i> Tạo giáo án mẫu</a>
+                <a class="quick-link" href="#"><i class="bi bi-plus-square"></i> Tạo câu hỏi mẫu</a>
+                <a class="quick-link" href="#"><i class="bi bi-collection"></i> Xem thư viện mẫu</a>
+            </div>
+        </div>
     </div>
+</div>
 
-    <script src="/LapTrinhWeb-PlanbookAI/public/js/main.js"></script>
-</body>
-</html>
+<?php include __DIR__ . '/../layouts/footer.php'; ?>
