@@ -4,20 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher Dashboard - PlanbookAI</title>
+    <title>Staff Dashboard - PlanbookAI</title>
     <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/style.css">
 </head>
 <body>
     <div class="dashboard-page">
         <aside class="sidebar">
             <div class="sidebar-brand">PlanbookAI</div>
-            <div class="sidebar-role">Teacher Workspace</div>
+            <div class="sidebar-role">Staff Panel</div>
 
             <div class="sidebar-menu">
-                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/dashboard" class="active">Dashboard</a>
-                <a href="#">Lesson Plans</a>
-                <a href="#">Question Bank</a>
-                <a href="#">Exams</a>
+                <a href="/LapTrinhWeb-PlanbookAI/public/staff/dashboard" class="active">Dashboard</a>
+                <a href="#">Lesson Samples</a>
+                <a href="#">Question Samples</a>
                 <a href="/LapTrinhWeb-PlanbookAI/public/logout">Đăng xuất</a>
             </div>
         </aside>
@@ -25,8 +24,8 @@
         <main class="main-content">
             <div class="topbar">
                 <div>
-                    <h1>Teacher Dashboard</h1>
-                    <p>Khu vực làm việc dành cho giáo viên</p>
+                    <h1>Staff Dashboard</h1>
+                    <p>Khu vực quản lý nội dung mẫu và hỗ trợ dữ liệu</p>
                 </div>
                 <div class="user-box">
                     <strong><?= Auth::user()['name']; ?></strong>
@@ -36,21 +35,29 @@
 
             <div class="card-grid">
                 <div class="card">
-                    <h3>Giáo án</h3>
+                    <h3>Giáo án mẫu</h3>
                     <div class="big-number">00</div>
-                    <p>Số giáo án hiện có</p>
+                    <p>Số lượng nội dung mẫu hiện có</p>
                 </div>
 
                 <div class="card">
-                    <h3>Ngân hàng câu hỏi</h3>
+                    <h3>Câu hỏi mẫu</h3>
                     <div class="big-number">00</div>
-                    <p>Dữ liệu câu hỏi đang quản lý</p>
+                    <p>Dữ liệu mẫu phục vụ giáo viên</p>
                 </div>
 
                 <div class="card">
-                    <h3>Đề kiểm tra</h3>
-                    <div class="big-number">00</div>
-                    <p>Số đề đã tạo</p>
+                    <h3>Vai trò</h3>
+                    <div class="big-number">Staff</div>
+                    <p>Tác nhân hỗ trợ nội dung hệ thống</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Thao tác nhanh</h2>
+                <div class="quick-actions">
+                    <a href="#">Tạo giáo án mẫu</a>
+                    <a href="#">Tạo câu hỏi mẫu</a>
                 </div>
             </div>
         </main>

@@ -29,10 +29,10 @@ class LoginController extends Controller
 
             if ($user['role'] === 'admin') {
                 $this->redirect('/admin/dashboard');
-            } elseif ($user['role'] === 'teacher') {
-                $this->redirect('/teacher/dashboard');
+            } elseif ($user['role'] === 'staff') {
+                $this->redirect('/staff/dashboard');
             } else {
-                $this->redirect('/user/dashboard');
+                $this->redirect('/teacher/dashboard');
             }
         }
 

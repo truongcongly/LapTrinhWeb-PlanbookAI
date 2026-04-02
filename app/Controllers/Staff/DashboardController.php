@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\User;
+namespace App\Controllers\Staff;
 
 use App\Core\Controller;
 use App\Core\Auth;
@@ -9,10 +9,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        if (!Auth::check() || !Auth::isUser()) {
+        if (!Auth::check() || !Auth::isStaff()) {
             die('403 - Bạn không có quyền truy cập');
         }
 
-        $this->view('user/dashboard');
+        $this->view('staff/dashboard');
     }
 }

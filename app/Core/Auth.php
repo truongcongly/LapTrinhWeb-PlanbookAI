@@ -39,13 +39,13 @@ class Auth
         return self::role() === 'admin';
     }
 
+    public static function isStaff()
+    {
+        return self::role() === 'staff';
+    }
+
     public static function isTeacher()
     {
         return self::role() === 'teacher';
-    }
-
-    public static function isUser()
-    {
-        return self::role() === 'user';
     }
 }

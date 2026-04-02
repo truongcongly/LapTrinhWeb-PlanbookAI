@@ -6,7 +6,7 @@ Dự án được xây dựng nhằm mô phỏng một hệ thống quản lý h
 
 - **Admin**
 - **Teacher**
-- **User**
+- **Staff**
 
 ---
 ## 2. Công nghệ sử dụng

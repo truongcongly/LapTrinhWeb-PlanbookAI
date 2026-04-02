@@ -70,3 +70,8 @@ table th, table td {
     padding: 20px;
     border-radius: 10px;
 }
+
+.badge-staff {
+    background: #fef3c7;
+    color: #92400e;
+}
