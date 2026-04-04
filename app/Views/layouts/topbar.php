@@ -1,17 +1,22 @@
 <div class="topbar">
     <div>
-        <h4 class="mb-1"><?= $pageTitle ?? 'Dashboard'; ?></h4>
-        <div class="text-secondary small"><?= $pageDesc ?? 'Trang quản trị hệ thống'; ?></div>
+        <h4 class="topbar-title"><?= $pageTitle ?? 'Dashboard'; ?></h4>
+        <div class="topbar-subtitle"><?= $pageDesc ?? 'Welcome to PlanbookAI'; ?></div>
     </div>
 
-    <div class="d-flex align-items-center gap-3">
-        <button class="btn btn-light rounded-circle">
+    <div class="topbar-right">
+        <button class="icon-btn">
             <i class="bi bi-bell"></i>
         </button>
 
-        <div class="text-end">
-            <div class="fw-semibold"><?= $currentUser['name'] ?? 'User'; ?></div>
-            <div class="small text-secondary"><?= $currentUser['email'] ?? ''; ?></div>
+        <div class="user-chip">
+            <div class="user-avatar">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <div>
+                <div class="user-name"><?= $currentUser['name'] ?? 'User'; ?></div>
+                <div class="user-email"><?= $currentUser['email'] ?? ''; ?></div>
+            </div>
         </div>
     </div>
 </div>

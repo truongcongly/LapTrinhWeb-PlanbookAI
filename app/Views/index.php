@@ -1,253 +1,167 @@
 <?php
-$title = 'PlanbookAI - Nền tảng hỗ trợ giáo viên';
+$title = 'PlanbookAI - Teaching Support Platform';
 include __DIR__ . '/layouts/head.php';
 ?>
 
-<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand app-brand fw-bold text-primary" href="/LapTrinhWeb-PlanbookAI/public/">
+        <a class="navbar-brand fw-bold text-primary" href="/LapTrinhWeb-PlanbookAI/public/">
             <i class="bi bi-mortarboard-fill me-2"></i>PlanbookAI
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHome">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#homeNav">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarHome">
+        <div class="collapse navbar-collapse" id="homeNav">
             <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#roles">Roles</a></li>
+                <li class="nav-item"><a class="nav-link" href="#workflow">Workflow</a></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#features">Tính năng</a>
+                    <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn btn-outline-primary rounded-pill px-4">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#roles">Vai trò</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#workflow">Quy trình</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn btn-outline-primary rounded-pill px-4">Đăng nhập</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn btn-primary rounded-pill px-4">Đăng ký</a>
+                    <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn btn-primary rounded-pill px-4">Register</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<section class="hero-section">
+<section class="landing-hero-section">
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <span class="hero-badge">
-                    <i class="bi bi-stars me-2"></i>PHP MVC School Platform
-                </span>
-
-                <h1 class="hero-title mt-4">
-                    Xây dựng giáo án, quản lý câu hỏi và tổ chức đánh giá
-                    <span class="text-primary">trong một nền tảng thống nhất</span>
+                <span class="landing-tag">Educational Management Platform</span>
+                <h1 class="landing-title mt-4">
+                    Hệ thống hỗ trợ giáo viên xây dựng giáo án, quản lý câu hỏi và tổ chức đánh giá
                 </h1>
-
-                <p class="hero-text mt-4">
-                    PlanbookAI hỗ trợ nhà trường và giáo viên quản lý tài khoản, nội dung mẫu, giáo án, ngân hàng câu hỏi và đề kiểm tra với giao diện hiện đại, dễ sử dụng và thuận tiện mở rộng.
+                <p class="landing-text mt-4">
+                    PlanbookAI là nền tảng quản lý học liệu và giảng dạy dành cho nhà trường, staff và giáo viên. Hệ thống giúp chuẩn hóa quy trình tạo giáo án, lưu trữ ngân hàng câu hỏi, sinh bài tập và hỗ trợ quản lý đề kiểm tra.
                 </p>
 
                 <div class="d-flex flex-wrap gap-3 mt-4">
                     <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn btn-primary btn-lg rounded-pill px-4">
-                        <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập ngay
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập
                     </a>
-                    <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn btn-light btn-lg rounded-pill px-4 border">
-                        <i class="bi bi-person-plus me-2"></i>Tạo tài khoản
+                    <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn btn-light border btn-lg rounded-pill px-4">
+                        <i class="bi bi-person-plus me-2"></i>Đăng ký
                     </a>
                 </div>
 
-                <div class="hero-stats mt-5">
-                    <div class="hero-stat-box">
-                        <h4>3</h4>
-                        <p>Vai trò chính</p>
+                <div class="landing-stats mt-5">
+                    <div class="stat-pill">
+                        <strong>3</strong>
+                        <span>Vai trò chính</span>
                     </div>
-                    <div class="hero-stat-box">
-                        <h4>5</h4>
-                        <p>Module nhóm</p>
+                    <div class="stat-pill">
+                        <strong>5</strong>
+                        <span>Module nhóm</span>
                     </div>
-                    <div class="hero-stat-box">
-                        <h4>MVC</h4>
-                        <p>Kiến trúc rõ ràng</p>
+                    <div class="stat-pill">
+                        <strong>MVC</strong>
+                        <span>Kiến trúc rõ ràng</span>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
-                <div class="hero-dashboard-card">
-                    <div class="hero-dashboard-top">
-                        <div class="dot bg-danger"></div>
-                        <div class="dot bg-warning"></div>
-                        <div class="dot bg-success"></div>
-                    </div>
-
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="mini-card soft-blue">
-                                <div class="mini-icon bg-primary">
-                                    <i class="bi bi-people-fill"></i>
-                                </div>
-                                <h5>Users</h5>
-                                <p>Admin / Staff / Teacher</p>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="mini-card soft-green">
-                                <div class="mini-icon bg-success">
-                                    <i class="bi bi-journal-bookmark-fill"></i>
-                                </div>
-                                <h5>Lesson Plans</h5>
-                                <p>Quản lý giáo án</p>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="mini-card soft-yellow">
-                                <div class="mini-icon bg-warning">
-                                    <i class="bi bi-patch-question-fill"></i>
-                                </div>
-                                <h5>Question Bank</h5>
-                                <p>Ngân hàng câu hỏi</p>
-                            </div>
-                        </div>
-
-                        <div class="col-6">
-                            <div class="mini-card soft-cyan">
-                                <div class="mini-icon bg-info">
-                                    <i class="bi bi-file-earmark-check-fill"></i>
-                                </div>
-                                <h5>Exams</h5>
-                                <p>Tạo đề và đánh giá</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hero-panel mt-4">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h6 class="mb-0 fw-bold">Tổng quan hệ thống</h6>
-                            <span class="badge text-bg-primary">Online</span>
-                        </div>
-
-                        <div class="progress mb-3" style="height: 10px;">
-                            <div class="progress-bar bg-primary" style="width: 78%"></div>
-                        </div>
-
-                        <div class="d-flex justify-content-between small text-secondary">
-                            <span>Core module ready</span>
-                            <span>78%</span>
-                        </div>
-                    </div>
+                <div class="landing-image-card">
+                    <img src="/LapTrinhWeb-PlanbookAI/public/images/hero-education.svg" alt="PlanbookAI Hero" class="img-fluid rounded-4">
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="features" class="section-block bg-white">
+<section id="features" class="section-gap bg-white">
     <div class="container">
-        <div class="section-heading text-center">
-            <span class="section-label">Tính năng chính</span>
-            <h2 class="section-title">Hệ thống được xây dựng theo hướng quản lý học liệu và giảng dạy toàn diện</h2>
-            <p class="section-text">
-                Cấu trúc nền tảng rõ ràng giúp nhóm có thể phát triển song song theo module và mở rộng dễ dàng trong các giai đoạn tiếp theo.
-            </p>
+        <div class="section-header text-center">
+            <span class="section-badge">Core Features</span>
+            <h2 class="section-title">Các nhóm chức năng chính của hệ thống</h2>
+            <p class="section-desc">Thiết kế theo mô hình module độc lập, dễ mở rộng và phù hợp với phát triển nhóm.</p>
         </div>
 
         <div class="row g-4 mt-4">
             <div class="col-md-6 col-xl-3">
-                <div class="feature-card h-100">
+                <div class="feature-box h-100">
                     <div class="feature-icon bg-primary-subtle text-primary">
                         <i class="bi bi-shield-lock-fill"></i>
                     </div>
                     <h5>Authentication</h5>
-                    <p>Đăng nhập, đăng ký, phân quyền theo vai trò và dashboard riêng cho từng tác nhân.</p>
+                    <p>Đăng ký, đăng nhập, phân quyền và điều hướng dashboard theo tác nhân.</p>
                 </div>
             </div>
-
             <div class="col-md-6 col-xl-3">
-                <div class="feature-card h-100">
+                <div class="feature-box h-100">
                     <div class="feature-icon bg-success-subtle text-success">
                         <i class="bi bi-journal-richtext"></i>
                     </div>
                     <h5>Lesson Plan</h5>
-                    <p>Tạo, lưu và quản lý giáo án, framework và nội dung giảng dạy theo cấu trúc rõ ràng.</p>
+                    <p>Xây dựng giáo án, framework giảng dạy và quản lý nội dung học tập.</p>
                 </div>
             </div>
-
             <div class="col-md-6 col-xl-3">
-                <div class="feature-card h-100">
+                <div class="feature-box h-100">
                     <div class="feature-icon bg-warning-subtle text-warning">
                         <i class="bi bi-collection-fill"></i>
                     </div>
                     <h5>Question Bank</h5>
-                    <p>Xây dựng ngân hàng câu hỏi theo môn học, chủ đề và độ khó để tái sử dụng thuận tiện.</p>
+                    <p>Tổ chức hệ thống câu hỏi theo chủ đề, độ khó và mục đích sử dụng.</p>
                 </div>
             </div>
-
             <div class="col-md-6 col-xl-3">
-                <div class="feature-card h-100">
+                <div class="feature-box h-100">
                     <div class="feature-icon bg-info-subtle text-info">
                         <i class="bi bi-ui-checks-grid"></i>
                     </div>
                     <h5>Exam & Result</h5>
-                    <p>Tạo đề kiểm tra, lưu đáp án, chấm điểm và quản lý kết quả theo hướng mở rộng OCR.</p>
+                    <p>Tạo đề kiểm tra, theo dõi kết quả và mở rộng sang chấm điểm thông minh.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="roles" class="section-block section-soft">
+<section id="roles" class="section-gap section-soft-bg">
     <div class="container">
-        <div class="section-heading text-center">
-            <span class="section-label">Tác nhân hệ thống</span>
-            <h2 class="section-title">Ba vai trò chính trong PlanbookAI</h2>
-            <p class="section-text">
-                Mỗi vai trò được thiết kế giao diện và quyền truy cập riêng, phù hợp với nhiệm vụ trong hệ thống.
-            </p>
+        <div class="section-header text-center">
+            <span class="section-badge">Roles</span>
+            <h2 class="section-title">Ba tác nhân chính trong hệ thống</h2>
+            <p class="section-desc">Mỗi tác nhân có dashboard và nhóm chức năng phù hợp với nhiệm vụ.</p>
         </div>
 
         <div class="row g-4 mt-4">
             <div class="col-md-4">
-                <div class="role-card h-100">
-                    <div class="role-top admin-top">
-                        <i class="bi bi-person-gear"></i>
-                    </div>
-                    <div class="role-body">
+                <div class="role-card-home h-100">
+                    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Admin" class="role-card-image">
+                    <div class="role-card-body">
                         <h4>Admin</h4>
-                        <p>Quản trị người dùng, phân quyền, giám sát hệ thống và quản lý nền tảng vận hành.</p>
-                        <span class="role-badge-home role-admin-home">System Control</span>
+                        <p>Quản trị hệ thống, tài khoản, quyền truy cập, theo dõi vận hành và quản lý dữ liệu nền.</p>
+                        <span class="role-tag role-tag-admin">System Control</span>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="role-card h-100">
-                    <div class="role-top staff-top">
-                        <i class="bi bi-person-workspace"></i>
-                    </div>
-                    <div class="role-body">
+                <div class="role-card-home h-100">
+                    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Staff" class="role-card-image">
+                    <div class="role-card-body">
                         <h4>Staff</h4>
-                        <p>Chuẩn hóa nội dung mẫu, xây dựng dữ liệu hỗ trợ và phối hợp với giáo viên trong hệ thống.</p>
-                        <span class="role-badge-home role-staff-home">Content Support</span>
+                        <p>Hỗ trợ nội dung mẫu, chuẩn hóa tài nguyên, xây dựng kho lesson/question mẫu cho giáo viên.</p>
+                        <span class="role-tag role-tag-staff">Content Support</span>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-4">
-                <div class="role-card h-100">
-                    <div class="role-top teacher-top">
-                        <i class="bi bi-mortarboard-fill"></i>
-                    </div>
-                    <div class="role-body">
+                <div class="role-card-home h-100">
+                    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Teacher" class="role-card-image">
+                    <div class="role-card-body">
                         <h4>Teacher</h4>
-                        <p>Sử dụng chính hệ thống để xây dựng giáo án, quản lý câu hỏi, bài tập và đề kiểm tra.</p>
-                        <span class="role-badge-home role-teacher-home">Main User</span>
+                        <p>Người dùng chính của hệ thống, sử dụng giáo án, câu hỏi, bài tập và đề kiểm tra trong giảng dạy.</p>
+                        <span class="role-tag role-tag-teacher">Main User</span>
                     </div>
                 </div>
             </div>
@@ -255,67 +169,57 @@ include __DIR__ . '/layouts/head.php';
     </div>
 </section>
 
-<section id="workflow" class="section-block bg-white">
+<section id="workflow" class="section-gap bg-white">
     <div class="container">
-        <div class="section-heading text-center">
-            <span class="section-label">Quy trình hoạt động</span>
-            <h2 class="section-title">Luồng làm việc điển hình của hệ thống</h2>
+        <div class="section-header text-center">
+            <span class="section-badge">Workflow</span>
+            <h2 class="section-title">Luồng hoạt động tổng quát</h2>
         </div>
 
         <div class="row g-4 mt-4">
             <div class="col-md-3">
-                <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h5>Đăng nhập hệ thống</h5>
-                    <p>Người dùng xác thực tài khoản để truy cập dashboard theo vai trò.</p>
+                <div class="workflow-box h-100">
+                    <div class="workflow-step">01</div>
+                    <h5>Login</h5>
+                    <p>Người dùng đăng nhập và được điều hướng đến dashboard đúng vai trò.</p>
                 </div>
             </div>
-
             <div class="col-md-3">
-                <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h5>Quản lý nội dung</h5>
-                    <p>Staff hoặc Teacher tạo giáo án, câu hỏi hoặc nội dung mẫu theo chức năng được cấp.</p>
+                <div class="workflow-box h-100">
+                    <div class="workflow-step">02</div>
+                    <h5>Manage Content</h5>
+                    <p>Admin, Staff và Teacher thao tác trên module phù hợp với quyền hạn.</p>
                 </div>
             </div>
-
             <div class="col-md-3">
-                <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h5>Tạo bài tập / đề</h5>
-                    <p>Teacher sử dụng dữ liệu sẵn có để tạo bài tập và đề kiểm tra nhanh chóng.</p>
+                <div class="workflow-box h-100">
+                    <div class="workflow-step">03</div>
+                    <h5>Create Resources</h5>
+                    <p>Tạo giáo án, câu hỏi, bài tập và đề kiểm tra từ các nguồn dữ liệu được tổ chức sẵn.</p>
                 </div>
             </div>
-
             <div class="col-md-3">
-                <div class="step-card">
-                    <div class="step-number">04</div>
-                    <h5>Theo dõi và mở rộng</h5>
-                    <p>Admin giám sát toàn hệ thống và mở rộng thêm module khi cần.</p>
+                <div class="workflow-box h-100">
+                    <div class="workflow-step">04</div>
+                    <h5>Track & Expand</h5>
+                    <p>Quản trị và mở rộng hệ thống theo nhu cầu phát triển tiếp theo của dự án.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="cta-section">
+<section class="cta-banner-section">
     <div class="container">
-        <div class="cta-box">
+        <div class="cta-banner">
             <div class="row align-items-center g-4">
                 <div class="col-lg-8">
-                    <h2 class="mb-3">Sẵn sàng bắt đầu với PlanbookAI?</h2>
-                    <p class="mb-0 text-white-50">
-                        Đăng nhập hoặc tạo tài khoản để trải nghiệm hệ thống quản lý học liệu và giảng dạy theo kiến trúc MVC hiện đại.
-                    </p>
+                    <h2>Bắt đầu trải nghiệm PlanbookAI ngay hôm nay</h2>
+                    <p class="mb-0">Đăng nhập để truy cập dashboard hoặc tạo tài khoản mới để khám phá nền tảng.</p>
                 </div>
-
                 <div class="col-lg-4 text-lg-end">
-                    <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn btn-light btn-lg rounded-pill px-4 me-2">
-                        Đăng nhập
-                    </a>
-                    <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn btn-outline-light btn-lg rounded-pill px-4">
-                        Đăng ký
-                    </a>
+                    <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn btn-light btn-lg rounded-pill px-4 me-2">Đăng nhập</a>
+                    <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn btn-outline-light btn-lg rounded-pill px-4">Đăng ký</a>
                 </div>
             </div>
         </div>
@@ -324,8 +228,8 @@ include __DIR__ . '/layouts/head.php';
 
 <footer class="home-footer">
     <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-        <div>© 2026 PlanbookAI. School Management & Teaching Support Platform.</div>
-        <div class="text-secondary">Built with PHP, Bootstrap, MySQL and MVC structure.</div>
+        <div>© 2026 PlanbookAI. Educational Management Platform.</div>
+        <div class="text-secondary">Built with PHP MVC, Bootstrap, MySQL.</div>
     </div>
 </footer>
 

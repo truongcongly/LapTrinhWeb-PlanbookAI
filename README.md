@@ -106,14 +106,14 @@ CREATE TABLE users (
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'teacher', 'user') NOT NULL DEFAULT 'user',
+    role ENUM('admin', 'teacher', 'staff') NOT NULL DEFAULT 'teacher',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO users (name, email, password, role) VALUES
 ('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
 ('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher'),
-('User', 'user@planbookai.com', MD5('123456'), 'user');
+('Staff', 'staff@planbookai.com', MD5('123456'), 'staff'),
 ```
 ---
 
@@ -152,7 +152,7 @@ Sau khi chạy composer dump-autoload, project sẽ sinh ra thư mục vendor/
 
 ## 10. Hướng phát triển tiếp theo
 
-Người 1: hoàn thiện login,register, dashboard admin,user,teacher
+Người 1: hoàn thiện login,register, dashboard admin,staff,teacher
 
 Người 2: Lesson Plan, Curriculum Framework  
 

@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const currentPath = window.location.pathname;
-    document.querySelectorAll(".sidebar .nav-link").forEach(link => {
+    document.querySelectorAll(".nav-item-link").forEach(link => {
         const href = link.getAttribute("href");
-        if (href && currentPath.includes(href.replace(window.location.origin, ""))) {
+        if (href && currentPath === href) {
             link.classList.add("active");
         }
     });

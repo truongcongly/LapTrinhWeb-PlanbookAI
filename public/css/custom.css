@@ -588,3 +588,226 @@ a{
     background: #fff;
     border-top: 1px solid #e2e8f0;
 }
+
+.auth-modern-section {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, rgba(37,99,235,.12), transparent 30%),
+        linear-gradient(135deg, #eef4ff 0%, #f8fafc 55%, #ecfeff 100%);
+}
+
+.auth-register-bg {
+    background:
+        radial-gradient(circle at top right, rgba(16,185,129,.10), transparent 28%),
+        linear-gradient(135deg, #f0fdf4 0%, #ffffff 45%, #eef4ff 100%);
+}
+
+.auth-modern-card {
+    background: #fff;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(15,23,42,.12);
+    border: 1px solid #e2e8f0;
+}
+
+.auth-modern-left {
+    height: 100%;
+    padding: 42px 36px;
+    background: linear-gradient(160deg, #1d4ed8, #2563eb, #0ea5e9);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.auth-chip {
+    display: inline-block;
+    background: rgba(255,255,255,.16);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    align-self: flex-start;
+}
+
+.auth-modern-left h1 {
+    margin-top: 18px;
+    font-size: 2.1rem;
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+.auth-modern-left p {
+    margin-top: 16px;
+    color: rgba(255,255,255,.88);
+    line-height: 1.85;
+}
+
+.auth-modern-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.auth-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,.10);
+    padding: 12px 14px;
+    border-radius: 14px;
+}
+
+.auth-illustration-wrap {
+    margin-top: 28px;
+    text-align: center;
+}
+
+.auth-illustration-wrap img {
+    max-width: 320px;
+}
+
+.auth-modern-right {
+    padding: 40px 34px;
+    background: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-form-header {
+    margin-bottom: 24px;
+}
+
+.auth-brand {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 800;
+    color: #2563eb;
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+}
+
+.auth-form-header h2 {
+    font-weight: 900;
+    margin-bottom: 8px;
+}
+
+.auth-form-header p {
+    color: #64748b;
+    margin-bottom: 0;
+}
+
+.input-modern {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+}
+
+.input-modern .input-group-text {
+    background: #f8fafc;
+    border: none;
+    color: #64748b;
+    padding-left: 18px;
+    padding-right: 14px;
+}
+
+.input-modern .form-control,
+.input-modern .form-select {
+    border: none;
+    box-shadow: none !important;
+    padding: 14px 16px;
+    min-height: 54px;
+}
+
+.btn-auth-submit {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+    border: none;
+    padding: 14px 18px;
+    font-weight: 700;
+    border-radius: 18px;
+    box-shadow: 0 12px 24px rgba(37,99,235,.22);
+}
+
+.btn-auth-submit:hover {
+    color: #fff;
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+}
+
+.auth-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0 14px;
+    color: #94a3b8;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.auth-divider span {
+    padding: 0 14px;
+    font-size: 14px;
+}
+
+.auth-bottom-text {
+    text-align: center;
+    color: #64748b;
+}
+
+.auth-bottom-text a {
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.auth-role-preview {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.preview-badge {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.admin-badge {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.staff-badge {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.teacher-badge {
+    background: #dcfce7;
+    color: #166534;
+}
+
+@media (max-width: 991.98px) {
+    .auth-modern-left {
+        padding: 32px 24px;
+    }
+
+    .auth-modern-right {
+        padding: 32px 24px;
+    }
+
+    .auth-modern-left h1 {
+        font-size: 1.8rem;
+    }
+}
