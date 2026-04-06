@@ -64,7 +64,7 @@ class GradingController extends Controller
             'score'        => $score
         ]);
 
-        header('Location: /LAPTRINHWEB-PLANBOOKAI/public/teacher/results/' . $examId);
+        header('Location: http://localhost/LapTrinhWeb-PlanbookAI/public/teacher/results/' . $examId);
         exit;
     }
 }

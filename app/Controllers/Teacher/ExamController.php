@@ -93,7 +93,7 @@ class ExamController extends Controller
         }
 
         $this->examModel->delete($id);
-        header('Location: /LAPTRINHWEB-PLANBOOKAI/public/teacher/exams');
+        header('Location: http://localhost/LapTrinhWeb-PlanbookAI/public/teacher/exams');
         exit;
     }
 }
