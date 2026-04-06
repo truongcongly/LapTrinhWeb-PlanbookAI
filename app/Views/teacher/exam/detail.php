@@ -1,4 +1,10 @@
-<?php include __DIR__ . '/../../layouts/app.php'; ?>
+<?php
+
+$title = 'Chi tiết đề thi';
+$role = 'teacher';
+
+ob_start();
+?>
 
 <div class="container mt-4">
     <h2><?= htmlspecialchars($exam['title']) ?></h2>
@@ -14,5 +20,13 @@
         </div>
     </div>
     <?php endforeach; ?>
-    <a href="/LAPTRINHWEB-PLANBOOKAI/public/teacher/exams" class="btn btn-secondary mt-2">← Quay lại</a>
+    <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams" class="btn btn-secondary mt-2">← Quay lại</a>
 </div>
+
+<?php
+$content = ob_get_clean();
+$tempFile = sys_get_temp_dir() . '/teacher_exam_detail.php';
+file_put_contents($tempFile, $content);
+$contentView = $tempFile;
+
+include __DIR__ . '/../../layouts/dashboard_layout.php';

@@ -1,8 +1,14 @@
-<?php include __DIR__ . '/../../layouts/app.php'; ?>
+<?php
+
+$title = 'Tạo đề thi mới';
+$role = 'teacher';
+
+ob_start();
+?>
 
 <div class="container mt-4">
     <h2>Tạo đề thi mới</h2>
-    <form method="POST" action="/LAPTRINHWEB-PLANBOOKAI/public/teacher/exams/store" id="examForm">
+    <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/teacher/exams/store" id="examForm">
         <div class="card mb-3">
             <div class="card-header">Thông tin đề thi</div>
             <div class="card-body">
@@ -68,6 +74,13 @@ function addQuestion() {
     document.getElementById('questions-container').insertAdjacentHTML('beforeend', html);
 }
 
-// Tự động thêm 1 câu hỏi khi vào trang
 addQuestion();
 </script>
+
+<?php
+$content = ob_get_clean();
+$tempFile = sys_get_temp_dir() . '/teacher_exam_create.php';
+file_put_contents($tempFile, $content);
+$contentView = $tempFile;
+
+include __DIR__ . '/../../layouts/dashboard_layout.php';

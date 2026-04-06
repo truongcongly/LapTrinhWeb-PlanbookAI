@@ -1,4 +1,10 @@
-<?php include __DIR__ . '/../../layouts/app.php'; ?>
+<?php
+
+$title = 'Kết quả';
+$role = 'teacher';
+
+ob_start();
+?>
 
 <div class="container mt-4">
     <h2>Kết quả: <?= htmlspecialchars($exam['title']) ?></h2>
@@ -26,5 +32,13 @@
             </tbody>
         </table>
     <?php endif; ?>
-    <a href="/LAPTRINHWEB-PLANBOOKAI/public/teacher/exams" class="btn btn-secondary">← Quay lại</a>
+    <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams" class="btn btn-secondary">← Quay lại</a>
 </div>
+
+<?php
+$content = ob_get_clean();
+$tempFile = sys_get_temp_dir() . '/teacher_result_index.php';
+file_put_contents($tempFile, $content);
+$contentView = $tempFile;
+
+include __DIR__ . '/../../layouts/dashboard_layout.php';
