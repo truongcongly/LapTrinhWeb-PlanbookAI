@@ -3,16 +3,27 @@
 namespace App\Controllers\Admin;
 
 use App\Core\Controller;
-use App\Core\Auth;
+use App\Middleware\RoleMiddleware;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        if (!Auth::check() || !Auth::isAdmin()) {
-            die('403 - Bạn không có quyền truy cập');
-        }
+        RoleMiddleware::handle('admin');
 
-        $this->view('admin/dashboard');
+        $userModel = new User();
+
+        $stats = [
+            'total_users' => $userModel->countAll(),
+            'admin_count' => $userModel->countByRole('admin'),
+            'staff_count' => $userModel->countByRole('staff'),
+            'teacher_count' => $userModel->countByRole('teacher'),
+            'active_accounts' => $userModel->countAll()
+        ];
+
+        $recentUsers = $userModel->getRecentUsers(5);
+
+        $this->view('admin/dashboard', compact('stats', 'recentUsers'));
     }
 }

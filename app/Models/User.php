@@ -48,6 +48,38 @@ class User
         return $users;
     }
 
+    public function search($keyword = '', $role = '')
+    {
+        $conditions = [];
+
+        if ($keyword !== '') {
+            $keyword = $this->conn->real_escape_string($keyword);
+            $conditions[] = "(name LIKE '%$keyword%' OR email LIKE '%$keyword%')";
+        }
+
+        if ($role !== '') {
+            $role = $this->conn->real_escape_string($role);
+            $conditions[] = "role = '$role'";
+        }
+
+        $where = '';
+        if (!empty($conditions)) {
+            $where = 'WHERE ' . implode(' AND ', $conditions);
+        }
+
+        $sql = "SELECT * FROM users $where ORDER BY id DESC";
+        $result = $this->conn->query($sql);
+
+        $users = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+        }
+
+        return $users;
+    }
+
     public function findById($id)
     {
         $id = (int) $id;
@@ -93,20 +125,18 @@ class User
 
     public function countAll()
     {
-        $sql = "SELECT COUNT(*) AS total FROM users";
+        $sql = "SELECT COUNT(*) as total FROM users";
         $result = $this->conn->query($sql);
         $row = $result->fetch_assoc();
-
         return (int) $row['total'];
     }
 
     public function countByRole($role)
     {
         $role = $this->conn->real_escape_string($role);
-        $sql = "SELECT COUNT(*) AS total FROM users WHERE role = '$role'";
+        $sql = "SELECT COUNT(*) as total FROM users WHERE role = '$role'";
         $result = $this->conn->query($sql);
         $row = $result->fetch_assoc();
-
         return (int) $row['total'];
     }
 
@@ -118,38 +148,6 @@ class User
                 ORDER BY id DESC
                 LIMIT $limit";
 
-        $result = $this->conn->query($sql);
-
-        $users = [];
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
-            }
-        }
-
-        return $users;
-    }
-
-    public function search($keyword = '', $role = '')
-    {
-        $conditions = [];
-
-        if ($keyword !== '') {
-            $keyword = $this->conn->real_escape_string($keyword);
-            $conditions[] = "(name LIKE '%$keyword%' OR email LIKE '%$keyword%')";
-        }
-
-        if ($role !== '') {
-            $role = $this->conn->real_escape_string($role);
-            $conditions[] = "role = '$role'";
-        }
-
-        $where = '';
-        if (!empty($conditions)) {
-            $where = 'WHERE ' . implode(' AND ', $conditions);
-        }
-
-        $sql = "SELECT * FROM users $where ORDER BY id DESC";
         $result = $this->conn->query($sql);
 
         $users = [];

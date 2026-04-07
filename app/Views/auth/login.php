@@ -51,9 +51,9 @@ include __DIR__ . '/../layouts/head.php';
                                     <p>Nhập thông tin tài khoản để tiếp tục.</p>
                                 </div>
 
-                                <?php if (Session::has('error')): ?>
+                                <?php if (Session::hasFlash('error')): ?>
                                     <div class="alert alert-danger rounded-4 border-0 shadow-sm">
-                                        <?= Session::get('error'); Session::remove('error'); ?>
+                                        <?= Session::getFlash('error'); ?>
                                     </div>
                                 <?php endif; ?>
 
@@ -107,7 +107,7 @@ include __DIR__ . '/../layouts/head.php';
                 </div>
             </div>
         </div>
-     </div>
+    </div>
 </section>
 
 <?php include __DIR__ . '/../layouts/footer.php'; ?>

@@ -51,15 +51,15 @@ include __DIR__ . '/../layouts/head.php';
                                     <p>Tạo tài khoản để bắt đầu sử dụng hệ thống.</p>
                                 </div>
 
-                                <?php if (Session::has('error')): ?>
+                                <?php if (Session::hasFlash('error')): ?>
                                     <div class="alert alert-danger rounded-4 border-0 shadow-sm">
-                                        <?= Session::get('error'); Session::remove('error'); ?>
+                                        <?= Session::getFlash('error'); ?>
                                     </div>
                                 <?php endif; ?>
 
-                                <?php if (Session::has('success')): ?>
+                                <?php if (Session::hasFlash('success')): ?>
                                     <div class="alert alert-success rounded-4 border-0 shadow-sm">
-                                        <?= Session::get('success'); Session::remove('success'); ?>
+                                        <?= Session::getFlash('success'); ?>
                                     </div>
                                 <?php endif; ?>
 
@@ -115,7 +115,8 @@ include __DIR__ . '/../layouts/head.php';
                     </div>
                 </div>
             </div>
-     </div>
+        </div>
+    </div>
 </section>
 
 <?php include __DIR__ . '/../layouts/footer.php'; ?>
