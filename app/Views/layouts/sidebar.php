@@ -66,7 +66,7 @@
         <a class="nav-item-link" href="#">
             <i class="bi bi-ui-checks-grid"></i><span>Exercises</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/exams">
             <i class="bi bi-file-earmark-text-fill"></i><span>Exams</span>
         </a>
         <a class="nav-item-link" href="#">
