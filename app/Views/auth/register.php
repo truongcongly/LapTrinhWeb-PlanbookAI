@@ -13,30 +13,23 @@ include __DIR__ . '/../layouts/head.php';
                 <div class="auth-modern-card">
                     <div class="row g-0">
                         <div class="col-lg-6">
-                            <div class="auth-modern-left">
-                                <span class="auth-chip">Create New Account</span>
-                                <h1>Tạo tài khoản mới trên PlanbookAI</h1>
-                                <p>
-                                    Bắt đầu sử dụng hệ thống với vai trò Staff hoặc Teacher để quản lý học liệu, câu hỏi, bài tập và hoạt động giảng dạy một cách hiệu quả.
-                                </p>
-
-                                <div class="auth-modern-features">
-                                    <div class="auth-feature-item">
-                                        <i class="bi bi-person-workspace"></i>
-                                        <span>Workspace riêng theo vai trò</span>
-                                    </div>
-                                    <div class="auth-feature-item">
-                                        <i class="bi bi-folder-check"></i>
-                                        <span>Quản lý nội dung khoa học</span>
-                                    </div>
-                                    <div class="auth-feature-item">
-                                        <i class="bi bi-stars"></i>
-                                        <span>UI hiện đại, dễ mở rộng module</span>
-                                    </div>
+                            <div class="auth-modern-left auth-left-planbook">
+                                <div class="auth-left-overlay-icons">
+                                    <span class="icon i1"><i class="bi bi-pencil"></i></span>
+                                    <span class="icon i2"><i class="bi bi-book"></i></span>
+                                    <span class="icon i3"><i class="bi bi-calculator"></i></span>
+                                    <span class="icon i4"><i class="bi bi-music-note-beamed"></i></span>
+                                    <span class="icon i5"><i class="bi bi-star"></i></span>
+                                    <span class="icon i6"><i class="bi bi-triangle"></i></span>
                                 </div>
 
-                                <div class="auth-illustration-wrap">
-                                    <img src="/LapTrinhWeb-PlanbookAI/public/images/auth-register.svg" alt="Register Illustration" class="img-fluid">
+                                <div class="auth-left-top">
+                                    <h1>Welcome to PlanbookAI!</h1>
+                                    <p>The leader in lesson planning</p>
+                                </div>
+
+                                <div class="auth-left-image-board">
+                                    <img src="/LapTrinhWeb-PlanbookAI/public/images/auth-classroom.png" alt="Classroom Illustration" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -48,7 +41,7 @@ include __DIR__ . '/../layouts/head.php';
                                         <i class="bi bi-mortarboard-fill me-2"></i>PlanbookAI
                                     </a>
                                     <h2>Đăng ký</h2>
-                                    <p>Tạo tài khoản để bắt đầu sử dụng hệ thống.</p>
+                                    <p>Tạo tài khoản mới để bắt đầu sử dụng hệ thống.</p>
                                 </div>
 
                                 <?php if (Session::hasFlash('error')): ?>
@@ -110,13 +103,17 @@ include __DIR__ . '/../layouts/head.php';
                                     Đã có tài khoản?
                                     <a href="/LapTrinhWeb-PlanbookAI/public/login">Đăng nhập ngay</a>
                                 </div>
+
+                                <div class="auth-role-preview mt-4">
+                                    <span class="preview-badge staff-badge">Staff</span>
+                                    <span class="preview-badge teacher-badge">Teacher</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+     </div>
 </section>
 
 <?php include __DIR__ . '/../layouts/footer.php'; ?>
