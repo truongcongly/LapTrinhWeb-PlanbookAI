@@ -8,6 +8,7 @@ use App\Controllers\Teacher\ExamController;
 use App\Controllers\Teacher\GradingController;
 use App\Controllers\Teacher\ResultController;
 use App\Controllers\Teacher\LessonPlanController;
+use App\Controllers\Teacher\QuestionController;
 
 return [
     ['GET', '/', [HomeController::class, 'index']],
@@ -37,4 +38,13 @@ return [
     ['GET', '/teacher/lesson-plans/edit', [LessonPlanController::class, 'edit']],
     ['POST', '/teacher/lesson-plans/update', [LessonPlanController::class, 'update']],
     ['GET', '/teacher/lesson-plans/delete', [LessonPlanController::class, 'delete']],
+
+    // Question routes
+    ['GET', '/teacher/questions', [QuestionController::class, 'index']],
+    ['GET', '/teacher/questions/create', [QuestionController::class, 'create']],
+    ['POST', '/teacher/questions/store', [QuestionController::class, 'store']],
+    ['GET', '/teacher/questions/show', [QuestionController::class, 'show']],
+    ['GET', '/teacher/questions/edit', [QuestionController::class, 'edit']],
+    ['POST', '/teacher/questions/update', [QuestionController::class, 'update']],
+    ['GET', '/teacher/questions/delete', [QuestionController::class, 'delete']],
 ];

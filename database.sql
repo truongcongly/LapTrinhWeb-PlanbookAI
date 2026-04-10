@@ -31,3 +31,19 @@ CREATE TABLE lesson_plans (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+CREATE TABLE questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    teacher_id INT NOT NULL,
+    question_text TEXT NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    topic VARCHAR(100) NOT NULL,
+    difficulty ENUM('easy', 'medium', 'hard') DEFAULT 'medium',
+    option_a VARCHAR(255) DEFAULT NULL,
+    option_b VARCHAR(255) DEFAULT NULL,
+    option_c VARCHAR(255) DEFAULT NULL,
+    option_d VARCHAR(255) DEFAULT NULL,
+    correct_answer ENUM('A', 'B', 'C', 'D') DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
