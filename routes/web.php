@@ -3,6 +3,7 @@
 use App\Controllers\HomeController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Staff\DashboardController as StaffDashboardController;
+use App\Controllers\Staff\QuestionSampleController;
 use App\Controllers\Teacher\DashboardController as TeacherDashboardController;
 use App\Controllers\Teacher\ExamController;
 use App\Controllers\Teacher\GradingController;
@@ -15,6 +16,15 @@ return [
     ['GET', '/login', [LoginController::class, 'index']],
     ['GET', '/staff/dashboard', [StaffDashboardController::class, 'index']],
     ['GET', '/teacher/dashboard', [TeacherDashboardController::class, 'index']],
+
+    // Staff Question Sample routes
+    ['GET', '/staff/question-samples', [QuestionSampleController::class, 'index']],
+    ['GET', '/staff/question-samples/create', [QuestionSampleController::class, 'create']],
+    ['POST', '/staff/question-samples/store', [QuestionSampleController::class, 'store']],
+    ['GET', '/staff/question-samples/edit', [QuestionSampleController::class, 'edit']],
+    ['POST', '/staff/question-samples/update', [QuestionSampleController::class, 'update']],
+    ['GET', '/staff/question-samples/delete', [QuestionSampleController::class, 'delete']],
+    ['GET', '/staff/question-samples/topics', [QuestionSampleController::class, 'topics']],
 
     // Exam routes
     ['GET',  '/teacher/exams',              [ExamController::class, 'index']],
