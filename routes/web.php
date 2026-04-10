@@ -7,6 +7,7 @@ use App\Controllers\Teacher\DashboardController as TeacherDashboardController;
 use App\Controllers\Teacher\ExamController;
 use App\Controllers\Teacher\GradingController;
 use App\Controllers\Teacher\ResultController;
+use App\Controllers\Teacher\LessonPlanController;
 
 return [
     ['GET', '/', [HomeController::class, 'index']],
@@ -27,4 +28,13 @@ return [
 
     // Result routes
     ['GET',  '/teacher/results/{examId}',  [ResultController::class, 'index']],
+
+    // Lesson Plan routes
+    ['GET', '/teacher/lesson-plans', [LessonPlanController::class, 'index']],
+    ['GET', '/teacher/lesson-plans/create', [LessonPlanController::class, 'create']],
+    ['POST', '/teacher/lesson-plans/store', [LessonPlanController::class, 'store']],
+    ['GET', '/teacher/lesson-plans/show', [LessonPlanController::class, 'show']],
+    ['GET', '/teacher/lesson-plans/edit', [LessonPlanController::class, 'edit']],
+    ['POST', '/teacher/lesson-plans/update', [LessonPlanController::class, 'update']],
+    ['GET', '/teacher/lesson-plans/delete', [LessonPlanController::class, 'delete']],
 ];

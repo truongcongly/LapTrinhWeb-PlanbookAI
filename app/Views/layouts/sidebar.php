@@ -57,7 +57,7 @@
         <a class="nav-item-link active" href="/LapTrinhWeb-PlanbookAI/public/teacher/dashboard">
             <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/lesson-plans">
             <i class="bi bi-journal-bookmark-fill"></i><span>Lesson Plans</span>
         </a>
         <a class="nav-item-link" href="#">

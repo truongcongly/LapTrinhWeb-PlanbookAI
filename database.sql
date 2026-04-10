@@ -15,3 +15,19 @@ INSERT INTO users (name, email, password, role) VALUES
 ('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
 ('Staff', 'staff@planbookai.com', MD5('123456'), 'staff'),
 ('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher');
+
+ALTER TABLE exams ADD created_by INT;
+
+CREATE TABLE lesson_plans (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    teacher_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    subject VARCHAR(100) NOT NULL,
+    grade_level VARCHAR(50) NOT NULL,
+    objectives TEXT,
+    activities TEXT,
+    assessment TEXT,
+    status ENUM('draft', 'completed') DEFAULT 'draft',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
