@@ -109,7 +109,7 @@ ob_start();
                 <a href="#" class="quick-action-item">
                     <i class="bi bi-plus-square"></i> Tạo lesson sample
                 </a>
-                <a href="#" class="quick-action-item">
+                <a href="/LapTrinhWeb-PlanbookAI/public/staff/question-samples/create" class="quick-action-item">
                     <i class="bi bi-plus-circle"></i> Tạo question sample
                 </a>
                 <a href="#" class="quick-action-item">
