@@ -10,4 +10,18 @@ class HomeController extends Controller
     {
         $this->view('index');
     }
+    public function roles()
+    {
+        $this->view('roles');
+    }
+
+    public function workflow()
+    {
+        $this->view('workflow');
+    }
+
+    public function about()
+    {
+        $this->view('about');
+    }
 }

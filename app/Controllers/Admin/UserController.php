@@ -3,26 +3,28 @@
 namespace App\Controllers\Admin;
 
 use App\Core\Controller;
-use App\Core\Auth;
+use App\Core\Session;
 use App\Models\User;
+use App\Middleware\RoleMiddleware;
 
 class UserController extends Controller
 {
     private function authorize()
     {
-        if (!Auth::check() || !Auth::isAdmin()) {
-            die('403 - Bạn không có quyền truy cập');
-        }
+        RoleMiddleware::handle('admin');
     }
 
     public function index()
     {
         $this->authorize();
 
-        $userModel = new User();
-        $users = $userModel->getAll();
+        $keyword = $_GET['keyword'] ?? '';
+        $role = $_GET['role'] ?? '';
 
-        $this->view('admin/users/index', compact('users'));
+        $userModel = new User();
+        $users = $userModel->search($keyword, $role);
+
+        $this->view('admin/users/index', compact('users', 'keyword', 'role'));
     }
 
     public function create()
@@ -36,8 +38,14 @@ class UserController extends Controller
         $this->authorize();
 
         $userModel = new User();
-        $userModel->create($_POST);
 
+        if ($userModel->findByEmail($_POST['email'] ?? '')) {
+            Session::flash('error', 'Email đã tồn tại trong hệ thống.');
+            $this->redirect('/admin/users/create');
+        }
+
+        $userModel->create($_POST);
+        Session::flash('success', 'Thêm người dùng thành công.');
         $this->redirect('/admin/users');
     }
 
@@ -49,6 +57,11 @@ class UserController extends Controller
         $userModel = new User();
         $user = $userModel->findById($id);
 
+        if (!$user) {
+            Session::flash('error', 'Không tìm thấy người dùng.');
+            $this->redirect('/admin/users');
+        }
+
         $this->view('admin/users/edit', compact('user'));
     }
 
@@ -58,8 +71,20 @@ class UserController extends Controller
 
         $id = $_GET['id'] ?? 0;
         $userModel = new User();
-        $userModel->update($id, $_POST);
 
+        $user = $userModel->findById($id);
+        if (!$user) {
+            Session::flash('error', 'Không tìm thấy người dùng.');
+            $this->redirect('/admin/users');
+        }
+
+        if ($userModel->findByEmailExceptId($_POST['email'] ?? '', $id)) {
+            Session::flash('error', 'Email đã tồn tại ở tài khoản khác.');
+            $this->redirect('/admin/users/edit?id=' . $id);
+        }
+
+        $userModel->update($id, $_POST);
+        Session::flash('success', 'Cập nhật người dùng thành công.');
         $this->redirect('/admin/users');
     }
 
@@ -69,8 +94,15 @@ class UserController extends Controller
 
         $id = $_GET['id'] ?? 0;
         $userModel = new User();
-        $userModel->delete($id);
 
+        $user = $userModel->findById($id);
+        if (!$user) {
+            Session::flash('error', 'Không tìm thấy người dùng.');
+            $this->redirect('/admin/users');
+        }
+
+        $userModel->delete($id);
+        Session::flash('success', 'Xóa người dùng thành công.');
         $this->redirect('/admin/users');
     }
 }

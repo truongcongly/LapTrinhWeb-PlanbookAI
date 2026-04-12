@@ -5,21 +5,23 @@ namespace App\Controllers\Auth;
 use App\Core\Controller;
 use App\Core\Session;
 use App\Models\User;
+use App\Middleware\GuestMiddleware;
 
 class RegisterController extends Controller
 {
     public function index()
     {
+        GuestMiddleware::handle();
         $this->view('auth/register');
     }
 
     public function register()
     {
-        Session::start();
+        GuestMiddleware::handle();
 
         $data = [
-            'name' => $_POST['name'] ?? '',
-            'email' => $_POST['email'] ?? '',
+            'name' => trim($_POST['name'] ?? ''),
+            'email' => trim($_POST['email'] ?? ''),
             'password' => $_POST['password'] ?? '',
             'role' => $_POST['role'] ?? 'teacher',
         ];
@@ -28,12 +30,13 @@ class RegisterController extends Controller
         $existingUser = $userModel->findByEmail($data['email']);
 
         if ($existingUser) {
-            Session::set('error', 'Email đã tồn tại.');
+            Session::flash('error', 'Email đã tồn tại.');
             $this->redirect('/register');
         }
 
         $userModel->create($data);
-        Session::set('success', 'Đăng ký thành công. Hãy đăng nhập.');
+
+        Session::flash('success', 'Đăng ký thành công. Hãy đăng nhập.');
         $this->redirect('/register');
     }
 }

@@ -19,7 +19,18 @@ class User
         $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
         $result = $this->conn->query($sql);
 
-        return $result->fetch_assoc();
+        return $result ? $result->fetch_assoc() : null;
+    }
+
+    public function findByEmailExceptId($email, $id)
+    {
+        $email = $this->conn->real_escape_string($email);
+        $id = (int) $id;
+
+        $sql = "SELECT * FROM users WHERE email = '$email' AND id != $id LIMIT 1";
+        $result = $this->conn->query($sql);
+
+        return $result ? $result->fetch_assoc() : null;
     }
 
     public function getAll()
@@ -28,8 +39,42 @@ class User
         $result = $this->conn->query($sql);
 
         $users = [];
-        while ($row = $result->fetch_assoc()) {
-            $users[] = $row;
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+        }
+
+        return $users;
+    }
+
+    public function search($keyword = '', $role = '')
+    {
+        $conditions = [];
+
+        if ($keyword !== '') {
+            $keyword = $this->conn->real_escape_string($keyword);
+            $conditions[] = "(name LIKE '%$keyword%' OR email LIKE '%$keyword%')";
+        }
+
+        if ($role !== '') {
+            $role = $this->conn->real_escape_string($role);
+            $conditions[] = "role = '$role'";
+        }
+
+        $where = '';
+        if (!empty($conditions)) {
+            $where = 'WHERE ' . implode(' AND ', $conditions);
+        }
+
+        $sql = "SELECT * FROM users $where ORDER BY id DESC";
+        $result = $this->conn->query($sql);
+
+        $users = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
         }
 
         return $users;
@@ -41,7 +86,7 @@ class User
         $sql = "SELECT * FROM users WHERE id = $id LIMIT 1";
         $result = $this->conn->query($sql);
 
-        return $result->fetch_assoc();
+        return $result ? $result->fetch_assoc() : null;
     }
 
     public function create($data)
@@ -76,5 +121,42 @@ class User
         $id = (int) $id;
         $sql = "DELETE FROM users WHERE id = $id";
         return $this->conn->query($sql);
+    }
+
+    public function countAll()
+    {
+        $sql = "SELECT COUNT(*) as total FROM users";
+        $result = $this->conn->query($sql);
+        $row = $result->fetch_assoc();
+        return (int) $row['total'];
+    }
+
+    public function countByRole($role)
+    {
+        $role = $this->conn->real_escape_string($role);
+        $sql = "SELECT COUNT(*) as total FROM users WHERE role = '$role'";
+        $result = $this->conn->query($sql);
+        $row = $result->fetch_assoc();
+        return (int) $row['total'];
+    }
+
+    public function getRecentUsers($limit = 5)
+    {
+        $limit = (int) $limit;
+        $sql = "SELECT id, name, email, role, created_at
+                FROM users
+                ORDER BY id DESC
+                LIMIT $limit";
+
+        $result = $this->conn->query($sql);
+
+        $users = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+        }
+
+        return $users;
     }
 }

@@ -6,19 +6,21 @@ use App\Core\Controller;
 use App\Core\Auth;
 use App\Core\Session;
 use App\Models\User;
+use App\Middleware\GuestMiddleware;
 
 class LoginController extends Controller
 {
     public function index()
     {
+        GuestMiddleware::handle();
         $this->view('auth/login');
     }
 
     public function login()
     {
-        Session::start();
+        GuestMiddleware::handle();
 
-        $email = $_POST['email'] ?? '';
+        $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
 
         $userModel = new User();
@@ -36,7 +38,7 @@ class LoginController extends Controller
             }
         }
 
-        Session::set('error', 'Email hoặc mật khẩu không đúng.');
+        Session::flash('error', 'Email hoặc mật khẩu không đúng.');
         $this->redirect('/login');
     }
 }
