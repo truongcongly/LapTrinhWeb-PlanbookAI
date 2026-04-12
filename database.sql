@@ -76,18 +76,3 @@ CREATE TABLE questions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE TABLE IF NOT EXISTS lesson_plan_samples (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    staff_id    INT          NOT NULL,
-    title       VARCHAR(255) NOT NULL,
-    subject     VARCHAR(100) NOT NULL,
-    grade_level VARCHAR(50)  NOT NULL,
-    objectives  TEXT,
-    activities  TEXT,
-    assessment  TEXT,
-    status      ENUM('draft', 'completed') DEFAULT 'draft',
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (staff_id) REFERENCES users(id) ON DELETE CASCADE
-);
