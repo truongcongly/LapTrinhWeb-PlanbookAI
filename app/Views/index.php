@@ -109,7 +109,7 @@ section[id] {
                         </a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="/LapTrinhWeb-PlanbookAI/public/roles">Vai trò</a></li>
+AA                <li class="nav-item"><a class="nav-link fw-semibold" href="/LapTrinhWeb-PlanbookAI/public/roles">Vai trò</a></li>
                 <li class="nav-item"><a class="nav-link fw-semibold" href="/LapTrinhWeb-PlanbookAI/public/workflow">Quy trình</a></li>
 
                 <li class="nav-item"><a class="nav-link fw-semibold" href="/LapTrinhWeb-PlanbookAI/public/about">Giới thiệu</a></li>

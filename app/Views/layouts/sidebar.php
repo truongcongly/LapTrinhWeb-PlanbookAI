@@ -22,7 +22,7 @@
     <div class="menu-label">Main</div>
 
     <?php if ($role === 'admin'): ?>
-        <a class="nav-item-link active" href="/LapTrinhWeb-PlanbookAI/public/admin/dashboard">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/dashboard">
             <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
         </a>
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/users">
@@ -38,13 +38,13 @@
             <i class="bi bi-gear-fill"></i><span>System Settings</span>
         </a>
     <?php elseif ($role === 'staff'): ?>
-        <a class="nav-item-link active" href="/LapTrinhWeb-PlanbookAI/public/staff/dashboard">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/staff/dashboard">
             <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
         </a>
         <a class="nav-item-link" href="#">
             <i class="bi bi-journal-richtext"></i><span>Lesson Samples</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/staff/question-samples">
             <i class="bi bi-patch-question-fill"></i><span>Question Samples</span>
         </a>
         <a class="nav-item-link" href="#">
@@ -54,13 +54,13 @@
             <i class="bi bi-folder-fill"></i><span>Shared Resources</span>
         </a>
     <?php else: ?>
-        <a class="nav-item-link active" href="/LapTrinhWeb-PlanbookAI/public/teacher/dashboard">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/dashboard">
             <i class="bi bi-grid-1x2-fill"></i><span>Dashboard</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/lesson-plans">
             <i class="bi bi-journal-bookmark-fill"></i><span>Lesson Plans</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/questions">
             <i class="bi bi-collection-fill"></i><span>Question Bank</span>
         </a>
         <a class="nav-item-link" href="#">

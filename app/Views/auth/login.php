@@ -13,30 +13,23 @@ include __DIR__ . '/../layouts/head.php';
                 <div class="auth-modern-card">
                     <div class="row g-0">
                         <div class="col-lg-6">
-                            <div class="auth-modern-left">
-                                <span class="auth-chip">Welcome Back</span>
-                                <h1>Đăng nhập vào hệ thống PlanbookAI</h1>
-                                <p>
-                                    Truy cập dashboard phù hợp với vai trò của bạn để quản lý giáo án, tài nguyên học liệu, câu hỏi và hoạt động đánh giá trong cùng một nền tảng.
-                                </p>
-
-                                <div class="auth-modern-features">
-                                    <div class="auth-feature-item">
-                                        <i class="bi bi-shield-lock-fill"></i>
-                                        <span>Role-based access control</span>
-                                    </div>
-                                    <div class="auth-feature-item">
-                                        <i class="bi bi-journal-bookmark-fill"></i>
-                                        <span>Teaching workflow support</span>
-                                    </div>
-                                    <div class="auth-feature-item">
-                                        <i class="bi bi-ui-checks-grid"></i>
-                                        <span>Lesson, question and exam modules</span>
-                                    </div>
+                            <div class="auth-modern-left auth-left-planbook">
+                                <div class="auth-left-overlay-icons">
+                                    <span class="icon i1"><i class="bi bi-pencil"></i></span>
+                                    <span class="icon i2"><i class="bi bi-book"></i></span>
+                                    <span class="icon i3"><i class="bi bi-calculator"></i></span>
+                                    <span class="icon i4"><i class="bi bi-music-note-beamed"></i></span>
+                                    <span class="icon i5"><i class="bi bi-star"></i></span>
+                                    <span class="icon i6"><i class="bi bi-triangle"></i></span>
                                 </div>
 
-                                <div class="auth-illustration-wrap">
-                                    <img src="/LapTrinhWeb-PlanbookAI/public/images/auth-login.svg" alt="Login Illustration" class="img-fluid">
+                                <div class="auth-left-top">
+                                    <h1>Welcome to PlanbookAI!</h1>
+                                    <p>The leader in lesson planning</p>
+                                </div>
+
+                                <div class="auth-left-image-board">
+                                    <img src="/LapTrinhWeb-PlanbookAI/public/images/auth-classroom.png" alt="Classroom Illustration" class="img-fluid">
                                 </div>
                             </div>
                         </div>
@@ -48,12 +41,18 @@ include __DIR__ . '/../layouts/head.php';
                                         <i class="bi bi-mortarboard-fill me-2"></i>PlanbookAI
                                     </a>
                                     <h2>Đăng nhập</h2>
-                                    <p>Nhập thông tin tài khoản để tiếp tục.</p>
+                                    <p>Nhập thông tin tài khoản để tiếp tục vào hệ thống.</p>
                                 </div>
 
                                 <?php if (Session::hasFlash('error')): ?>
                                     <div class="alert alert-danger rounded-4 border-0 shadow-sm">
                                         <?= Session::getFlash('error'); ?>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if (Session::hasFlash('success')): ?>
+                                    <div class="alert alert-success rounded-4 border-0 shadow-sm">
+                                        <?= Session::getFlash('success'); ?>
                                     </div>
                                 <?php endif; ?>
 
@@ -81,7 +80,7 @@ include __DIR__ . '/../layouts/head.php';
                                                 Ghi nhớ đăng nhập
                                             </label>
                                         </div>
-                                        <a href="#" class="small text-decoration-none">Quên mật khẩu?</a>
+                                        <span class="small text-secondary">Quên mật khẩu</span>
                                     </div>
 
                                     <button type="submit" class="btn btn-auth-submit w-100">
