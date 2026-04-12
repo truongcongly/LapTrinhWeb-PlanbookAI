@@ -78,12 +78,12 @@ ob_start();
         <div class="col-md-4">
             <div class="small-panel">
                 <h6>Tổng giáo án</h6>
-                <p class="mb-0"><strong><?= count($lessonSamples ?? []); ?></strong> giáo án mẫu.</p>
+                <p class="mb-0"><strong><?= count($lessonSamples ?? []); ?></strong> giáo án.</p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="small-panel">
-                <h6>Bản nháp</h6>
+                <h6>Draft</h6>
                 <p class="mb-0">
                     <strong><?= count(array_filter($lessonSamples ?? [], fn($item) => ($item['status'] ?? '') === 'draft')); ?></strong>
                     giáo án ở trạng thái nháp.
@@ -92,7 +92,7 @@ ob_start();
         </div>
         <div class="col-md-4">
             <div class="small-panel">
-                <h6>Hoàn chỉnh</h6>
+                <h6>Completed</h6>
                 <p class="mb-0">
                     <strong><?= count(array_filter($lessonSamples ?? [], fn($item) => ($item['status'] ?? '') === 'completed')); ?></strong>
                     giáo án đã hoàn thiện.
