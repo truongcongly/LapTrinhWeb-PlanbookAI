@@ -12,6 +12,9 @@ use App\Controllers\Teacher\LessonPlanController;
 use App\Controllers\Teacher\QuestionController;
 
 return [
+    ['GET', '/roles', [HomeController::class, 'roles']],
+    ['GET', '/workflow', [HomeController::class, 'workflow']],
+    ['GET', '/about', [HomeController::class, 'about']],
     ['GET', '/', [HomeController::class, 'index']],
     ['GET', '/login', [LoginController::class, 'index']],
     ['GET', '/staff/dashboard', [StaffDashboardController::class, 'index']],

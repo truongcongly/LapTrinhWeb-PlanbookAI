@@ -106,7 +106,7 @@ include __DIR__ . '/../layouts/head.php';
                 </div>
             </div>
         </div>
-     </div>
+    </div>
 </section>
 
 <?php include __DIR__ . '/../layouts/footer.php'; ?>

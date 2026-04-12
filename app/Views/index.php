@@ -47,6 +47,13 @@ include __DIR__ . '/layouts/head.php';
     padding: 11px 14px; border-radius: 10px;
     background: #f8fafc; font-size: 14px; font-weight: 500; margin-bottom: 10px;
 }
+html {
+    scroll-behavior: smooth;
+}
+
+section[id] {
+    scroll-margin-top: 80px;
+}   
 .check-badge {
     width: 24px; height: 24px; border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
@@ -102,9 +109,11 @@ include __DIR__ . '/layouts/head.php';
                         </a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#roles">Vai trò</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#workflow">Quy trình</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold" href="#about">Giới thiệu</a></li>
+AA                <li class="nav-item"><a class="nav-link fw-semibold" href="/LapTrinhWeb-PlanbookAI/public/roles">Vai trò</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold" href="/LapTrinhWeb-PlanbookAI/public/workflow">Quy trình</a></li>
+
+                <li class="nav-item"><a class="nav-link fw-semibold" href="/LapTrinhWeb-PlanbookAI/public/about">Giới thiệu</a></li>
+
             </ul>
             <div class="d-flex align-items-center gap-2">
                 <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn btn-outline-primary rounded-pill px-4">Đăng nhập</a>
