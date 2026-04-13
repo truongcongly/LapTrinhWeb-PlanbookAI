@@ -10,6 +10,7 @@ use App\Controllers\Teacher\GradingController;
 use App\Controllers\Teacher\ResultController;
 use App\Controllers\Teacher\LessonPlanController;
 use App\Controllers\Teacher\QuestionController;
+use App\Controllers\Teacher\ExerciseController;
 
 return [
     ['GET', '/roles', [HomeController::class, 'roles']],
@@ -62,4 +63,13 @@ return [
     ['GET', '/teacher/questions/edit', [QuestionController::class, 'edit']],
     ['POST', '/teacher/questions/update', [QuestionController::class, 'update']],
     ['GET', '/teacher/questions/delete', [QuestionController::class, 'delete']],
+
+    //Excerise routes 
+    ['GET', '/teacher/exercises', [ExerciseController::class, 'index']],
+    ['GET', '/teacher/exercises/create', [ExerciseController::class, 'create']],
+    ['POST', '/teacher/exercises/store', [ExerciseController::class, 'store']],
+    ['GET', '/teacher/exercises/show', [ExerciseController::class, 'show']],
+    ['GET', '/teacher/exercises/edit', [ExerciseController::class, 'edit']],
+    ['POST', '/teacher/exercises/update', [ExerciseController::class, 'update']],
+    ['GET', '/teacher/exercises/delete', [ExerciseController::class, 'delete']],
 ];

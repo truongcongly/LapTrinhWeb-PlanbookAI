@@ -1,0 +1,87 @@
+<?php
+
+use App\Core\Auth;
+
+$title = 'Exercise Detail - PlanbookAI';
+$currentUser = Auth::user();
+$pageTitle = 'Exercise Detail';
+$pageDesc = 'Xem chi tiết bài tập';
+$role = 'teacher';
+
+ob_start();
+?>
+
+<div class="hero-mini-banner mb-4">
+    <div>
+        <h3>Chi tiết bài tập</h3>
+        <p>Xem đầy đủ thông tin, mô tả và nội dung của bài tập đã tạo.</p>
+    </div>
+    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Exercise Detail">
+</div>
+
+<div class="dashboard-card">
+    <div class="card-header-custom">
+        <div>
+            <h5><?= htmlspecialchars($exercise['title']); ?></h5>
+            <small class="text-secondary">
+                <?= htmlspecialchars($exercise['subject']); ?> • <?= htmlspecialchars($exercise['topic']); ?>
+            </small>
+        </div>
+
+        <div class="d-flex gap-2 flex-wrap">
+            <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exercises/edit?id=<?= $exercise['id']; ?>" class="btn btn-outline-primary rounded-pill px-4">
+                <i class="bi bi-pencil-square me-2"></i>Sửa
+            </a>
+            <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exercises" class="btn btn-outline-secondary rounded-pill px-4">
+                <i class="bi bi-arrow-left me-2"></i>Quay lại
+            </a>
+        </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="small-panel">
+                <h6>Môn học</h6>
+                <p class="mb-0"><?= htmlspecialchars($exercise['subject']); ?></p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="small-panel">
+                <h6>Chủ đề</h6>
+                <p class="mb-0"><?= htmlspecialchars($exercise['topic']); ?></p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="small-panel">
+                <h6>Trạng thái</h6>
+                <p class="mb-0">
+                    <?php if (($exercise['status'] ?? '') === 'published'): ?>
+                        <span class="badge bg-success-subtle text-success">Published</span>
+                    <?php else: ?>
+                        <span class="badge bg-warning-subtle text-warning">Draft</span>
+                    <?php endif; ?>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-panel mb-4">
+        <h6>Mô tả</h6>
+        <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($exercise['description'] ?? ''); ?></p>
+    </div>
+
+    <div class="small-panel">
+        <h6>Nội dung bài tập</h6>
+        <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($exercise['content'] ?? ''); ?></p>
+    </div>
+</div>
+
+<?php
+$content = ob_get_clean();
+$tempFile = sys_get_temp_dir() . '/teacher_exercises_show.php';
+file_put_contents($tempFile, $content);
+$contentView = $tempFile;
+
+include __DIR__ . '/../../layouts/dashboard_layout.php';

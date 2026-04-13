@@ -124,7 +124,7 @@ ob_start();
                 <a href="/LapTrinhWeb-PlanbookAI/public/teacher/questions/create" class="quick-action-item">
                     <i class="bi bi-patch-plus"></i> Thêm câu hỏi
                 </a>
-                <a href="#" class="quick-action-item">
+                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exercises/create" class="quick-action-item">
                     <i class="bi bi-ui-checks"></i> Tạo bài tập
                 </a>
                 <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams/create" class="quick-action-item">

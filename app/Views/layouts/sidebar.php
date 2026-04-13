@@ -63,7 +63,7 @@
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/questions">
             <i class="bi bi-collection-fill"></i><span>Question Bank</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/exercises">
             <i class="bi bi-ui-checks-grid"></i><span>Exercises</span>
         </a>
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/exams">
