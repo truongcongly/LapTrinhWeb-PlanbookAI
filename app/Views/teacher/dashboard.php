@@ -130,6 +130,12 @@ ob_start();
                 <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams/create" class="quick-action-item">
                     <i class="bi bi-file-plus"></i> Tạo đề kiểm tra
                 </a>
+                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/grading/create" class="quick-action-item">
+                    <i class="bi bi-camera-fill"></i> Chấm bài OCR mock
+                </a>
+                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results" class="quick-action-item">
+                    <i class="bi bi-graph-up-arrow"></i> Xem kết quả
+                </a>
             </div>
         </div>
     </div>

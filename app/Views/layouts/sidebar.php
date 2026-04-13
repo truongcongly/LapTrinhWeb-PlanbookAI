@@ -69,7 +69,10 @@
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/exams">
             <i class="bi bi-file-earmark-text-fill"></i><span>Exams</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/grading">
+            <i class="bi bi-camera-fill"></i><span>OCR Grading</span>
+        </a>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/results">
             <i class="bi bi-graph-up-arrow"></i><span>Results</span>
         </a>
     <?php endif; ?>

@@ -12,6 +12,7 @@ use App\Controllers\Teacher\LessonPlanController;
 use App\Controllers\Teacher\QuestionController;
 use App\Controllers\Teacher\ExerciseController;
 
+
 return [
     ['GET', '/roles', [HomeController::class, 'roles']],
     ['GET', '/workflow', [HomeController::class, 'workflow']],
@@ -40,11 +41,16 @@ return [
     ['GET', '/teacher/exams/delete', [ExamController::class, 'delete']],
 
     // Grading routes
-    ['GET',  '/teacher/grading/{examId}',             [GradingController::class, 'index']],
-    ['POST', '/teacher/grading/{examId}/grade',       [GradingController::class, 'grade']],
+    ['GET', '/teacher/grading', [GradingController::class, 'index']],
+    ['GET', '/teacher/grading/create', [GradingController::class, 'create']],
+    ['POST', '/teacher/grading/store', [GradingController::class, 'store']],
 
     // Result routes
-    ['GET',  '/teacher/results/{examId}',  [ResultController::class, 'index']],
+    ['GET', '/teacher/results', [ResultController::class, 'index']],
+    ['GET', '/teacher/results/show', [ResultController::class, 'show']],
+    ['GET', '/teacher/results/edit', [ResultController::class, 'edit']],
+    ['POST', '/teacher/results/update', [ResultController::class, 'update']],
+    ['GET', '/teacher/results/delete', [ResultController::class, 'delete']],
 
     // Lesson Plan routes
     ['GET', '/teacher/lesson-plans', [LessonPlanController::class, 'index']],
