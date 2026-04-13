@@ -28,13 +28,13 @@
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/users">
             <i class="bi bi-people-fill"></i><span>User Management</span>
         </a>
-        <a class="nav-item-link" href="#">
-            <i class="bi bi-shield-check"></i><span>Permissions</span>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/frameworks">
+            <i class="bi bi-journal-richtext"></i><span>Curriculum Frameworks</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/reports">
             <i class="bi bi-bar-chart-fill"></i><span>Reports</span>
         </a>
-        <a class="nav-item-link" href="#">
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/settings">
             <i class="bi bi-gear-fill"></i><span>System Settings</span>
         </a>
     <?php elseif ($role === 'staff'): ?>

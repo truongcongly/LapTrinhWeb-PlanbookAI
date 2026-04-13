@@ -11,6 +11,9 @@ use App\Controllers\Teacher\ResultController;
 use App\Controllers\Teacher\LessonPlanController;
 use App\Controllers\Teacher\QuestionController;
 use App\Controllers\Teacher\ExerciseController;
+use App\Controllers\Admin\CurriculumFrameworkController;
+use App\Controllers\Admin\SystemSettingController;
+use App\Controllers\Admin\ReportController;
 
 
 return [
@@ -78,4 +81,20 @@ return [
     ['GET', '/teacher/exercises/edit', [ExerciseController::class, 'edit']],
     ['POST', '/teacher/exercises/update', [ExerciseController::class, 'update']],
     ['GET', '/teacher/exercises/delete', [ExerciseController::class, 'delete']],
+
+    // Admin Curriculum Framework routes
+    ['GET', '/admin/frameworks', [CurriculumFrameworkController::class, 'index']],
+    ['GET', '/admin/frameworks/create', [CurriculumFrameworkController::class, 'create']],
+    ['POST', '/admin/frameworks/store', [CurriculumFrameworkController::class, 'store']],
+    ['GET', '/admin/frameworks/show', [CurriculumFrameworkController::class, 'show']],
+    ['GET', '/admin/frameworks/edit', [CurriculumFrameworkController::class, 'edit']],
+    ['POST', '/admin/frameworks/update', [CurriculumFrameworkController::class, 'update']],
+    ['GET', '/admin/frameworks/delete', [CurriculumFrameworkController::class, 'delete']],
+
+    // Admin System Setting routes
+    ['GET', '/admin/settings', [SystemSettingController::class, 'index']],
+    ['POST', '/admin/settings/update', [SystemSettingController::class, 'update']],
+
+    // Admin Report routes
+    ['GET', '/admin/reports', [ReportController::class, 'index']],
 ];
