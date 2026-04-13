@@ -4,96 +4,134 @@ namespace App\Controllers\Teacher;
 
 use App\Core\Controller;
 use App\Core\Auth;
+use App\Core\Session;
+use App\Middleware\RoleMiddleware;
 use App\Models\Exam;
-use App\Models\ExamQuestion;
 
 class ExamController extends Controller
 {
-    private $examModel;
-    private $questionModel;
-
-    public function __construct()
+    private function authorize()
     {
-        $this->examModel = new Exam();
-        $this->questionModel = new ExamQuestion();
+        RoleMiddleware::handle('teacher');
     }
 
-    // Danh sách đề thi
     public function index()
     {
-        if (!Auth::check() || !Auth::isTeacher()) {
-            die('403 - Bạn không có quyền truy cập');
-        }
+        $this->authorize();
 
-        $userId = Auth::user()['id'];
-        $exams = $this->examModel->getAll($userId);
-        $this->view('teacher/exam/index', ['exams' => $exams]);
+        $teacher = Auth::user();
+        $model = new Exam();
+        $exams = $model->getAllByTeacher($teacher['id']);
+
+        $this->view('teacher/exams/index', compact('exams'));
     }
 
-    // Form tạo đề thi
     public function create()
     {
-        if (!Auth::check() || !Auth::isTeacher()) {
-            die('403 - Bạn không có quyền truy cập');
-        }
-
-        $this->view('teacher/exam/create');
+        $this->authorize();
+        $this->view('teacher/exams/create');
     }
 
-    // Lưu đề thi
     public function store()
     {
-        if (!Auth::check() || !Auth::isTeacher()) {
-            die('403 - Bạn không có quyền truy cập');
-        }
+        $this->authorize();
 
-        $userId = Auth::user()['id'];
+        $teacher = Auth::user();
+        $model = new Exam();
 
-        $examId = $this->examModel->create([
-            'title'            => $_POST['title'],
-            'subject'          => $_POST['subject'],
-            'duration_minutes' => $_POST['duration_minutes'],
-            'total_questions'  => count($_POST['questions']),
-            'created_by'       => $userId
+        $examId = $model->create([
+            'teacher_id' => $teacher['id'],
+            'title' => $_POST['title'] ?? '',
+            'subject' => $_POST['subject'] ?? '',
+            'grade_level' => $_POST['grade_level'] ?? '',
+            'total_questions' => $_POST['total_questions'] ?? 0,
+            'duration_minutes' => $_POST['duration_minutes'] ?? 45,
+            'status' => $_POST['status'] ?? 'draft',
+            'instructions' => $_POST['instructions'] ?? '',
         ]);
 
-        foreach ($_POST['questions'] as $q) {
-            $this->questionModel->create([
-                'exam_id'       => $examId,
-                'question_text' => $q['question_text'],
-                'option_a'      => $q['option_a'],
-                'option_b'      => $q['option_b'],
-                'option_c'      => $q['option_c'],
-                'option_d'      => $q['option_d'],
-                'correct_answer'=> $q['correct_answer']
-            ]);
-        }
+        $model->saveAnswerKey($examId, $_POST['answer_key'] ?? '');
 
-        header('Location: /LAPTRINHWEB-PLANBOOKAI/public/teacher/exams');
-        exit;
+        Session::flash('success', 'Tạo đề thi thành công.');
+        $this->redirect('/teacher/exams');
     }
 
-    // Xem chi tiết đề thi
-    public function detail($id)
+    public function show()
     {
-        if (!Auth::check() || !Auth::isTeacher()) {
-            die('403 - Bạn không có quyền truy cập');
+        $this->authorize();
+
+        $id = $_GET['id'] ?? 0;
+        $model = new Exam();
+        $exam = $model->findById($id);
+
+        if (!$exam) {
+            Session::flash('error', 'Không tìm thấy đề thi.');
+            $this->redirect('/teacher/exams');
         }
 
-        $exam = $this->examModel->getById($id);
-        $questions = $this->questionModel->getByExamId($id);
-        $this->view('teacher/exam/detail', ['exam' => $exam, 'questions' => $questions]);
+        $this->view('teacher/exams/show', compact('exam'));
     }
 
-    // Xóa đề thi
-    public function delete($id)
+    public function edit()
     {
-        if (!Auth::check() || !Auth::isTeacher()) {
-            die('403 - Bạn không có quyền truy cập');
+        $this->authorize();
+
+        $id = $_GET['id'] ?? 0;
+        $model = new Exam();
+        $exam = $model->findById($id);
+
+        if (!$exam) {
+            Session::flash('error', 'Không tìm thấy đề thi.');
+            $this->redirect('/teacher/exams');
         }
 
-        $this->examModel->delete($id);
-        header('Location: http://localhost/LapTrinhWeb-PlanbookAI/public/teacher/exams');
-        exit;
+        $this->view('teacher/exams/edit', compact('exam'));
+    }
+
+    public function update()
+    {
+        $this->authorize();
+
+        $id = $_GET['id'] ?? 0;
+        $model = new Exam();
+
+        $exam = $model->findById($id);
+        if (!$exam) {
+            Session::flash('error', 'Không tìm thấy đề thi.');
+            $this->redirect('/teacher/exams');
+        }
+
+        $model->update($id, [
+            'title' => $_POST['title'] ?? '',
+            'subject' => $_POST['subject'] ?? '',
+            'grade_level' => $_POST['grade_level'] ?? '',
+            'total_questions' => $_POST['total_questions'] ?? 0,
+            'duration_minutes' => $_POST['duration_minutes'] ?? 45,
+            'status' => $_POST['status'] ?? 'draft',
+            'instructions' => $_POST['instructions'] ?? '',
+        ]);
+
+        $model->saveAnswerKey($id, $_POST['answer_key'] ?? '');
+
+        Session::flash('success', 'Cập nhật đề thi thành công.');
+        $this->redirect('/teacher/exams');
+    }
+
+    public function delete()
+    {
+        $this->authorize();
+
+        $id = $_GET['id'] ?? 0;
+        $model = new Exam();
+
+        $exam = $model->findById($id);
+        if (!$exam) {
+            Session::flash('error', 'Không tìm thấy đề thi.');
+            $this->redirect('/teacher/exams');
+        }
+
+        $model->delete($id);
+        Session::flash('success', 'Xóa đề thi thành công.');
+        $this->redirect('/teacher/exams');
     }
 }

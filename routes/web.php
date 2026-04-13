@@ -30,11 +30,13 @@ return [
     ['GET', '/staff/question-samples/topics', [QuestionSampleController::class, 'topics']],
 
     // Exam routes
-    ['GET',  '/teacher/exams',              [ExamController::class, 'index']],
-    ['GET',  '/teacher/exams/create',       [ExamController::class, 'create']],
-    ['POST', '/teacher/exams/store',        [ExamController::class, 'store']],
-    ['GET',  '/teacher/exams/{id}',         [ExamController::class, 'detail']],
-    ['GET',  '/teacher/exams/delete/{id}',  [ExamController::class, 'delete']],
+    ['GET', '/teacher/exams', [ExamController::class, 'index']],
+    ['GET', '/teacher/exams/create', [ExamController::class, 'create']],
+    ['POST', '/teacher/exams/store', [ExamController::class, 'store']],
+    ['GET', '/teacher/exams/show', [ExamController::class, 'show']],
+    ['GET', '/teacher/exams/edit', [ExamController::class, 'edit']],
+    ['POST', '/teacher/exams/update', [ExamController::class, 'update']],
+    ['GET', '/teacher/exams/delete', [ExamController::class, 'delete']],
 
     // Grading routes
     ['GET',  '/teacher/grading/{examId}',             [GradingController::class, 'index']],
