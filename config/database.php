@@ -4,5 +4,5 @@ return [
     'host' => 'localhost',
     'dbname' => 'planbookai',
     'username' => 'root',
-    'password' => ''
+    'password' => '300405'
 ];

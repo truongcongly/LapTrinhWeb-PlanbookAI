@@ -4,67 +4,98 @@ namespace App\Controllers\Teacher;
 
 use App\Core\Controller;
 use App\Core\Auth;
+use App\Core\Session;
+use App\Middleware\RoleMiddleware;
 use App\Models\Exam;
-use App\Models\ExamQuestion;
 use App\Models\ExamResult;
 
 class GradingController extends Controller
 {
-    private $examModel;
-    private $questionModel;
-    private $resultModel;
-
-    public function __construct()
+    private function authorize()
     {
-        $this->examModel    = new Exam();
-        $this->questionModel = new ExamQuestion();
-        $this->resultModel  = new ExamResult();
+        RoleMiddleware::handle('teacher');
     }
 
-    // Form nhập đáp án học sinh
-    public function index($examId)
+    private function normalizeAnswers($raw)
     {
-        if (!Auth::check() || !Auth::isTeacher()) {
-            die('403 - Bạn không có quyền truy cập');
-        }
-
-        $exam      = $this->examModel->getById($examId);
-        $questions = $this->questionModel->getByExamId($examId);
-        $this->view('teacher/grading/index', [
-            'exam'      => $exam,
-            'questions' => $questions
-        ]);
+        $raw = strtoupper(trim($raw));
+        $parts = array_map('trim', explode(',', $raw));
+        $parts = array_filter($parts, fn($item) => $item !== '');
+        return array_values($parts);
     }
 
-    // Xử lý chấm điểm
-    public function grade($examId)
+    public function index()
     {
-        if (!Auth::check() || !Auth::isTeacher()) {
-            die('403 - Bạn không có quyền truy cập');
+        $this->authorize();
+
+        $teacher = Auth::user();
+        $examModel = new Exam();
+        $exams = $examModel->getAllByTeacher($teacher['id']);
+
+        $this->view('teacher/grading/index', compact('exams'));
+    }
+
+    public function create()
+    {
+        $this->authorize();
+
+        $teacher = Auth::user();
+        $examModel = new Exam();
+        $exams = $examModel->getAllByTeacher($teacher['id']);
+
+        $this->view('teacher/grading/create', compact('exams'));
+    }
+
+    public function store()
+    {
+        $this->authorize();
+
+        $teacher = Auth::user();
+        $examId = $_POST['exam_id'] ?? 0;
+        $studentName = trim($_POST['student_name'] ?? '');
+        $scannedAnswersRaw = $_POST['scanned_answers'] ?? '';
+
+        $examModel = new Exam();
+        $exam = $examModel->findById($examId);
+
+        if (!$exam) {
+            Session::flash('error', 'Không tìm thấy đề thi để chấm.');
+            $this->redirect('/teacher/grading/create');
         }
 
-        $questions    = $this->questionModel->getByExamId($examId);
-        $studentName  = $_POST['student_name'];
-        $answers      = $_POST['answers']; // mảng đáp án học sinh
-        $correct      = 0;
+        $answerKeyRaw = $exam['answer_key'] ?? '';
 
-        foreach ($questions as $i => $q) {
-            if (isset($answers[$i]) && strtoupper($answers[$i]) === strtoupper($q['correct_answer'])) {
-                $correct++;
+        $scannedAnswers = $this->normalizeAnswers($scannedAnswersRaw);
+        $answerKey = $this->normalizeAnswers($answerKeyRaw);
+
+        $totalQuestions = count($answerKey);
+        $correctCount = 0;
+
+        for ($i = 0; $i < $totalQuestions; $i++) {
+            $studentAnswer = $scannedAnswers[$i] ?? '';
+            $correctAnswer = $answerKey[$i] ?? '';
+
+            if ($studentAnswer === $correctAnswer) {
+                $correctCount++;
             }
         }
 
-        $total = count($questions);
-        $score = $total > 0 ? round(($correct / $total) * 10, 2) : 0;
+        $score = $totalQuestions > 0 ? round(($correctCount / $totalQuestions) * 10, 2) : 0;
 
-        $this->resultModel->create([
-            'exam_id'      => $examId,
+        $resultModel = new ExamResult();
+        $resultModel->create([
+            'exam_id' => $examId,
+            'teacher_id' => $teacher['id'],
             'student_name' => $studentName,
-            'answers'      => json_encode($answers),
-            'score'        => $score
+            'scanned_answers' => implode(',', $scannedAnswers),
+            'total_questions' => $totalQuestions,
+            'correct_count' => $correctCount,
+            'score' => $score,
+            'feedback' => '',
+            'status' => 'auto_graded',
         ]);
 
-        header('Location: http://localhost/LapTrinhWeb-PlanbookAI/public/teacher/results/' . $examId);
-        exit;
+        Session::flash('success', 'Chấm bài tự động thành công.');
+        $this->redirect('/teacher/results');
     }
 }

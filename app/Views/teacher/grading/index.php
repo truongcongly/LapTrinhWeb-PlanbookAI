@@ -1,35 +1,30 @@
 <?php
 
-$title = 'Chấm điểm';
+use App\Core\Auth;
+
+$title = 'OCR Mock Grading - PlanbookAI';
+$currentUser = Auth::user();
+$pageTitle = 'OCR Mock Grading';
+$pageDesc = 'Mô phỏng chấm bài tự động dựa trên đáp án nhận diện';
 $role = 'teacher';
 
 ob_start();
 ?>
 
-<div class="container mt-4">
-    <h2>Chấm điểm: <?= htmlspecialchars($exam['title']) ?></h2>
-    <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/teacher/grading/<?= $exam['id'] ?>/grade">
-        <div class="mb-3">
-            <label>Tên học sinh</label>
-            <input type="text" name="student_name" class="form-control" required>
-        </div>
-        <h5>Nhập đáp án học sinh</h5>
-        <?php foreach ($questions as $i => $q): ?>
-        <div class="card mb-2">
-            <div class="card-body">
-                <p><strong>Câu <?= $i+1 ?>:</strong> <?= htmlspecialchars($q['question_text']) ?></p>
-                <select name="answers[<?= $i ?>]" class="form-control">
-                    <option value="">-- Chọn --</option>
-                    <option value="A">A</option>
-                    <option value="B">B</option>
-                    <option value="C">C</option>
-                    <option value="D">D</option>
-                </select>
-            </div>
-        </div>
-        <?php endforeach; ?>
-        <button type="submit" class="btn btn-success mt-3">Chấm điểm</button>
-    </form>
+<div class="hero-mini-banner mb-4">
+    <div>
+        <h3>OCR Mock Grading</h3>
+        <p>Mô phỏng quy trình nhận diện đáp án từ bài làm và chấm tự động theo answer key.</p>
+    </div>
+    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="OCR Mock Grading">
+</div>
+
+<div class="dashboard-card text-center py-5">
+    <h5 class="mb-3">Bắt đầu chấm bài</h5>
+    <p class="text-secondary mb-4">Chọn đề thi, nhập tên học sinh và dán chuỗi đáp án nhận diện để hệ thống auto-grade.</p>
+    <a href="/LapTrinhWeb-PlanbookAI/public/teacher/grading/create" class="btn btn-primary rounded-pill px-4">
+        <i class="bi bi-camera-fill me-2"></i>Tạo phiên chấm bài
+    </a>
 </div>
 
 <?php

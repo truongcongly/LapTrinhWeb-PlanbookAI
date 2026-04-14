@@ -11,6 +11,11 @@ use App\Controllers\Teacher\GradingController;
 use App\Controllers\Teacher\ResultController;
 use App\Controllers\Teacher\LessonPlanController;
 use App\Controllers\Teacher\QuestionController;
+use App\Controllers\Teacher\ExerciseController;
+use App\Controllers\Admin\CurriculumFrameworkController;
+use App\Controllers\Admin\SystemSettingController;
+use App\Controllers\Admin\ReportController;
+
 
 return [
     ['GET', '/roles', [HomeController::class, 'roles']],
@@ -41,18 +46,25 @@ return [
     ['GET',  '/staff/lesson-samples/grade-levels', [LessonPlanSampleController::class, 'gradeLevels']],
 
     // Exam routes
-    ['GET',  '/teacher/exams',              [ExamController::class, 'index']],
-    ['GET',  '/teacher/exams/create',       [ExamController::class, 'create']],
-    ['POST', '/teacher/exams/store',        [ExamController::class, 'store']],
-    ['GET',  '/teacher/exams/{id}',         [ExamController::class, 'detail']],
-    ['GET',  '/teacher/exams/delete/{id}',  [ExamController::class, 'delete']],
+    ['GET', '/teacher/exams', [ExamController::class, 'index']],
+    ['GET', '/teacher/exams/create', [ExamController::class, 'create']],
+    ['POST', '/teacher/exams/store', [ExamController::class, 'store']],
+    ['GET', '/teacher/exams/show', [ExamController::class, 'show']],
+    ['GET', '/teacher/exams/edit', [ExamController::class, 'edit']],
+    ['POST', '/teacher/exams/update', [ExamController::class, 'update']],
+    ['GET', '/teacher/exams/delete', [ExamController::class, 'delete']],
 
     // Grading routes
-    ['GET',  '/teacher/grading/{examId}',             [GradingController::class, 'index']],
-    ['POST', '/teacher/grading/{examId}/grade',       [GradingController::class, 'grade']],
+    ['GET', '/teacher/grading', [GradingController::class, 'index']],
+    ['GET', '/teacher/grading/create', [GradingController::class, 'create']],
+    ['POST', '/teacher/grading/store', [GradingController::class, 'store']],
 
     // Result routes
-    ['GET',  '/teacher/results/{examId}',  [ResultController::class, 'index']],
+    ['GET', '/teacher/results', [ResultController::class, 'index']],
+    ['GET', '/teacher/results/show', [ResultController::class, 'show']],
+    ['GET', '/teacher/results/edit', [ResultController::class, 'edit']],
+    ['POST', '/teacher/results/update', [ResultController::class, 'update']],
+    ['GET', '/teacher/results/delete', [ResultController::class, 'delete']],
 
     // Lesson Plan routes
     ['GET', '/teacher/lesson-plans', [LessonPlanController::class, 'index']],
@@ -71,4 +83,29 @@ return [
     ['GET', '/teacher/questions/edit', [QuestionController::class, 'edit']],
     ['POST', '/teacher/questions/update', [QuestionController::class, 'update']],
     ['GET', '/teacher/questions/delete', [QuestionController::class, 'delete']],
+
+    //Excerise routes 
+    ['GET', '/teacher/exercises', [ExerciseController::class, 'index']],
+    ['GET', '/teacher/exercises/create', [ExerciseController::class, 'create']],
+    ['POST', '/teacher/exercises/store', [ExerciseController::class, 'store']],
+    ['GET', '/teacher/exercises/show', [ExerciseController::class, 'show']],
+    ['GET', '/teacher/exercises/edit', [ExerciseController::class, 'edit']],
+    ['POST', '/teacher/exercises/update', [ExerciseController::class, 'update']],
+    ['GET', '/teacher/exercises/delete', [ExerciseController::class, 'delete']],
+
+    // Admin Curriculum Framework routes
+    ['GET', '/admin/frameworks', [CurriculumFrameworkController::class, 'index']],
+    ['GET', '/admin/frameworks/create', [CurriculumFrameworkController::class, 'create']],
+    ['POST', '/admin/frameworks/store', [CurriculumFrameworkController::class, 'store']],
+    ['GET', '/admin/frameworks/show', [CurriculumFrameworkController::class, 'show']],
+    ['GET', '/admin/frameworks/edit', [CurriculumFrameworkController::class, 'edit']],
+    ['POST', '/admin/frameworks/update', [CurriculumFrameworkController::class, 'update']],
+    ['GET', '/admin/frameworks/delete', [CurriculumFrameworkController::class, 'delete']],
+
+    // Admin System Setting routes
+    ['GET', '/admin/settings', [SystemSettingController::class, 'index']],
+    ['POST', '/admin/settings/update', [SystemSettingController::class, 'update']],
+
+    // Admin Report routes
+    ['GET', '/admin/reports', [ReportController::class, 'index']],
 ];
