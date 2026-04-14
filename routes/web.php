@@ -4,6 +4,7 @@ use App\Controllers\HomeController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Controllers\Staff\QuestionSampleController;
+use App\Controllers\Staff\LessonPlanSampleController;
 use App\Controllers\Teacher\DashboardController as TeacherDashboardController;
 use App\Controllers\Teacher\ExamController;
 use App\Controllers\Teacher\GradingController;
@@ -33,6 +34,16 @@ return [
     ['POST', '/staff/question-samples/update', [QuestionSampleController::class, 'update']],
     ['GET', '/staff/question-samples/delete', [QuestionSampleController::class, 'delete']],
     ['GET', '/staff/question-samples/topics', [QuestionSampleController::class, 'topics']],
+
+    // Staff Lesson Sample routes
+    ['GET',  '/staff/lesson-samples',              [LessonPlanSampleController::class, 'index']],
+    ['GET',  '/staff/lesson-samples/create',       [LessonPlanSampleController::class, 'create']],
+    ['POST', '/staff/lesson-samples/store',        [LessonPlanSampleController::class, 'store']],
+    ['GET',  '/staff/lesson-samples/show',         [LessonPlanSampleController::class, 'show']],
+    ['GET',  '/staff/lesson-samples/edit',         [LessonPlanSampleController::class, 'edit']],
+    ['POST', '/staff/lesson-samples/update',       [LessonPlanSampleController::class, 'update']],
+    ['GET',  '/staff/lesson-samples/delete',       [LessonPlanSampleController::class, 'delete']],
+    ['GET',  '/staff/lesson-samples/grade-levels', [LessonPlanSampleController::class, 'gradeLevels']],
 
     // Exam routes
     ['GET', '/teacher/exams', [ExamController::class, 'index']],
