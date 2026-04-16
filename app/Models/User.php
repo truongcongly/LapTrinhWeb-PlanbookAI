@@ -10,7 +10,7 @@ class User
 
     public function __construct()
     {
-        $this->conn = new \mysqli("localhost", "root", "", "planbookai");
+        $this->conn = Database::getInstance()->getConnection();
     }
 
     public function findByEmail($email)

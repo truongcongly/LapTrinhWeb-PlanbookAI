@@ -9,7 +9,7 @@ class PromptTemplate
 
     public function __construct()
     {
-        $this->conn = Database::getInstance();
+        $this->conn = Database::getInstance()->getConnection();
     }
 
     public function getAllByStaff($staffId)
