@@ -47,6 +47,9 @@
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/staff/question-samples">
             <i class="bi bi-patch-question-fill"></i><span>Question Samples</span>
         </a>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/staff/prompts">
+            <i class="bi bi-magic"></i><span>Prompt Templates</span>
+        </a>
         <a class="nav-item-link" href="#">
             <i class="bi bi-check2-square"></i><span>Content Review</span>
         </a>
