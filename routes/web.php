@@ -54,6 +54,9 @@ return [
     ['POST', '/teacher/exams/update', [ExamController::class, 'update']],
     ['GET', '/teacher/exams/delete', [ExamController::class, 'delete']],
 
+    ['GET', '/teacher/exams/take', [ExamController::class, 'take']],
+    ['POST', '/teacher/exams/submit', [ExamController::class, 'submit']],
+
     // Grading routes
     ['GET', '/teacher/grading', [GradingController::class, 'index']],
     ['GET', '/teacher/grading/create', [GradingController::class, 'create']],

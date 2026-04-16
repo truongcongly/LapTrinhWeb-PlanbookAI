@@ -116,4 +116,29 @@ class Exam
 
         return $this->conn->query("INSERT INTO exam_answer_keys (exam_id, answer_key) VALUES ($examId, '$answerKey')");
     }
+
+    public function getAllSimpleByTeacher($teacherId)
+    {
+        $teacherId = (int)$teacherId;
+        $sql = "SELECT * FROM exams WHERE teacher_id = $teacherId ORDER BY id DESC";
+        $result = $this->conn->query($sql);
+
+        $items = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $items[] = $row;
+            }
+        }
+
+        return $items;
+    }
+
+    public function findSimpleById($id)
+    {
+        $id = (int)$id;
+        $sql = "SELECT * FROM exams WHERE id = $id LIMIT 1";
+        $result = $this->conn->query($sql);
+
+        return $result ? $result->fetch_assoc() : null;
+    }
 }

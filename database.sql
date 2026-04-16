@@ -127,6 +127,9 @@ CREATE TABLE exam_results (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+ALTER TABLE exam_results
+ADD COLUMN submitted_answers TEXT NULL AFTER scanned_answers;
+
 CREATE TABLE lesson_plans_samples (
     id INT AUTO_INCREMENT PRIMARY KEY,
     staff_id INT NOT NULL,
@@ -185,3 +188,10 @@ INSERT INTO system_settings (setting_key, setting_value) VALUES
 ('ai_enabled', '1'),
 ('ocr_enabled', '1'),
 ('workflow_mode', 'standard');
+
+CREATE TABLE exam_questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    exam_id INT NOT NULL,
+    question_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

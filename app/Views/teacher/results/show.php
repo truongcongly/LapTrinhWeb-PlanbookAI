@@ -72,6 +72,11 @@ ob_start();
     </div>
 
     <div class="small-panel mb-4">
+        <h6>Bài nộp của học sinh</h6>
+        <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($result['submitted_answers'] ?? ''); ?></p>
+    </div>
+    
+    <div class="small-panel mb-4">
         <h6>Feedback</h6>
         <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($result['feedback'] ?? ''); ?></p>
     </div>

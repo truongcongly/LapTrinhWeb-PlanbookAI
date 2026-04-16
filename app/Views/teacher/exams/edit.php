@@ -5,7 +5,7 @@ use App\Core\Auth;
 $title = 'Edit Exam - PlanbookAI';
 $currentUser = Auth::user();
 $pageTitle = 'Edit Exam';
-$pageDesc = 'Chỉnh sửa đề kiểm tra và answer key';
+$pageDesc = 'Chỉnh sửa đề thi và danh sách câu hỏi';
 $role = 'teacher';
 
 ob_start();
@@ -14,19 +14,17 @@ ob_start();
 <div class="hero-mini-banner mb-4">
     <div>
         <h3>Chỉnh sửa đề kiểm tra</h3>
-        <p>Cập nhật thông tin đề, thời lượng, trạng thái và đáp án chuẩn.</p>
+        <p>Cập nhật thông tin đề thi và các câu hỏi đã chọn.</p>
     </div>
     <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Edit Exam">
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-xl-10 col-lg-11">
+    <div class="col-xl-11 col-lg-12">
         <div class="dashboard-card">
             <div class="card-header-custom">
                 <h5>Edit Exam Form</h5>
-                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams" class="btn btn-outline-secondary rounded-pill px-4">
-                    <i class="bi bi-arrow-left me-2"></i>Quay lại
-                </a>
+                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams" class="btn btn-outline-secondary rounded-pill px-4">Quay lại</a>
             </div>
 
             <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/teacher/exams/update?id=<?= $exam['id']; ?>">
@@ -39,8 +37,8 @@ ob_start();
                     <div class="col-md-4">
                         <label class="form-label fw-semibold">Trạng thái</label>
                         <select class="form-select form-select-lg rounded-4" name="status" required>
-                            <option value="draft" <?= ($exam['status'] === 'draft') ? 'selected' : ''; ?>>Draft</option>
-                            <option value="published" <?= ($exam['status'] === 'published') ? 'selected' : ''; ?>>Published</option>
+                            <option value="draft" <?= ($exam['status']==='draft')?'selected':''; ?>>Draft</option>
+                            <option value="published" <?= ($exam['status']==='published')?'selected':''; ?>>Published</option>
                         </select>
                     </div>
 
@@ -54,36 +52,54 @@ ob_start();
                         <input type="text" class="form-control form-control-lg rounded-4" name="grade_level" value="<?= htmlspecialchars($exam['grade_level']); ?>" required>
                     </div>
 
-                    <div class="col-md-2">
-                        <label class="form-label fw-semibold">Số câu</label>
-                        <input type="number" class="form-control form-control-lg rounded-4" name="total_questions" min="1" value="<?= (int)$exam['total_questions']; ?>" required>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label class="form-label fw-semibold">Thời lượng</label>
-                        <input type="number" class="form-control form-control-lg rounded-4" name="duration_minutes" min="1" value="<?= (int)$exam['duration_minutes']; ?>" required>
+                    <div class="col-md-4">
+                        <label class="form-label fw-semibold">Thời lượng (phút)</label>
+                        <input type="number" class="form-control form-control-lg rounded-4" name="duration_minutes" value="<?= (int)$exam['duration_minutes']; ?>" min="1" required>
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Instructions</label>
+                        <label class="form-label fw-semibold">Hướng dẫn</label>
                         <textarea class="form-control rounded-4" name="instructions" rows="4"><?= htmlspecialchars($exam['instructions'] ?? ''); ?></textarea>
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label fw-semibold">Answer Key</label>
-                        <textarea class="form-control rounded-4" name="answer_key" rows="4" required><?= htmlspecialchars($exam['answer_key'] ?? ''); ?></textarea>
-                        <small class="text-secondary">Nhập đáp án cách nhau bằng dấu phẩy.</small>
+                        <label class="form-label fw-semibold">Chọn câu hỏi cho đề thi</label>
+                        <div class="border rounded-4 p-3 bg-light">
+                            <?php if (!empty($questions)): ?>
+                                <div class="row g-3">
+                                    <?php foreach ($questions as $q): ?>
+                                        <div class="col-md-6">
+                                            <label class="d-block border rounded-4 p-3 bg-white h-100">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        name="questions[]"
+                                                        value="<?= $q['id']; ?>"
+                                                        <?= in_array((int)$q['id'], $selectedQuestionIds ?? [], true) ? 'checked' : ''; ?>
+                                                    >
+                                                    <span class="fw-semibold ms-2">Question #<?= $q['id']; ?></span>
+                                                </div>
+                                                <div class="mt-2 small text-dark" style="white-space: pre-line;">
+                                                    <?= htmlspecialchars($q['question_text']); ?>
+                                                </div>
+                                                <div class="mt-2 text-secondary small">
+                                                    <?= htmlspecialchars($q['subject']); ?> • <?= htmlspecialchars($q['topic']); ?> • <?= strtoupper($q['correct_answer']); ?>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="text-secondary">Chưa có câu hỏi nào.</div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mt-4 d-flex gap-3 flex-wrap">
-                    <button type="submit" class="btn btn-primary rounded-pill px-4">
-                        <i class="bi bi-check-circle-fill me-2"></i>Cập nhật
-                    </button>
-
-                    <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams" class="btn btn-light border rounded-pill px-4">
-                        Hủy
-                    </a>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">Cập nhật đề thi</button>
+                    <a href="/LapTrinhWeb-PlanbookAI/public/teacher/exams" class="btn btn-light border rounded-pill px-4">Hủy</a>
                 </div>
             </form>
         </div>
@@ -92,7 +108,7 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-$tempFile = sys_get_temp_dir() . '/teacher_exams_edit.php';
+$tempFile = sys_get_temp_dir() . '/teacher_exams_edit_full.php';
 file_put_contents($tempFile, $content);
 $contentView = $tempFile;
 

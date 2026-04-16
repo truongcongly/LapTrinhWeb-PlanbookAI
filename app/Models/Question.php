@@ -239,4 +239,30 @@ class Question
             return false;
         }
     }
+
+    public function getAllByTeacherSimple($teacherId)
+    {
+        return $this->getAllByTeacher($teacherId);
+    }
+
+    public function findManyByIds($ids)
+    {
+        $ids = array_map('intval', $ids);
+            if (empty($ids)) {
+            return [];
+        }
+
+        $idList = implode(',', $ids);
+        $sql = "SELECT * FROM questions WHERE id IN ($idList) ORDER BY id ASC";
+        $result = $this->conn->query($sql);
+
+        $items = [];
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $items[] = $row;
+            }
+        }
+
+        return $items;
+    }
 }

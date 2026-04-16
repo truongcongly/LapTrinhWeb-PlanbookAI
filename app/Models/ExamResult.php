@@ -55,7 +55,8 @@ class ExamResult
         $examId = (int)$data['exam_id'];
         $teacherId = (int)$data['teacher_id'];
         $studentName = $this->conn->real_escape_string($data['student_name']);
-        $scannedAnswers = $this->conn->real_escape_string($data['scanned_answers']);
+        $scannedAnswers = $this->conn->real_escape_string($data['scanned_answers'] ?? '');
+        $submittedAnswers = $this->conn->real_escape_string($data['submitted_answers'] ?? '');
         $totalQuestions = (int)$data['total_questions'];
         $correctCount = (int)$data['correct_count'];
         $score = (float)$data['score'];
@@ -63,9 +64,9 @@ class ExamResult
         $status = $this->conn->real_escape_string($data['status'] ?? 'auto_graded');
 
         $sql = "INSERT INTO exam_results
-                (exam_id, teacher_id, student_name, scanned_answers, total_questions, correct_count, score, feedback, status)
+                (exam_id, teacher_id, student_name, scanned_answers, submitted_answers, total_questions, correct_count, score, feedback, status)
                 VALUES
-                ($examId, $teacherId, '$studentName', '$scannedAnswers', $totalQuestions, $correctCount, $score, '$feedback', '$status')";
+                ($examId, $teacherId, '$studentName', '$scannedAnswers', '$submittedAnswers', $totalQuestions, $correctCount, $score, '$feedback', '$status')";
 
         return $this->conn->query($sql);
     }
