@@ -15,9 +15,19 @@ use App\Controllers\Teacher\ExerciseController;
 use App\Controllers\Admin\CurriculumFrameworkController;
 use App\Controllers\Admin\SystemSettingController;
 use App\Controllers\Admin\ReportController;
+use App\Controllers\Staff\PromptTemplateController;
 
 
 return [
+    // Staff Prompt routes
+    ['GET',  '/staff/prompts',        [PromptTemplateController::class, 'index']],
+    ['GET',  '/staff/prompts/create', [PromptTemplateController::class, 'create']],
+    ['POST', '/staff/prompts/store',  [PromptTemplateController::class, 'store']],
+    ['GET',  '/staff/prompts/edit',   [PromptTemplateController::class, 'edit']],
+    ['POST', '/staff/prompts/update', [PromptTemplateController::class, 'update']],
+    ['GET',  '/staff/prompts/delete', [PromptTemplateController::class, 'delete']],
+    ['GET',  '/staff/prompts/preview',[PromptTemplateController::class, 'preview']],
+
     ['GET', '/roles', [HomeController::class, 'roles']],
     ['GET', '/workflow', [HomeController::class, 'workflow']],
     ['GET', '/about', [HomeController::class, 'about']],
