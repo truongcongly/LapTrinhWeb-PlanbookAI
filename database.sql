@@ -127,7 +127,7 @@ CREATE TABLE exam_results (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE sample_lesson_plans (
+CREATE TABLE lesson_plans_samples (
     id INT AUTO_INCREMENT PRIMARY KEY,
     staff_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
