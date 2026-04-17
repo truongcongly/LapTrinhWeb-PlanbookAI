@@ -42,7 +42,7 @@ class ReportController extends Controller
             'exam_count' => $this->countTable('exams'),
             'result_count' => $this->countTable('exam_results'),
             'sample_lesson_count' => $this->countTable('lesson_plan_samples'),
-            'sample_question_count' => $this->countTable('sample_questions'),
+            'sample_question_count' => $this->countTable('question_samples'),
         ];
 
         $this->view('admin/reports/index', compact('stats'));

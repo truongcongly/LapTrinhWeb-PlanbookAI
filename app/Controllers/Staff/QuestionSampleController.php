@@ -3,10 +3,9 @@
 namespace App\Controllers\Staff;
 
 use App\Core\Controller;
-use App\Core\Auth;
 use App\Core\Session;
 use App\Middleware\RoleMiddleware;
-use App\Models\Question;
+use App\Models\QuestionSamples;
 
 class QuestionSampleController extends Controller
 {
@@ -15,52 +14,36 @@ class QuestionSampleController extends Controller
         RoleMiddleware::handle('staff');
     }
 
+    // LIST
     public function index()
     {
         $this->authorize();
 
-        $staff = Auth::user();
-        $model = new Question();
+        $model = new QuestionSamples();
+        $questions = $model->getAll();
 
-        $filters = [
-            'subject' => $_GET['subject'] ?? '',
-            'topic' => $_GET['topic'] ?? '',
-            'difficulty' => $_GET['difficulty'] ?? '',
-        ];
-
-        $questions = $model->getAllByTeacherFiltered($staff['id'], $filters);
-        $subjects = $model->getDistinctSubjectsByTeacher($staff['id']);
-        $topics = $model->getDistinctTopicsByTeacher($staff['id'], trim($filters['subject']) !== '' ? $filters['subject'] : null);
-
-        $this->view('staff/question_samples/index', compact('questions', 'subjects', 'topics', 'filters'));
+        $this->view('staff/question_samples/index', compact('questions'));
     }
 
+    // CREATE VIEW
     public function create()
     {
         $this->authorize();
-
-        $staff = Auth::user();
-        $model = new Question();
-
-        $subjects = $model->getDistinctSubjectsByTeacher($staff['id']);
-        $topics = $model->getDistinctTopicsByTeacher($staff['id'], null);
-
-        $this->view('staff/question_samples/create', compact('subjects', 'topics'));
+        $this->view('staff/question_samples/create');
     }
 
+    // STORE
     public function store()
     {
         $this->authorize();
 
-        $staff = Auth::user();
-        $model = new Question();
+        $model = new QuestionSamples();
 
         $model->create([
-            'teacher_id' => $staff['id'],
             'question_text' => $_POST['question_text'] ?? '',
             'subject' => $_POST['subject'] ?? '',
             'topic' => $_POST['topic'] ?? '',
-            'difficulty' => $_POST['difficulty'] ?? 'medium',
+            'difficulty' => $_POST['difficulty'] ?? '',
             'option_a' => $_POST['option_a'] ?? '',
             'option_b' => $_POST['option_b'] ?? '',
             'option_c' => $_POST['option_c'] ?? '',
@@ -68,49 +51,60 @@ class QuestionSampleController extends Controller
             'correct_answer' => $_POST['correct_answer'] ?? 'A',
         ]);
 
-        Session::flash('success', 'Tạo câu hỏi mẫu thành công.');
+        Session::flash('success', 'Tạo câu hỏi mẫu thành công!');
         $this->redirect('/staff/question-samples');
     }
 
+    // SHOW
+    public function show()
+    {
+        $this->authorize();
+
+        $id = $_GET['id'] ?? 0;
+
+        $model = new QuestionSamples();
+        $question = $model->findById($id);
+
+        if (!$question) {
+            Session::flash('error', 'Không tìm thấy câu hỏi!');
+            $this->redirect('/staff/question-samples');
+        }
+
+        $this->view('staff/question_samples/show', compact('question'));
+    }
+
+    // EDIT VIEW
     public function edit()
     {
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
-        $staff = Auth::user();
-        $model = new Question();
+
+        $model = new QuestionSamples();
         $question = $model->findById($id);
 
-        if (!$question || (int)($question['teacher_id'] ?? 0) !== (int)$staff['id']) {
-            Session::flash('error', 'Không tìm thấy câu hỏi mẫu.');
+        if (!$question) {
+            Session::flash('error', 'Không tìm thấy câu hỏi!');
             $this->redirect('/staff/question-samples');
         }
 
-        $subjects = $model->getDistinctSubjectsByTeacher($staff['id']);
-        $topics = $model->getDistinctTopicsByTeacher($staff['id'], $question['subject'] ?? null);
-
-        $this->view('staff/question_samples/edit', compact('question', 'subjects', 'topics'));
+        $this->view('staff/question_samples/edit', compact('question'));
     }
 
+    // UPDATE
     public function update()
     {
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
-        $staff = Auth::user();
-        $model = new Question();
-        $question = $model->findById($id);
 
-        if (!$question || (int)($question['teacher_id'] ?? 0) !== (int)$staff['id']) {
-            Session::flash('error', 'Không tìm thấy câu hỏi mẫu.');
-            $this->redirect('/staff/question-samples');
-        }
+        $model = new QuestionSamples();
 
         $model->update($id, [
             'question_text' => $_POST['question_text'] ?? '',
             'subject' => $_POST['subject'] ?? '',
             'topic' => $_POST['topic'] ?? '',
-            'difficulty' => $_POST['difficulty'] ?? 'medium',
+            'difficulty' => $_POST['difficulty'] ?? '',
             'option_a' => $_POST['option_a'] ?? '',
             'option_b' => $_POST['option_b'] ?? '',
             'option_c' => $_POST['option_c'] ?? '',
@@ -118,41 +112,21 @@ class QuestionSampleController extends Controller
             'correct_answer' => $_POST['correct_answer'] ?? 'A',
         ]);
 
-        Session::flash('success', 'Cập nhật câu hỏi mẫu thành công.');
+        Session::flash('success', 'Cập nhật thành công!');
         $this->redirect('/staff/question-samples');
     }
 
+    // DELETE
     public function delete()
     {
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
-        $staff = Auth::user();
-        $model = new Question();
-        $question = $model->findById($id);
 
-        if (!$question || (int)($question['teacher_id'] ?? 0) !== (int)$staff['id']) {
-            Session::flash('error', 'Không tìm thấy câu hỏi mẫu.');
-            $this->redirect('/staff/question-samples');
-        }
-
+        $model = new QuestionSamples();
         $model->delete($id);
-        Session::flash('success', 'Xóa câu hỏi mẫu thành công.');
+
+        Session::flash('success', 'Xóa thành công!');
         $this->redirect('/staff/question-samples');
-    }
-
-    public function topics()
-    {
-        $this->authorize();
-
-        $staff = Auth::user();
-        $subject = $_GET['subject'] ?? null;
-
-        $model = new Question();
-        $topics = $model->getDistinctTopicsByTeacher($staff['id'], (is_string($subject) && trim($subject) !== '') ? $subject : null);
-
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(['topics' => $topics], JSON_UNESCAPED_UNICODE);
-        exit();
     }
 }

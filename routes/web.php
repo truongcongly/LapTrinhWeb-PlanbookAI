@@ -40,10 +40,10 @@ return [
     ['GET', '/staff/question-samples', [QuestionSampleController::class, 'index']],
     ['GET', '/staff/question-samples/create', [QuestionSampleController::class, 'create']],
     ['POST', '/staff/question-samples/store', [QuestionSampleController::class, 'store']],
+    ['GET', '/staff/question-samples/show', [QuestionSampleController::class, 'show']],
     ['GET', '/staff/question-samples/edit', [QuestionSampleController::class, 'edit']],
     ['POST', '/staff/question-samples/update', [QuestionSampleController::class, 'update']],
     ['GET', '/staff/question-samples/delete', [QuestionSampleController::class, 'delete']],
-    ['GET', '/staff/question-samples/topics', [QuestionSampleController::class, 'topics']],
 
     // Staff Lesson Sample routes
     ['GET',  '/staff/lesson-samples',              [LessonPlanSampleController::class, 'index']],
