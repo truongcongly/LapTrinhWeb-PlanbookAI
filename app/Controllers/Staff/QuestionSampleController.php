@@ -37,9 +37,15 @@ class QuestionSampleController extends Controller
     {
         $this->authorize();
 
+        $staff = $_SESSION['user'] ?? null; // hoặc Auth::user(), tùy project bạn
+
+        if (!$staff || !isset($staff['id'])) {
+            die('Không xác định được staff đang đăng nhập.');
+            }
         $model = new QuestionSamples();
 
         $model->create([
+            'staff_id' => $staff['id'],
             'question_text' => $_POST['question_text'] ?? '',
             'subject' => $_POST['subject'] ?? '',
             'topic' => $_POST['topic'] ?? '',
@@ -49,6 +55,7 @@ class QuestionSampleController extends Controller
             'option_c' => $_POST['option_c'] ?? '',
             'option_d' => $_POST['option_d'] ?? '',
             'correct_answer' => $_POST['correct_answer'] ?? 'A',
+            'status' => $_POST['status'] ?? 'draft',
         ]);
 
         Session::flash('success', 'Tạo câu hỏi mẫu thành công!');
@@ -128,5 +135,45 @@ class QuestionSampleController extends Controller
 
         Session::flash('success', 'Xóa thành công!');
         $this->redirect('/staff/question-samples');
+    }
+
+    public function import()
+    {
+        $this->authorize();
+
+        $id = $_GET['id'] ?? 0;
+
+        $sampleModel = new \App\Models\QuestionSamples();
+        $questionModel = new \App\Models\Question();
+
+        $sample = $sampleModel->findById($id);
+
+        if (!$sample) {
+            \App\Core\Session::flash('error', 'Không tìm thấy câu hỏi mẫu!');
+            return $this->redirect('/staff/question-samples');
+        }
+
+    // ⚠️ GÁN tạm teacher_id = 1 (sau sẽ nâng cấp)
+        $teacherId = 3;
+
+        $created = $questionModel->create([
+            'teacher_id' => $teacherId,
+            'question_text' => $sample['question_text'],
+            'subject' => $sample['subject'],
+            'topic' => $sample['topic'],
+            'difficulty' => $sample['difficulty'],
+            'option_a' => $sample['option_a'],
+            'option_b' => $sample['option_b'],
+            'option_c' => $sample['option_c'],
+            'option_d' => $sample['option_d'],
+            'correct_answer' => $sample['correct_answer'],
+        ]);
+
+        if ($created) {
+            \App\Core\Session::flash('success', 'Import thành công sang Question Bank!');
+        } else {
+            \App\Core\Session::flash('error', 'Import thất bại.');
+        }
+        return $this->redirect('/staff/question-samples');
     }
 }

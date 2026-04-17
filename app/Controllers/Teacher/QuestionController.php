@@ -26,10 +26,29 @@ class QuestionController extends Controller
         $this->view('teacher/questions/index', compact('questions'));
     }
 
-    public function create()
+    public function create($data)
     {
-        $this->authorize();
-        $this->view('teacher/questions/create');
+        $teacherId = (int)$data['teacher_id'];
+        $questionText = $this->conn->real_escape_string($data['question_text']);
+        $subject = $this->conn->real_escape_string($data['subject']);
+        $topic = $this->conn->real_escape_string($data['topic']);
+        $difficulty = $this->conn->real_escape_string($data['difficulty']);
+        $optionA = $this->conn->real_escape_string($data['option_a']);
+        $optionB = $this->conn->real_escape_string($data['option_b']);
+        $optionC = $this->conn->real_escape_string($data['option_c']);
+        $optionD = $this->conn->real_escape_string($data['option_d']);
+        $correctAnswer = $this->conn->real_escape_string($data['correct_answer']);
+
+        $sql = "INSERT INTO questions
+        (teacher_id, question_text, subject, topic, difficulty, option_a, option_b, option_c, option_d, correct_answer)
+        VALUES
+        ($teacherId, '$questionText', '$subject', '$topic', '$difficulty', '$optionA', '$optionB', '$optionC', '$optionD', '$correctAnswer')";
+
+        if (!$this->conn->query($sql)) {
+            die('SQL ERROR in Question::create(): ' . $this->conn->error);
+        }
+
+        return true;
     }
 
     public function store()

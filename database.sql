@@ -18,34 +18,14 @@ INSERT INTO users (name, email, password, role) VALUES
 
 CREATE TABLE exams (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
-    subject VARCHAR(100) NOT NULL,
-    duration_minutes INT NOT NULL DEFAULT 0,
-    total_questions INT NOT NULL DEFAULT 0,
-    created_by INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    description TEXT,
+    date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
-CREATE TABLE exam_questions (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    exam_id INT NOT NULL,
-    question_text TEXT NOT NULL,
-    option_a VARCHAR(255) DEFAULT NULL,
-    option_b VARCHAR(255) DEFAULT NULL,
-    option_c VARCHAR(255) DEFAULT NULL,
-    option_d VARCHAR(255) DEFAULT NULL,
-    correct_answer ENUM('A', 'B', 'C', 'D') DEFAULT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE exam_results (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    exam_id INT NOT NULL,
-    student_name VARCHAR(100) NOT NULL,
-    answers TEXT,
-    score DECIMAL(5,2) NOT NULL DEFAULT 0,
-    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+ALTER TABLE exams ADD created_by INT;
 
 CREATE TABLE lesson_plans (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -91,6 +71,7 @@ CREATE TABLE exams (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 CREATE TABLE exam_answer_keys (
     id INT AUTO_INCREMENT PRIMARY KEY,
     exam_id INT NOT NULL,
@@ -130,7 +111,7 @@ CREATE TABLE exam_results (
 ALTER TABLE exam_results
 ADD COLUMN submitted_answers TEXT NULL AFTER scanned_answers;
 
-CREATE TABLE lesson_plans_samples (
+CREATE TABLE lesson_plan_samples (
     id INT AUTO_INCREMENT PRIMARY KEY,
     staff_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
@@ -144,7 +125,7 @@ CREATE TABLE lesson_plans_samples (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE sample_questions (
+CREATE TABLE question_samples (
     id INT AUTO_INCREMENT PRIMARY KEY,
     staff_id INT NOT NULL,
     question_text TEXT NOT NULL,
@@ -201,8 +182,18 @@ CREATE TABLE prompt_templates (
     staff_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     category VARCHAR(100) DEFAULT NULL,
-    prompt_text TEXT NOT NULL,
+    prompt_content TEXT NOT NULL,
     status ENUM('draft', 'published') DEFAULT 'draft',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+SELECT id, teacher_id, question_text, subject, topic, difficulty
+FROM questions
+ORDER BY id DESC;
+
+DESCRIBE questions;
+SELECT id, name, email, role FROM users;
+
+ALTER TABLE prompt_templates
+ADD COLUMN description TEXT DEFAULT NULL AFTER prompt_content;

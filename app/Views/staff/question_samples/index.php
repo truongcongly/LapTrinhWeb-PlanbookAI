@@ -140,6 +140,10 @@ ob_start();
                                 <a href="/LapTrinhWeb-PlanbookAI/public/staff/question-samples/delete?id=<?= $question['id']; ?>" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="return confirmDelete()">
                                     <i class="bi bi-trash"></i> Xóa
                                 </a>
+                                <a href="/LapTrinhWeb-PlanbookAI/public/staff/question-samples/import?id=<?= $question['id'] ?>" 
+                                    class="btn btn-success btn-sm">
+                                    Import
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

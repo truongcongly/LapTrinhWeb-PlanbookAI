@@ -27,6 +27,7 @@ return [
     ['POST', '/staff/prompts/update', [PromptTemplateController::class, 'update']],
     ['GET',  '/staff/prompts/delete', [PromptTemplateController::class, 'delete']],
     ['GET',  '/staff/prompts/preview',[PromptTemplateController::class, 'preview']],
+    
 
     ['GET', '/roles', [HomeController::class, 'roles']],
     ['GET', '/workflow', [HomeController::class, 'workflow']],
@@ -44,6 +45,8 @@ return [
     ['GET', '/staff/question-samples/edit', [QuestionSampleController::class, 'edit']],
     ['POST', '/staff/question-samples/update', [QuestionSampleController::class, 'update']],
     ['GET', '/staff/question-samples/delete', [QuestionSampleController::class, 'delete']],
+
+    ['GET', '/staff/question-samples/import', [QuestionSampleController::class, 'import']],
 
     // Staff Lesson Sample routes
     ['GET',  '/staff/lesson-samples',              [LessonPlanSampleController::class, 'index']],

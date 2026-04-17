@@ -45,6 +45,7 @@ class QuestionSamples
     // Tạo mới
     public function create($data)
     {
+        $staff_id       = (int)($data['staff_id'] ?? 0);
         $question_text = $this->conn->real_escape_string($data['question_text']);
         $subject = $this->conn->real_escape_string($data['subject']);
         $topic = $this->conn->real_escape_string($data['topic']);
@@ -54,11 +55,12 @@ class QuestionSamples
         $option_c = $this->conn->real_escape_string($data['option_c']);
         $option_d = $this->conn->real_escape_string($data['option_d']);
         $correct_answer = $this->conn->real_escape_string($data['correct_answer']);
+        $status         = $this->conn->real_escape_string($data['status'] ?? 'draft');
 
         $sql = "INSERT INTO question_samples 
-        (question_text, subject, topic, difficulty, option_a, option_b, option_c, option_d, correct_answer)
+        (staff_id, question_text, subject, topic, difficulty, option_a, option_b, option_c, option_d, correct_answer, status)
         VALUES 
-        ('$question_text', '$subject', '$topic', '$difficulty', '$option_a', '$option_b', '$option_c', '$option_d', '$correct_answer')";
+        ($staff_id, '$question_text', '$subject', '$topic', '$difficulty', '$option_a', '$option_b', '$option_c', '$option_d', '$correct_answer', '$status')";
 
         return $this->conn->query($sql);
     }
