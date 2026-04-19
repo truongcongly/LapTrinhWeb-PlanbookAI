@@ -44,17 +44,22 @@ class LessonPlan
         $title = $this->conn->real_escape_string($data['title']);
         $subject = $this->conn->real_escape_string($data['subject']);
         $gradeLevel = $this->conn->real_escape_string($data['grade_level']);
+        $topic = $this->conn->real_escape_string($data['topic'] ?? '');
         $objectives = $this->conn->real_escape_string($data['objectives']);
         $activities = $this->conn->real_escape_string($data['activities']);
         $assessment = $this->conn->real_escape_string($data['assessment']);
-        $status = $this->conn->real_escape_string($data['status']);
+        $status = $this->conn->real_escape_string($data['status'] ?? 'draft');
 
         $sql = "INSERT INTO lesson_plans
-                (teacher_id, title, subject, grade_level, objectives, activities, assessment, status)
+                (teacher_id, title, subject, grade_level, topic, objectives, activities, assessment, status)
                 VALUES
-                ($teacherId, '$title', '$subject', '$gradeLevel', '$objectives', '$activities', '$assessment', '$status')";
+                ($teacherId, '$title', '$subject', '$gradeLevel', '$topic', '$objectives', '$activities', '$assessment', '$status')";
 
-        return $this->conn->query($sql);
+        if (!$this->conn->query($sql)) {
+            die('LessonPlan::create SQL ERROR: ' . $this->conn->error . '<br>SQL: ' . $sql);
+        }
+
+        return true;
     }
 
     public function update($id, $data)
@@ -63,22 +68,28 @@ class LessonPlan
         $title = $this->conn->real_escape_string($data['title']);
         $subject = $this->conn->real_escape_string($data['subject']);
         $gradeLevel = $this->conn->real_escape_string($data['grade_level']);
+        $topic = $this->conn->real_escape_string($data['topic'] ?? '');
         $objectives = $this->conn->real_escape_string($data['objectives']);
         $activities = $this->conn->real_escape_string($data['activities']);
         $assessment = $this->conn->real_escape_string($data['assessment']);
-        $status = $this->conn->real_escape_string($data['status']);
+        $status = $this->conn->real_escape_string($data['status'] ?? 'draft');
 
         $sql = "UPDATE lesson_plans SET
                 title = '$title',
                 subject = '$subject',
                 grade_level = '$gradeLevel',
+                topic = '$topic',
                 objectives = '$objectives',
                 activities = '$activities',
                 assessment = '$assessment',
                 status = '$status'
                 WHERE id = $id";
 
-        return $this->conn->query($sql);
+        if (!$this->conn->query($sql)) {
+            die('LessonPlan::update SQL ERROR: ' . $this->conn->error . '<br>SQL: ' . $sql);
+        }
+
+        return true;
     }
 
     public function delete($id)

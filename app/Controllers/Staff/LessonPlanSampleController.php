@@ -7,6 +7,7 @@ use App\Core\Auth;
 use App\Core\Session;
 use App\Middleware\RoleMiddleware;
 use App\Models\LessonPlanSample;
+use App\Models\LessonPlan;
 
 class LessonPlanSampleController extends Controller
 {
@@ -15,36 +16,29 @@ class LessonPlanSampleController extends Controller
         RoleMiddleware::handle('staff');
     }
 
+    private function normalizeStatus($status, $default = 'draft')
+    {
+        $status = strtolower(trim((string) $status));
+        $allowed = ['draft', 'approved'];
+
+        return in_array($status, $allowed, true) ? $status : $default;
+    }
+
     public function index()
     {
         $this->authorize();
 
+        $staff = Auth::user();
         $model = new LessonPlanSample();
+        $lessonSamples = $model->getAllByStaff($staff['id']);
 
-        $filters = [
-            'subject'     => $_GET['subject']     ?? '',
-            'grade_level' => $_GET['grade_level'] ?? '',
-            'status'      => $_GET['status']      ?? '',
-        ];
-
-        $lessonSamples = $model->getAll($filters);
-        $subjects      = $model->getDistinctSubjects();
-        $gradeLevels   = $model->getDistinctGradeLevels(
-            trim($filters['subject']) !== '' ? $filters['subject'] : null
-        );
-
-        $this->view('staff/lesson_samples/index', compact('lessonSamples', 'subjects', 'gradeLevels', 'filters'));
+        $this->view('staff/lesson_samples/index', compact('lessonSamples'));
     }
 
     public function create()
     {
         $this->authorize();
-
-        $model       = new LessonPlanSample();
-        $subjects    = $model->getDistinctSubjects();
-        $gradeLevels = $model->getDistinctGradeLevels();
-
-        $this->view('staff/lesson_samples/create', compact('subjects', 'gradeLevels'));
+        $this->view('staff/lesson_samples/create');
     }
 
     public function store()
@@ -54,32 +48,38 @@ class LessonPlanSampleController extends Controller
         $staff = Auth::user();
         $model = new LessonPlanSample();
 
-        $model->create([
+        $created = $model->create([
             'staff_id'    => $staff['id'],
-            'title'       => $_POST['title']       ?? '',
-            'subject'     => $_POST['subject']     ?? '',
-            'grade_level' => $_POST['grade_level'] ?? '',
-            'objectives'  => $_POST['objectives']  ?? '',
-            'activities'  => $_POST['activities']  ?? '',
-            'assessment'  => $_POST['assessment']  ?? '',
-            'status'      => $_POST['status']      ?? 'draft',
+            'title'       => trim($_POST['title'] ?? ''),
+            'subject'     => trim($_POST['subject'] ?? ''),
+            'grade_level' => trim($_POST['grade_level'] ?? ''),
+            'topic'       => trim($_POST['topic'] ?? ''),
+            'objectives'  => trim($_POST['objectives'] ?? ''),
+            'activities'  => trim($_POST['activities'] ?? ''),
+            'assessment'  => trim($_POST['assessment'] ?? ''),
+            'status'      => 'draft',
         ]);
 
-        Session::flash('success', 'Tạo lesson sample thành công.');
-        $this->redirect('/staff/lesson-samples');
+        if ($created) {
+            Session::flash('success', 'Tạo lesson plan sample thành công.');
+        } else {
+            Session::flash('error', 'Tạo lesson plan sample thất bại.');
+        }
+
+        return $this->redirect('/staff/lesson-samples');
     }
 
     public function show()
     {
         $this->authorize();
 
-        $id     = $_GET['id'] ?? 0;
-        $model  = new LessonPlanSample();
+        $id = (int) ($_GET['id'] ?? 0);
+        $model = new LessonPlanSample();
         $sample = $model->findById($id);
 
         if (!$sample) {
-            Session::flash('error', 'Không tìm thấy lesson sample.');
-            $this->redirect('/staff/lesson-samples');
+            Session::flash('error', 'Không tìm thấy lesson plan sample.');
+            return $this->redirect('/staff/lesson-samples');
         }
 
         $this->view('staff/lesson_samples/show', compact('sample'));
@@ -89,78 +89,112 @@ class LessonPlanSampleController extends Controller
     {
         $this->authorize();
 
-        $id     = $_GET['id'] ?? 0;
-        $model  = new LessonPlanSample();
+        $id = (int) ($_GET['id'] ?? 0);
+        $model = new LessonPlanSample();
         $sample = $model->findById($id);
 
         if (!$sample) {
-            Session::flash('error', 'Không tìm thấy lesson sample.');
-            $this->redirect('/staff/lesson-samples');
+            Session::flash('error', 'Không tìm thấy lesson plan sample.');
+            return $this->redirect('/staff/lesson-samples');
         }
 
-        $subjects    = $model->getDistinctSubjects();
-        $gradeLevels = $model->getDistinctGradeLevels();
-
-        $this->view('staff/lesson_samples/edit', compact('sample', 'subjects', 'gradeLevels'));
+        $this->view('staff/lesson_samples/edit', compact('sample'));
     }
 
     public function update()
     {
         $this->authorize();
 
-        $id    = $_GET['id'] ?? 0;
+        $id = (int) ($_GET['id'] ?? 0);
         $model = new LessonPlanSample();
-
         $sample = $model->findById($id);
+
         if (!$sample) {
-            Session::flash('error', 'Không tìm thấy lesson sample.');
-            $this->redirect('/staff/lesson-samples');
+            Session::flash('error', 'Không tìm thấy lesson plan sample.');
+            return $this->redirect('/staff/lesson-samples');
         }
 
-        $model->update($id, [
-            'title'       => $_POST['title']       ?? '',
-            'subject'     => $_POST['subject']     ?? '',
-            'grade_level' => $_POST['grade_level'] ?? '',
-            'objectives'  => $_POST['objectives']  ?? '',
-            'activities'  => $_POST['activities']  ?? '',
-            'assessment'  => $_POST['assessment']  ?? '',
-            'status'      => $_POST['status']      ?? 'draft',
+        $updated = $model->update($id, [
+            'title'       => trim($_POST['title'] ?? ''),
+            'subject'     => trim($_POST['subject'] ?? ''),
+            'grade_level' => trim($_POST['grade_level'] ?? ''),
+            'topic'       => trim($_POST['topic'] ?? ''),
+            'objectives'  => trim($_POST['objectives'] ?? ''),
+            'activities'  => trim($_POST['activities'] ?? ''),
+            'assessment'  => trim($_POST['assessment'] ?? ''),
+            'status'      => $this->normalizeStatus($_POST['status'] ?? 'draft'),
         ]);
 
-        Session::flash('success', 'Cập nhật lesson sample thành công.');
-        $this->redirect('/staff/lesson-samples');
+        if ($updated) {
+            Session::flash('success', 'Cập nhật lesson plan sample thành công.');
+        } else {
+            Session::flash('error', 'Cập nhật lesson plan sample thất bại.');
+        }
+
+        return $this->redirect('/staff/lesson-samples');
     }
 
     public function delete()
     {
         $this->authorize();
 
-        $id    = $_GET['id'] ?? 0;
+        $id = (int) ($_GET['id'] ?? 0);
         $model = new LessonPlanSample();
-
         $sample = $model->findById($id);
+
         if (!$sample) {
-            Session::flash('error', 'Không tìm thấy lesson sample.');
-            $this->redirect('/staff/lesson-samples');
+            Session::flash('error', 'Không tìm thấy lesson plan sample.');
+            return $this->redirect('/staff/lesson-samples');
         }
 
-        $model->delete($id);
-        Session::flash('success', 'Xóa lesson sample thành công.');
-        $this->redirect('/staff/lesson-samples');
+        $deleted = $model->delete($id);
+
+        if ($deleted) {
+            Session::flash('success', 'Xóa lesson plan sample thành công.');
+        } else {
+            Session::flash('error', 'Xóa lesson plan sample thất bại.');
+        }
+
+        return $this->redirect('/staff/lesson-samples');
     }
 
-    public function gradeLevels()
+    public function import()
     {
         $this->authorize();
 
-        $subject = $_GET['subject'] ?? null;
-        $model   = new LessonPlanSample();
-        $levels  = $model->getDistinctGradeLevels(
-            (is_string($subject) && trim($subject) !== '') ? $subject : null
-        );
+        $id = (int) ($_GET['id'] ?? 0);
 
-        header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(['grade_levels' => $levels], JSON_UNESCAPED_UNICODE);
-        exit();
+        $sampleModel = new LessonPlanSample();
+        $lessonPlanModel = new LessonPlan();
+
+        $sample = $sampleModel->findById($id);
+
+        if (!$sample) {
+            Session::flash('error', 'Không tìm thấy lesson plan sample.');
+            return $this->redirect('/staff/lesson-samples');
+        }
+
+        // Tạm gán cứng teacher_id
+        $teacherId = 3;
+
+        $created = $lessonPlanModel->create([
+            'teacher_id'  => $teacherId,
+            'title'       => $sample['title'] ?? '',
+            'subject'     => $sample['subject'] ?? '',
+            'grade_level' => $sample['grade_level'] ?? '',
+            'topic'       => $sample['topic'] ?? '',
+            'objectives'  => $sample['objectives'] ?? '',
+            'activities'  => $sample['activities'] ?? '',
+            'assessment'  => $sample['assessment'] ?? '',
+            'status'      => 'draft',
+        ]);
+
+        if ($created) {
+            Session::flash('success', 'Import thành công sang Lesson Plans.');
+        } else {
+            Session::flash('error', 'Import lesson plan thất bại.');
+        }
+
+        return $this->redirect('/staff/lesson-samples');
     }
 }

@@ -58,6 +58,8 @@ return [
     ['GET',  '/staff/lesson-samples/delete',       [LessonPlanSampleController::class, 'delete']],
     ['GET',  '/staff/lesson-samples/grade-levels', [LessonPlanSampleController::class, 'gradeLevels']],
 
+    ['GET', '/staff/lesson-samples/import', [LessonPlanSampleController::class, 'import']],
+
     // Exam routes
     ['GET', '/teacher/exams', [ExamController::class, 'index']],
     ['GET', '/teacher/exams/create', [ExamController::class, 'create']],

@@ -13,31 +13,10 @@ class LessonPlanSample
         $this->conn = Database::getInstance()->getConnection();
     }
 
-    public function getAll($filters = [])
+    public function getAllByStaff($staffId)
     {
-        $where = [];
-
-        if (!empty($filters['subject'])) {
-            $subject = $this->conn->real_escape_string($filters['subject']);
-            $where[] = "subject = '$subject'";
-        }
-
-        if (!empty($filters['grade_level'])) {
-            $grade = $this->conn->real_escape_string($filters['grade_level']);
-            $where[] = "grade_level = '$grade'";
-        }
-
-        if (!empty($filters['status'])) {
-            $status = $this->conn->real_escape_string($filters['status']);
-            $where[] = "status = '$status'";
-        }
-
-        $sql = "SELECT * FROM lesson_plan_samples";
-        if (!empty($where)) {
-            $sql .= " WHERE " . implode(' AND ', $where);
-        }
-        $sql .= " ORDER BY id DESC";
-
+        $staffId = (int)$staffId;
+        $sql = "SELECT * FROM lesson_plan_samples WHERE staff_id = $staffId ORDER BY id DESC";
         $result = $this->conn->query($sql);
 
         $items = [];
@@ -61,43 +40,46 @@ class LessonPlanSample
 
     public function create($data)
     {
-        $staffId     = (int)$data['staff_id'];
-        $title       = $this->conn->real_escape_string($data['title']);
-        $subject     = $this->conn->real_escape_string($data['subject']);
-        $gradeLevel  = $this->conn->real_escape_string($data['grade_level']);
-        $objectives  = $this->conn->real_escape_string($data['objectives']);
-        $activities  = $this->conn->real_escape_string($data['activities']);
-        $assessment  = $this->conn->real_escape_string($data['assessment']);
-        $status      = $this->conn->real_escape_string($data['status']);
+        $staffId = (int)$data['staff_id'];
+        $title = $this->conn->real_escape_string($data['title']);
+        $subject = $this->conn->real_escape_string($data['subject']);
+        $gradeLevel = $this->conn->real_escape_string($data['grade_level']);
+        $topic = $this->conn->real_escape_string($data['topic']);
+        $objectives = $this->conn->real_escape_string($data['objectives']);
+        $activities = $this->conn->real_escape_string($data['activities']);
+        $assessment = $this->conn->real_escape_string($data['assessment']);
+        $status = $this->conn->real_escape_string($data['status'] ?? 'draft');
 
         $sql = "INSERT INTO lesson_plan_samples
-                (staff_id, title, subject, grade_level, objectives, activities, assessment, status)
-                VALUES
-                ($staffId, '$title', '$subject', '$gradeLevel', '$objectives', '$activities', '$assessment', '$status')";
+            (staff_id, title, subject, grade_level, topic, objectives, activities, assessment, status)
+            VALUES
+            ($staffId, '$title', '$subject', '$gradeLevel', '$topic', '$objectives', '$activities', '$assessment', '$status')";
 
         return $this->conn->query($sql);
     }
 
     public function update($id, $data)
     {
-        $id          = (int)$id;
-        $title       = $this->conn->real_escape_string($data['title']);
-        $subject     = $this->conn->real_escape_string($data['subject']);
-        $gradeLevel  = $this->conn->real_escape_string($data['grade_level']);
-        $objectives  = $this->conn->real_escape_string($data['objectives']);
-        $activities  = $this->conn->real_escape_string($data['activities']);
-        $assessment  = $this->conn->real_escape_string($data['assessment']);
-        $status      = $this->conn->real_escape_string($data['status']);
+        $id = (int)$id;
+        $title = $this->conn->real_escape_string($data['title']);
+        $subject = $this->conn->real_escape_string($data['subject']);
+        $gradeLevel = $this->conn->real_escape_string($data['grade_level']);
+        $topic = $this->conn->real_escape_string($data['topic']);
+        $objectives = $this->conn->real_escape_string($data['objectives']);
+        $activities = $this->conn->real_escape_string($data['activities']);
+        $assessment = $this->conn->real_escape_string($data['assessment']);
+        $status = $this->conn->real_escape_string($data['status'] ?? 'draft');
 
         $sql = "UPDATE lesson_plan_samples SET
-                title       = '$title',
-                subject     = '$subject',
-                grade_level = '$gradeLevel',
-                objectives  = '$objectives',
-                activities  = '$activities',
-                assessment  = '$assessment',
-                status      = '$status'
-                WHERE id = $id";
+            title = '$title',
+            subject = '$subject',
+            grade_level = '$gradeLevel',
+            topic = '$topic',
+            objectives = '$objectives',
+            activities = '$activities',
+            assessment = '$assessment',
+            status = '$status'
+            WHERE id = $id";
 
         return $this->conn->query($sql);
     }
@@ -105,38 +87,21 @@ class LessonPlanSample
     public function delete($id)
     {
         $id = (int)$id;
-        $sql = "DELETE FROM lesson_plan_samples WHERE id = $id";
-        return $this->conn->query($sql);
+        return $this->conn->query("DELETE FROM lesson_plan_samples WHERE id = $id");
     }
 
-    public function getDistinctSubjects()
+    public function getAllApproved()
     {
-        $sql = "SELECT DISTINCT subject FROM lesson_plan_samples ORDER BY subject ASC";
+        $sql = "SELECT * FROM lesson_plan_samples WHERE status = 'approved' ORDER BY id DESC";
         $result = $this->conn->query($sql);
+
         $items = [];
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                $items[] = $row['subject'];
+                $items[] = $row;
             }
         }
-        return $items;
-    }
 
-    public function getDistinctGradeLevels($subject = null)
-    {
-        $sql = "SELECT DISTINCT grade_level FROM lesson_plan_samples";
-        if ($subject !== null && trim($subject) !== '') {
-            $subject = $this->conn->real_escape_string($subject);
-            $sql .= " WHERE subject = '$subject'";
-        }
-        $sql .= " ORDER BY grade_level ASC";
-        $result = $this->conn->query($sql);
-        $items = [];
-        if ($result) {
-            while ($row = $result->fetch_assoc()) {
-                $items[] = $row['grade_level'];
-            }
-        }
         return $items;
     }
 }

@@ -145,6 +145,10 @@ ob_start();
                                    onclick="return confirmDelete()">
                                     <i class="bi bi-trash"></i> Xóa
                                 </a>
+                                <a href="/LapTrinhWeb-PlanbookAI/public/staff/lesson-samples/import?id=<?= $sample['id']; ?>"
+                                    class="btn btn-success btn-sm">
+                                    Import
+                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

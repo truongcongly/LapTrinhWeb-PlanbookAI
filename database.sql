@@ -125,6 +125,8 @@ CREATE TABLE lesson_plan_samples (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
+ALTER TABLE lesson_plan_samples ADD COLUMN topic VARCHAR(255) NULL;
+
 CREATE TABLE question_samples (
     id INT AUTO_INCREMENT PRIMARY KEY,
     staff_id INT NOT NULL,
