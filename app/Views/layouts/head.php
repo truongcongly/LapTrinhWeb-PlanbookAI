@@ -10,4 +10,4 @@
     <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/style.css">
     <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/custom.css">
 </head>
-<body></body>
+<body>

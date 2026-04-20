@@ -2,176 +2,369 @@
 
 use App\Core\Auth;
 
-$title = 'Admin Dashboard';
+$title = 'Admin Dashboard - PlanbookAI';
 $currentUser = Auth::user();
 $pageTitle = 'Admin Dashboard';
-$pageDesc = 'Quản trị hệ thống và điều phối người dùng';
+$pageDesc = 'Quản trị hệ thống, người dùng, framework và báo cáo tổng quan';
 $role = 'admin';
+
+// Ensure stats have default values
+$stats = $stats ?? [
+    'users' => 0,
+    'staff' => 0,
+    'teachers' => 0,
+    'reports' => 0,
+];
 
 ob_start();
 ?>
 
-<div class="hero-mini-banner mb-4">
-    <div>
-        <h3>Xin chào Admin 👋</h3>
-        <p>Quản lý tài khoản, quyền truy cập và tổng quan hoạt động toàn hệ thống.</p>
-    </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Admin Banner">
-</div>
+<link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/admin-dashboard.css">
 
-<div class="row g-4">
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-box">
-            <div class="stat-icon bg-primary"><i class="bi bi-people-fill"></i></div>
-            <div>
-                <div class="stat-label">Total Users</div>
-                <div class="stat-value">128</div>
-                <div class="stat-note">Mock data preview</div>
-            </div>
+<div class="admin-dashboard">
+    <!-- Header Section -->
+    <div class="dashboard-title-section d-flex justify-content-between align-items-start">
+        <div>
+            <h1>Admin Dashboard</h1>
+            <p>Toàn cảnh tổng quát hệ thống PlanbookAI</p>
         </div>
+        <a href="/LapTrinhWeb-PlanbookAI/public/admin/reports" class="btn btn-outline-primary">
+            <i class="bi bi-download me-2"></i>Export Report
+        </a>
     </div>
 
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-box">
-            <div class="stat-icon bg-success"><i class="bi bi-person-check-fill"></i></div>
-            <div>
-                <div class="stat-label">Active Accounts</div>
-                <div class="stat-value">114</div>
-                <div class="stat-note">Đang hoạt động</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-box">
-            <div class="stat-icon bg-warning"><i class="bi bi-mortarboard-fill"></i></div>
-            <div>
-                <div class="stat-label">Teachers</div>
-                <div class="stat-value">62</div>
-                <div class="stat-note">Giáo viên hệ thống</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-xl-3">
-        <div class="stat-box">
-            <div class="stat-icon bg-info"><i class="bi bi-person-workspace"></i></div>
-            <div>
-                <div class="stat-label">Staff</div>
-                <div class="stat-value">18</div>
-                <div class="stat-note">Nội dung hỗ trợ</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row g-4 mt-1">
-    <div class="col-lg-8">
-        <div class="dashboard-card">
-            <div class="card-header-custom">
-                <h5>System Overview</h5>
-                <span class="pill-status online">Online</span>
-            </div>
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <div class="small-panel">
-                        <h6>User Management</h6>
-                        <p>Tạo, cập nhật và quản lý tài khoản người dùng trong hệ thống.</p>
+    <!-- Statistics Cards -->
+    <div class="stat-cards-grid">
+        <div class="stat-card">
+            <div class="stat-header">
+                <div>
+                    <div class="stat-label">Tổng Người Dùng</div>
+                    <div class="stat-number"><?= number_format($stats['users'] ?? 0); ?></div>
+                    <div class="stat-change positive">
+                        <i class="bi bi-arrow-up"></i> +12% tháng này
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="small-panel">
-                        <h6>Role Control</h6>
-                        <p>Phân quyền theo ba tác nhân: Admin, Staff và Teacher.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="small-panel">
-                        <h6>System Settings</h6>
-                        <p>Quản lý cấu hình, navigation và các module lõi.</p>
-                    </div>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                    <i class="bi bi-people-fill"></i>
                 </div>
             </div>
+        </div>
 
-            <div class="chart-placeholder mt-4">
-                <div class="chart-bars">
-                    <span style="height: 50%"></span>
-                    <span style="height: 80%"></span>
-                    <span style="height: 65%"></span>
-                    <span style="height: 90%"></span>
-                    <span style="height: 70%"></span>
-                    <span style="height: 95%"></span>
+        <div class="stat-card">
+            <div class="stat-header">
+                <div>
+                    <div class="stat-label">Nhân Viên Nội Bộ</div>
+                    <div class="stat-number"><?= number_format($stats['staff'] ?? 0); ?></div>
+                    <div class="stat-change positive">
+                        <i class="bi bi-arrow-up"></i> +2 tháng này
+                    </div>
                 </div>
-                <p class="chart-caption">Biểu đồ mô phỏng tăng trưởng hoạt động hệ thống</p>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                    <i class="bi bi-person-badge"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div>
+                    <div class="stat-label">Giáo Viên</div>
+                    <div class="stat-number"><?= number_format($stats['teachers'] ?? 0); ?></div>
+                    <div class="stat-change positive">
+                        <i class="bi bi-arrow-up"></i> +8% từ tháng trước
+                    </div>
+                </div>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div>
+                    <div class="stat-label">Sức Khỏe Hệ Thống</div>
+                    <div class="stat-number">98.5%</div>
+                    <div class="stat-change positive">
+                        <i class="bi bi-check-circle"></i> Tất cả hệ thống hoạt động
+                    </div>
+                </div>
+                <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                    <i class="bi bi-activity"></i>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="col-lg-4">
-        <div class="dashboard-card">
-            <div class="card-header-custom">
-                <h5>Quick Actions</h5>
+    <!-- Charts Row -->
+    <div class="dashboard-grid-2">
+        <div class="card-section">
+            <div class="card-header">
+                <h5>Xu Hướng Tăng Trưởng Hệ Thống</h5>
             </div>
-            <div class="quick-action-list">
-                <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="quick-action-item">
-                    <i class="bi bi-people"></i> Xem danh sách người dùng
-                </a>
-                <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/create" class="quick-action-item">
-                    <i class="bi bi-person-plus"></i> Thêm người dùng mới
-                </a>
-                <a href="#" class="quick-action-item">
-                    <i class="bi bi-shield-lock"></i> Quản lý quyền truy cập
-                </a>
-                <a href="#" class="quick-action-item">
-                    <i class="bi bi-gear"></i> Cấu hình hệ thống
-                </a>
+            <div class="chart-container">
+                <canvas id="adminLineChart"></canvas>
+            </div>
+        </div>
+
+        <div class="card-section">
+            <div class="card-header">
+                <h5>Phân Phối Người Dùng</h5>
+            </div>
+            <div class="chart-container chart-center">
+                <canvas id="userDistributionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bar Chart Section -->
+    <div class="dashboard-grid-2">
+        <div class="card-section">
+            <div class="card-header">
+                <h5>Hoạt Động Theo Vai Trò</h5>
+            </div>
+            <div class="chart-container">
+                <canvas id="roleActivityChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Users & Frameworks -->
+    <div class="dashboard-grid-2">
+        <!-- Recent Users -->
+        <div class="card-section">
+            <div class="card-header">
+                <h5>Người Dùng Gần Đây</h5>
+                <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="view-all-link">Xem Tất Cả</a>
+            </div>
+            <div>
+                <div class="activity-item">
+                    <img src="https://ui-avatars.com/api/?name=John+Smith&background=0d6efd&color=fff" class="rounded-circle" width="40" height="40" alt="User">
+                    <div class="flex-1">
+                        <h6>John Smith</h6>
+                        <p>Giáo Viên - Đăng ký 2 giờ trước</p>
+                        <div class="activity-time">Đăng nhập lần cuối: Vừa mới</div>
+                    </div>
+                    <span class="badge bg-success">Đang Hoạt Động</span>
+                </div>
+
+                <div class="activity-item">
+                    <img src="https://ui-avatars.com/api/?name=Emily+Davis&background=198754&color=fff" class="rounded-circle" width="40" height="40" alt="User">
+                    <div class="flex-1">
+                        <h6>Emily Davis</h6>
+                        <p>Nhân Viên - Đăng ký 1 ngày trước</p>
+                        <div class="activity-time">Đăng nhập lần cuối: 2 giờ trước</div>
+                    </div>
+                    <span class="badge bg-success">Đang Hoạt Động</span>
+                </div>
+
+                <div class="activity-item">
+                    <img src="https://ui-avatars.com/api/?name=Michael+Brown&background=dc3545&color=fff" class="rounded-circle" width="40" height="40" alt="User">
+                    <div class="flex-1">
+                        <h6>Michael Brown</h6>
+                        <p>Giáo Viên - Đăng ký 3 ngày trước</p>
+                        <div class="activity-time">Đăng nhập lần cuối: 1 tuần trước</div>
+                    </div>
+                    <span class="badge bg-secondary">Không Hoạt Động</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Curriculum Frameworks -->
+        <div class="card-section">
+            <div class="card-header">
+                <h5>Khung Chương Trình</h5>
+                <a href="/LapTrinhWeb-PlanbookAI/public/admin/frameworks" class="view-all-link">Xem Tất Cả</a>
+            </div>
+            <div>
+                <div class="activity-item">
+                    <div class="activity-dot success"></div>
+                    <div class="flex-1">
+                        <h6>Chương Trình Khoa Học Máy Tính</h6>
+                        <p>Tạo 2 tuần trước • 45 chủ đề</p>
+                        <div class="progress" style="height: 5px;">
+                            <div class="progress-bar" role="progressbar" style="width: 100%;"></div>
+                        </div>
+                    </div>
+                    <span class="badge bg-success">Active</span>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-dot info"></div>
+                    <div class="flex-1">
+                        <h6>Khung Quản Lý Kinh Doanh</h6>
+                        <p>Tạo 1 tháng trước • 38 chủ đề</p>
+                        <div class="progress" style="height: 5px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <span class="badge bg-success">Active</span>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-dot warning"></div>
+                    <div class="flex-1">
+                        <h6>Chương Trình Kỹ Thuật</h6>
+                        <p>Tạo 3 ngày trước • 52 chủ đề</p>
+                        <div class="progress" style="height: 5px;">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <span class="badge bg-warning">Draft</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+        <h5 class="quick-actions-title">Hành Động Nhanh</h5>
+        <div class="quick-actions-grid">
+            <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/create" class="action-btn">
+                <i class="bi bi-person-plus-fill"></i>
+                Thêm Người Dùng
+            </a>
+            <a href="/LapTrinhWeb-PlanbookAI/public/admin/frameworks/create" class="action-btn">
+                <i class="bi bi-journal-plus"></i>
+                Tạo Chương Trình
+            </a>
+            <a href="/LapTrinhWeb-PlanbookAI/public/admin/settings" class="action-btn">
+                <i class="bi bi-gear-fill"></i>
+                Cài Đặt Hệ Thống
+            </a>
+            <a href="/LapTrinhWeb-PlanbookAI/public/admin/reports" class="action-btn">
+                <i class="bi bi-file-earmark-pdf"></i>
+                Tạo Báo Cáo
+            </a>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="card-section">
+        <div class="card-header">
+            <h5>Hoạt Động Gần Đây</h5>
+        </div>
+        <div>
+            <div class="activity-item">
+                <div class="activity-dot success"></div>
+                <div class="activity-content">
+                    <h6>Tài khoản giáo viên mới được kích hoạt</h6>
+                    <p>John Smith đã đăng ký thành công và kích hoạt tài khoản giáo viên của anh ta.</p>
+                    <div class="activity-time">5 phút trước</div>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-dot info"></div>
+                <div class="activity-content">
+                    <h6>Khung Chương Trình được cập nhật</h6>
+                    <p>Chương trình Khoa Học Máy Tính đã được cập nhật với các chủ đề và nội dung mới.</p>
+                    <div class="activity-time">22 phút trước</div>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-dot warning"></div>
+                <div class="activity-content" style="flex: 1;">
+                    <h6>Báo Cáo Hệ Thống được tạo</h6>
+                    <p>Báo cáo hiệu suất hệ thống hàng tháng đã được tạo và lưu thành công.</p>
+                    <div class="activity-time">47 phút trước</div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="dashboard-card mt-4">
-    <div class="card-header-custom">
-        <h5>Recent Activities</h5>
-    </div>
-    <div class="table-responsive">
-        <table class="table align-middle mb-0">
-            <thead>
-                <tr>
-                    <th>Activity</th>
-                    <th>Actor</th>
-                    <th>Module</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Tạo tài khoản Teacher mới</td>
-                    <td>Admin</td>
-                    <td>User Management</td>
-                    <td><span class="badge bg-success-subtle text-success">Completed</span></td>
-                </tr>
-                <tr>
-                    <td>Cập nhật quyền Staff</td>
-                    <td>Admin</td>
-                    <td>Permissions</td>
-                    <td><span class="badge bg-warning-subtle text-warning">Pending</span></td>
-                </tr>
-                <tr>
-                    <td>Kiểm tra dashboard hệ thống</td>
-                    <td>Admin</td>
-                    <td>Monitoring</td>
-                    <td><span class="badge bg-info-subtle text-info">Reviewing</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// System Growth Trend
+const lineCtx = document.getElementById('adminLineChart');
+if (lineCtx) {
+    new Chart(lineCtx, {
+        type: 'line',
+        data: {
+            labels: ['Th8 2024', 'Th9 2024', 'Th10 2024', 'Th11 2024', 'Th12 2024', 'Th1 2025'],
+            datasets: [{
+                label: 'Người Dùng',
+                data: [380, 420, 450, 480, 390, 520],
+                borderColor: '#2563eb',
+                backgroundColor: 'rgba(37,99,235,0.08)',
+                fill: true,
+                tension: 0.35,
+                borderWidth: 2.5,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: true } }
+        }
+    });
+}
+
+// User Distribution
+const doughnutCtx = document.getElementById('userDistributionChart');
+if (doughnutCtx) {
+    new Chart(doughnutCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Admin', 'Nhân Viên', 'Giáo Viên'],
+            datasets: [{
+                data: [2, 18, 62],
+                backgroundColor: ['#ef4444', '#f59e0b', '#10b981'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '68%'
+        }
+    });
+}
+
+// Role Activity Bar Chart
+const barCtx = document.getElementById('roleActivityChart');
+if (barCtx) {
+    new Chart(barCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4', 'Tuần 5'],
+            datasets: [
+                {
+                    label: 'Admin',
+                    data: [12, 19, 8, 15, 10],
+                    backgroundColor: '#ef4444',
+                    borderRadius: 6
+                },
+                {
+                    label: 'Nhân Viên',
+                    data: [35, 42, 38, 45, 40],
+                    backgroundColor: '#f59e0b',
+                    borderRadius: 6
+                },
+                {
+                    label: 'Giáo Viên',
+                    data: [68, 75, 72, 80, 78],
+                    backgroundColor: '#10b981',
+                    borderRadius: 6
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: true } }
+        }
+    });
+}
+</script>
 
 <?php
 $content = ob_get_clean();
-$tempFile = sys_get_temp_dir() . '/admin_dashboard_content.php';
+$tempFile = sys_get_temp_dir() . '/admin_dashboard_clean.php';
 file_put_contents($tempFile, $content);
 $contentView = $tempFile;
-
 include __DIR__ . '/../layouts/dashboard_layout.php';
