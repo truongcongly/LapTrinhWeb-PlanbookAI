@@ -100,6 +100,33 @@ include __DIR__ . '/../layouts/head.php';
                                     <button type="submit" class="btn btn-auth-submit w-100">
                                         <i class="bi bi-person-plus-fill me-2"></i>Đăng ký tài khoản
                                     </button>
+
+                                    <div class="auth-social-list mt-4">
+                                        <a href="#" class="auth-social-btn">
+                                            <span class="auth-social-icon is-facebook">f</span>
+                                            <span>Facebook</span>
+                                        </a>
+                                        <a href="#" class="auth-social-btn">
+                                            <span class="auth-social-icon is-zalo">Z</span>
+                                            <span>Zalo</span>
+                                        </a>
+                                        <a href="#" class="auth-social-btn">
+                                            <span class="auth-social-icon is-google">G</span>
+                                            <span>Google</span>
+                                        </a>
+                                        <a href="#" class="auth-social-btn">
+                                            <span class="auth-social-icon is-telegram"><i class="bi bi-telegram"></i></span>
+                                            <span>Telegram</span>
+                                        </a>
+                                        <a href="#" class="auth-social-btn">
+                                            <span class="auth-social-icon is-twitter"><i class="bi bi-twitter-x"></i></span>
+                                            <span>Twitter</span>
+                                        </a>
+                                        <a href="#" class="auth-social-btn">
+                                            <span class="auth-social-icon is-gmail"><i class="bi bi-envelope-fill"></i></span>
+                                            <span>Gmail</span>
+                                        </a>
+                                    </div>
                                 </form>
 
                                 <div class="auth-divider"><span>hoặc</span></div>
@@ -109,10 +136,6 @@ include __DIR__ . '/../layouts/head.php';
                                     <a href="/LapTrinhWeb-PlanbookAI/public/login">Đăng nhập ngay</a>
                                 </div>
 
-                                <div class="auth-role-preview mt-4">
-                                    <span class="preview-badge staff-badge">Staff</span>
-                                    <span class="preview-badge teacher-badge">Teacher</span>
-                                </div>
                             </div>
                         </div>
                     </div>
