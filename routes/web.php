@@ -27,8 +27,12 @@ return [
     ['POST', '/staff/prompts/update', [PromptTemplateController::class, 'update']],
     ['GET',  '/staff/prompts/delete', [PromptTemplateController::class, 'delete']],
     ['GET',  '/staff/prompts/preview',[PromptTemplateController::class, 'preview']],
-    
 
+    ['GET', '/giao-vien', [HomeController::class, 'teacher']],
+    ['GET', '/truong-hoc', [HomeController::class, 'school']],
+    ['GET', '/bang-gia', [HomeController::class, 'pricing']],
+    ['GET', '/ung-dung-di-dong', [HomeController::class, 'mobileApp']],
+    ['GET', '/lien-he', [HomeController::class, 'contact']],
     ['GET', '/roles', [HomeController::class, 'roles']],
     ['GET', '/workflow', [HomeController::class, 'workflow']],
     ['GET', '/about', [HomeController::class, 'about']],

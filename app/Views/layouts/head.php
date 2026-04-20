@@ -9,5 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/style.css">
     <link rel="stylesheet" href="/LapTrinhWeb-PlanbookAI/public/css/custom.css">
+    <?php if (!empty($extraStylesheets) && is_array($extraStylesheets)): ?>
+        <?php foreach ($extraStylesheets as $stylesheet): ?>
+            <link rel="stylesheet" href="<?= htmlspecialchars($stylesheet, ENT_QUOTES, 'UTF-8'); ?>">
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <?php if (!empty($extraHeadTags)): ?>
+        <?= $extraHeadTags; ?>
+    <?php endif; ?>
 </head>
 <body>
