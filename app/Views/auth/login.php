@@ -6,6 +6,11 @@ $title = 'Đăng nhập - PlanbookAI';
 include __DIR__ . '/../layouts/head.php';
 ?>
 
+<a href="/LapTrinhWeb-PlanbookAI/public/" class="btn btn-success auth-page-back-home-btn">
+    <i class="bi bi-arrow-left"></i>
+    <span>Quay lại trang chủ</span>
+</a>
+
 <section class="auth-modern-section">
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100 py-5">
