@@ -101,8 +101,8 @@ include __DIR__ . '/layouts/marketing_header.php';
                     <div class="d-flex align-items-center gap-3">
                         <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU5VslDwtmS3jKzzGz5CkupSQRSQE6Tlo5EOTHzOn2-ZXTahPkfF-0n3nh161nzDH_SZKdeBQiDrcdgRN1nV_MSFf62ufUIFBei_dPTAFJH4rGE0kDgKwHBwdj71xGITXYbmm_itFkremNl3NAj3h8DkJnaWM145S88Qic2XVHoaupVsnW4CJCxW7loTeIvFUSuFIK4cjOkJ8V7pz4qJP-E8qezuU8ybh99uZl_3dCpB7CguBm-LMhh1swwQejDsvjFHKhG7Dif7F0" alt="Teacher testimonial" class="rounded-circle" style="width: 72px; height: 72px; object-fit: cover;">
                         <div>
-                            <div class="fw-bold">Cô Nguyễn Mai Anh</div>
-                            <div class="home-muted">Giáo viên Ngữ văn</div>
+                            <div class="fw-bold">Thầy Trương Hoàn Thiện</div>
+                            <div class="home-muted">Giáo viên Hóa Học</div>
                         </div>
                     </div>
                 </div>

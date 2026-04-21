@@ -169,4 +169,163 @@ include __DIR__ . '/layouts/marketing_header.php';
     </div>
 </section>
 
+<div class="home-ai-chatbot is-collapsed" data-planbook-chatbot>
+    <section class="home-ai-chat-window" aria-label="Trợ lý tư vấn PlanbookAI" data-chat-window>
+        <div class="home-ai-chat-header">
+            <div class="home-ai-chat-avatar" aria-hidden="true">
+                <i class="bi bi-stars"></i>
+            </div>
+            <div>
+                <h2>Trợ lý PlanbookAI</h2>
+                <p>Đang sẵn sàng tư vấn</p>
+            </div>
+            <button class="home-ai-icon-btn" type="button" aria-label="Thu nhỏ chat" data-chat-close>
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+
+        <div class="home-ai-chat-messages" data-chat-messages>
+            <div class="home-ai-message home-ai-message--bot">
+                <p>Xin chào! Mình có thể tư vấn nhanh về PlanbookAI: soạn giáo án, tạo đề, quản lý trường học, bảng giá hoặc cách bắt đầu dùng thử.</p>
+            </div>
+        </div>
+
+        <div class="home-ai-chat-suggestions" aria-label="Câu hỏi gợi ý">
+            <button type="button" data-chat-suggestion="PlanbookAI giúp giáo viên như thế nào?">Cho giáo viên</button>
+            <button type="button" data-chat-suggestion="Nhà trường dùng PlanbookAI để làm gì?">Cho nhà trường</button>
+            <button type="button" data-chat-suggestion="Tôi muốn biết bảng giá">Bảng giá</button>
+        </div>
+
+        <form class="home-ai-chat-form" data-chat-form>
+            <label class="visually-hidden" for="homeAiChatInput">Nhập câu hỏi cho PlanbookAI</label>
+            <input id="homeAiChatInput" type="text" placeholder="Hỏi về PlanbookAI..." autocomplete="off" data-chat-input>
+            <button type="submit" aria-label="Gửi câu hỏi">
+                <i class="bi bi-send-fill"></i>
+            </button>
+        </form>
+    </section>
+
+    <button class="home-ai-chat-toggle" type="button" aria-label="Mở chat tư vấn PlanbookAI" aria-expanded="false" data-chat-toggle>
+        <i class="bi bi-chat-dots-fill"></i>
+        <span class="home-ai-chat-pulse" aria-hidden="true"></span>
+    </button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const chatbot = document.querySelector('[data-planbook-chatbot]');
+
+    if (!chatbot) {
+        return;
+    }
+
+    const toggleBtn = chatbot.querySelector('[data-chat-toggle]');
+    const closeBtn = chatbot.querySelector('[data-chat-close]');
+    const form = chatbot.querySelector('[data-chat-form]');
+    const input = chatbot.querySelector('[data-chat-input]');
+    const messages = chatbot.querySelector('[data-chat-messages]');
+    const suggestions = chatbot.querySelectorAll('[data-chat-suggestion]');
+
+    const answers = [
+        {
+            keywords: ['giao vien', 'giáo viên', 'soan', 'soạn', 'giao an', 'giáo án', 'tao de', 'tạo đề', 'cham bai', 'chấm bài'],
+            text: 'Với giáo viên, PlanbookAI hỗ trợ soạn giáo án theo khung chương trình, tạo câu hỏi/bài tập, gợi ý hoạt động dạy học và giảm thời gian xử lý công việc lặp lại.'
+        },
+        {
+            keywords: ['truong', 'trường', 'nha truong', 'nhà trường', 'quan ly', 'quản lý', 'to chuyen mon', 'tổ chuyên môn'],
+            text: 'Với nhà trường, PlanbookAI giúp quản lý giáo án, theo dõi tiến độ, hỗ trợ kiểm duyệt nội dung và tổng hợp báo cáo cho tổ chuyên môn hoặc ban giám hiệu.'
+        },
+        {
+            keywords: ['gia', 'giá', 'bang gia', 'bảng giá', 'chi phi', 'chi phí', 'goi', 'gói'],
+            text: 'Bạn có thể xem các gói dịch vụ tại mục Bảng giá. Nếu cần triển khai cho trường học, PlanbookAI có thể tư vấn theo số lượng giáo viên và nhu cầu quản trị.'
+        },
+        {
+            keywords: ['dang ky', 'đăng ký', 'dung thu', 'dùng thử', 'bat dau', 'bắt đầu', 'tai khoan', 'tài khoản'],
+            text: 'Để bắt đầu, bạn nhấn Đăng ký trên thanh menu hoặc nút Khởi tạo miễn phí ngay. Sau khi có tài khoản, giáo viên có thể vào workspace để tạo giáo án và học liệu.'
+        },
+        {
+            keywords: ['lien he', 'liên hệ', 'tu van', 'tư vấn', 'hotline', 'email'],
+            text: 'Bạn có thể vào trang Liên hệ để gửi yêu cầu tư vấn. Đội ngũ PlanbookAI sẽ hỗ trợ chọn giải pháp phù hợp cho giáo viên cá nhân hoặc nhà trường.'
+        },
+        {
+            keywords: ['mobile', 'di dong', 'di động', 'ung dung', 'ứng dụng', 'dien thoai', 'điện thoại'],
+            text: 'Ứng dụng di động giúp giáo viên theo dõi lịch trình, xử lý công việc và xem nội dung học tập thuận tiện hơn trên điện thoại.'
+        }
+    ];
+
+    function normalizeText(text) {
+        return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function addMessage(text, type) {
+        const bubble = document.createElement('div');
+        const paragraph = document.createElement('p');
+
+        bubble.className = 'home-ai-message home-ai-message--' + type;
+        paragraph.textContent = text;
+        bubble.appendChild(paragraph);
+        messages.appendChild(bubble);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function getAnswer(question) {
+        const normalizedQuestion = normalizeText(question);
+        const matchedAnswer = answers.find(function (answer) {
+            return answer.keywords.some(function (keyword) {
+                return normalizedQuestion.includes(normalizeText(keyword));
+            });
+        });
+
+        return matchedAnswer
+            ? matchedAnswer.text
+            : 'PlanbookAI là nền tảng AI hỗ trợ giáo viên và nhà trường xây dựng giáo án, học liệu, câu hỏi, bài tập và báo cáo. Bạn có thể hỏi mình về giáo viên, nhà trường, bảng giá, đăng ký hoặc liên hệ tư vấn.';
+    }
+
+    function submitQuestion(question) {
+        const trimmedQuestion = question.trim();
+
+        if (!trimmedQuestion) {
+            return;
+        }
+
+        addMessage(trimmedQuestion, 'user');
+        input.value = '';
+
+        setTimeout(function () {
+            addMessage(getAnswer(trimmedQuestion), 'bot');
+        }, 350);
+    }
+
+    function setOpenState(isOpen) {
+        chatbot.classList.toggle('is-collapsed', !isOpen);
+        toggleBtn.setAttribute('aria-expanded', String(isOpen));
+
+        if (isOpen) {
+            window.setTimeout(function () {
+                input.focus();
+            }, 120);
+        }
+    }
+
+    toggleBtn.addEventListener('click', function () {
+        setOpenState(chatbot.classList.contains('is-collapsed'));
+    });
+
+    closeBtn.addEventListener('click', function () {
+        setOpenState(false);
+    });
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        submitQuestion(input.value);
+    });
+
+    suggestions.forEach(function (button) {
+        button.addEventListener('click', function () {
+            submitQuestion(button.dataset.chatSuggestion || button.textContent);
+        });
+    });
+});
+</script>
+
 <?php include __DIR__ . '/layouts/marketing_footer.php'; ?>
