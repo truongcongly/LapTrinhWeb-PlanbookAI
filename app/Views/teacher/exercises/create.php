@@ -30,6 +30,17 @@ ob_start();
             </div>
 
             <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/teacher/exercises/store">
+                <?php
+                $promptTemplateCategoryKey = 'exercise';
+                $promptTemplateCategoryLabel = 'Exercise';
+                $promptPanelId = 'exercise-prompt-panel';
+                $promptImportTargets = [
+                    ['selector' => 'textarea[name="description"]', 'label' => 'Chèn vào Mô tả'],
+                    ['selector' => 'textarea[name="content"]', 'label' => 'Chèn vào Nội dung'],
+                ];
+                include __DIR__ . '/../partials/prompt_template_panel.php';
+                ?>
+
                 <div class="row g-4">
                     <div class="col-md-8">
                         <label class="form-label fw-semibold">Tiêu đề bài tập</label>

@@ -7,6 +7,7 @@ use App\Core\Auth;
 use App\Core\Session;
 use App\Middleware\RoleMiddleware;
 use App\Models\LessonPlan;
+use App\Models\PromptTemplate;
 
 class LessonPlanController extends Controller
 {
@@ -29,7 +30,9 @@ class LessonPlanController extends Controller
     public function create()
     {
         $this->authorize();
-        $this->view('teacher/lesson_plans/create');
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('lesson_plan');
+        $this->view('teacher/lesson_plans/create', compact('promptTemplates'));
     }
 
     public function store()
@@ -83,7 +86,9 @@ class LessonPlanController extends Controller
             $this->redirect('/teacher/lesson-plans');
         }
 
-        $this->view('teacher/lesson_plans/edit', compact('lessonPlan'));
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('lesson_plan');
+        $this->view('teacher/lesson_plans/edit', compact('lessonPlan', 'promptTemplates'));
     }
 
     public function update()

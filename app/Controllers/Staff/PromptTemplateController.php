@@ -124,4 +124,22 @@ $model = new PromptTemplate();
         $this->redirect('/staff/prompts');
 
         }
+
+    public function import()
+    {
+        $this->authorize();
+
+        $id = $_GET['id'] ?? 0;
+        $model = new PromptTemplate();
+        $prompt = $model->findById($id);
+
+        if (!$prompt) {
+            Session::flash('error', 'KhÃ´ng tÃ¬m tháº¥y prompt template.');
+            $this->redirect('/staff/prompts');
+        }
+
+        $model->importToTeacher($id);
+        Session::flash('success', 'Import prompt thanh cong. Teacher da nhan duoc prompt theo dung module tuong ung.');
+        $this->redirect('/staff/prompts');
+    }
 }

@@ -30,6 +30,18 @@ ob_start();
             </div>
 
             <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/teacher/lesson-plans/store">
+                <?php
+                $promptTemplateCategoryKey = 'lesson_plan';
+                $promptTemplateCategoryLabel = 'Lesson Plan';
+                $promptPanelId = 'lesson-plan-prompt-panel';
+                $promptImportTargets = [
+                    ['selector' => 'textarea[name="objectives"]', 'label' => 'Chèn vào Objectives'],
+                    ['selector' => 'textarea[name="activities"]', 'label' => 'Chèn vào Activities'],
+                    ['selector' => 'textarea[name="assessment"]', 'label' => 'Chèn vào Assessment'],
+                ];
+                include __DIR__ . '/../partials/prompt_template_panel.php';
+                ?>
+
                 <div class="row g-4">
                     <div class="col-md-8">
                         <label class="form-label fw-semibold">Tiêu đề giáo án</label>

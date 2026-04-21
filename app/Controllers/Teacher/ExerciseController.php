@@ -7,6 +7,7 @@ use App\Core\Auth;
 use App\Core\Session;
 use App\Middleware\RoleMiddleware;
 use App\Models\Exercise;
+use App\Models\PromptTemplate;
 
 class ExerciseController extends Controller
 {
@@ -29,7 +30,9 @@ class ExerciseController extends Controller
     public function create()
     {
         $this->authorize();
-        $this->view('teacher/exercises/create');
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('exercise');
+        $this->view('teacher/exercises/create', compact('promptTemplates'));
     }
 
     public function store()
@@ -82,7 +85,9 @@ class ExerciseController extends Controller
             $this->redirect('/teacher/exercises');
         }
 
-        $this->view('teacher/exercises/edit', compact('exercise'));
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('exercise');
+        $this->view('teacher/exercises/edit', compact('exercise', 'promptTemplates'));
     }
 
     public function update()

@@ -7,6 +7,7 @@ use App\Core\Database;
 class User
 {
     private $conn;
+    private ?bool $hasServicePlanColumn = null;
 
     public function __construct()
     {
@@ -41,7 +42,7 @@ class User
         $users = [];
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
+                $users[] = $this->mapUserRow($row);
             }
         }
 
@@ -73,7 +74,7 @@ class User
         $users = [];
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
+                $users[] = $this->mapUserRow($row);
             }
         }
 
@@ -86,7 +87,8 @@ class User
         $sql = "SELECT * FROM users WHERE id = $id LIMIT 1";
         $result = $this->conn->query($sql);
 
-        return $result ? $result->fetch_assoc() : null;
+        $user = $result ? $result->fetch_assoc() : null;
+        return $user ? $this->mapUserRow($user) : null;
     }
 
     public function create($data)
@@ -95,9 +97,16 @@ class User
         $email = $this->conn->real_escape_string($data['email']);
         $password = md5($data['password']);
         $role = $this->conn->real_escape_string($data['role']);
+        $servicePlan = $this->normalizeServicePlan($data['service_plan'] ?? $this->defaultServicePlanForRole($data['role'] ?? 'teacher'));
 
-        $sql = "INSERT INTO users (name, email, password, role)
-                VALUES ('$name', '$email', '$password', '$role')";
+        if ($this->hasServicePlanColumn()) {
+            $servicePlan = $this->conn->real_escape_string($servicePlan);
+            $sql = "INSERT INTO users (name, email, password, role, service_plan)
+                    VALUES ('$name', '$email', '$password', '$role', '$servicePlan')";
+        } else {
+            $sql = "INSERT INTO users (name, email, password, role)
+                    VALUES ('$name', '$email', '$password', '$role')";
+        }
 
         return $this->conn->query($sql);
     }
@@ -108,10 +117,18 @@ class User
         $name = $this->conn->real_escape_string($data['name']);
         $email = $this->conn->real_escape_string($data['email']);
         $role = $this->conn->real_escape_string($data['role']);
+        $servicePlan = $this->normalizeServicePlan($data['service_plan'] ?? $this->defaultServicePlanForRole($data['role'] ?? 'teacher'));
 
-        $sql = "UPDATE users
-                SET name='$name', email='$email', role='$role'
-                WHERE id=$id";
+        if ($this->hasServicePlanColumn()) {
+            $servicePlan = $this->conn->real_escape_string($servicePlan);
+            $sql = "UPDATE users
+                    SET name='$name', email='$email', role='$role', service_plan='$servicePlan'
+                    WHERE id=$id";
+        } else {
+            $sql = "UPDATE users
+                    SET name='$name', email='$email', role='$role'
+                    WHERE id=$id";
+        }
 
         return $this->conn->query($sql);
     }
@@ -153,10 +170,41 @@ class User
         $users = [];
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
+                $users[] = $this->mapUserRow($row);
             }
         }
 
         return $users;
+    }
+
+    private function hasServicePlanColumn(): bool
+    {
+        if ($this->hasServicePlanColumn !== null) {
+            return $this->hasServicePlanColumn;
+        }
+
+        $result = $this->conn->query("SHOW COLUMNS FROM users LIKE 'service_plan'");
+        $this->hasServicePlanColumn = $result && $result->num_rows > 0;
+
+        return $this->hasServicePlanColumn;
+    }
+
+    private function mapUserRow(array $row): array
+    {
+        $row['service_plan'] = $this->normalizeServicePlan(
+            $row['service_plan'] ?? $this->defaultServicePlanForRole($row['role'] ?? 'teacher')
+        );
+
+        return $row;
+    }
+
+    private function normalizeServicePlan(string $servicePlan): string
+    {
+        return $servicePlan === 'professional' ? 'professional' : 'free';
+    }
+
+    private function defaultServicePlanForRole(string $role): string
+    {
+        return in_array($role, ['admin', 'staff'], true) ? 'professional' : 'free';
     }
 }

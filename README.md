@@ -107,13 +107,14 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'teacher', 'staff') NOT NULL DEFAULT 'teacher',
+    service_plan ENUM('free', 'professional') NOT NULL DEFAULT 'free',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (name, email, password, role) VALUES
-('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
-('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher'),
-('Staff', 'staff@planbookai.com', MD5('123456'), 'staff'),
+INSERT INTO users (name, email, password, role, service_plan) VALUES
+('Admin', 'admin@planbookai.com', MD5('123456'), 'admin', 'professional'),
+('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher', 'free'),
+('Staff', 'staff@planbookai.com', MD5('123456'), 'staff', 'professional'),
 ```
 ---
 

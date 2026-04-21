@@ -10,6 +10,7 @@ use App\Models\Exam;
 use App\Models\Question;
 use App\Models\ExamQuestion;
 use App\Models\ExamResult;
+use App\Models\PromptTemplate;
 
 class ExamController extends Controller
 {
@@ -36,8 +37,10 @@ class ExamController extends Controller
         $teacher = Auth::user();
         $questionModel = new Question();
         $questions = $questionModel->getAllByTeacherSimple($teacher['id']);
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('exam');
 
-        $this->view('teacher/exams/create', compact('questions'));
+        $this->view('teacher/exams/create', compact('questions', 'promptTemplates'));
     }
 
     public function store()
@@ -125,8 +128,10 @@ class ExamController extends Controller
 
         $questions = $questionModel->getAllByTeacherSimple($teacher['id']);
         $selectedQuestionIds = $examQuestionModel->getQuestionIdsByExam($id);
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('exam');
 
-        $this->view('teacher/exams/edit', compact('exam', 'questions', 'selectedQuestionIds'));
+        $this->view('teacher/exams/edit', compact('exam', 'questions', 'selectedQuestionIds', 'promptTemplates'));
     }
 
     public function update()

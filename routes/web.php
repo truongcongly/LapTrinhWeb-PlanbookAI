@@ -23,10 +23,11 @@ return [
     ['GET',  '/staff/prompts',        [PromptTemplateController::class, 'index']],
     ['GET',  '/staff/prompts/create', [PromptTemplateController::class, 'create']],
     ['POST', '/staff/prompts/store',  [PromptTemplateController::class, 'store']],
+    ['GET',  '/staff/prompts/show',   [PromptTemplateController::class, 'show']],
     ['GET',  '/staff/prompts/edit',   [PromptTemplateController::class, 'edit']],
     ['POST', '/staff/prompts/update', [PromptTemplateController::class, 'update']],
     ['GET',  '/staff/prompts/delete', [PromptTemplateController::class, 'delete']],
-    ['GET',  '/staff/prompts/preview',[PromptTemplateController::class, 'preview']],
+    ['GET',  '/staff/prompts/import', [PromptTemplateController::class, 'import']],
 
     ['GET', '/giao-vien', [HomeController::class, 'teacher']],
     ['GET', '/truong-hoc', [HomeController::class, 'school']],

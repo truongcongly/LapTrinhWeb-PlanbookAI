@@ -8,13 +8,14 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'staff', 'teacher') NOT NULL DEFAULT 'teacher',
+    service_plan ENUM('free', 'professional') NOT NULL DEFAULT 'free',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (name, email, password, role) VALUES
-('Admin', 'admin@planbookai.com', MD5('123456'), 'admin'),
-('Staff', 'staff@planbookai.com', MD5('123456'), 'staff'),
-('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher');
+INSERT INTO users (name, email, password, role, service_plan) VALUES
+('Admin', 'admin@planbookai.com', MD5('123456'), 'admin', 'professional'),
+('Staff', 'staff@planbookai.com', MD5('123456'), 'staff', 'professional'),
+('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher', 'free');
 
 CREATE TABLE exams (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -185,7 +186,7 @@ CREATE TABLE prompt_templates (
     title VARCHAR(255) NOT NULL,
     category VARCHAR(100) DEFAULT NULL,
     prompt_content TEXT NOT NULL,
-    status ENUM('draft', 'published') DEFAULT 'draft',
+    status ENUM('draft', 'active', 'archived') DEFAULT 'draft',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
