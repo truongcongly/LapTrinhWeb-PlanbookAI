@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\HomeController;
+use App\Controllers\PaymentController;
 use App\Controllers\Auth\LoginController;
 use App\Controllers\Staff\DashboardController as StaffDashboardController;
 use App\Controllers\Staff\QuestionSampleController;
@@ -32,6 +33,9 @@ return [
     ['GET', '/giao-vien', [HomeController::class, 'teacher']],
     ['GET', '/truong-hoc', [HomeController::class, 'school']],
     ['GET', '/bang-gia', [HomeController::class, 'pricing']],
+    ['GET', '/thanh-toan', [PaymentController::class, 'checkout']],
+    ['GET', '/thanh-toan/{method}', [PaymentController::class, 'gateway']],
+    ['POST', '/thanh-toan/hoan-tat', [PaymentController::class, 'complete']],
     ['GET', '/ung-dung-di-dong', [HomeController::class, 'mobileApp']],
     ['GET', '/lien-he', [HomeController::class, 'contact']],
     ['GET', '/roles', [HomeController::class, 'roles']],

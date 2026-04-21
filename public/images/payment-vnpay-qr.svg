@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 285" role="img" aria-label="VNPAY QR code">
+  <rect width="240" height="285" fill="#fff"/>
+  <text x="58" y="28" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#d71920">VN</text>
+  <text x="93" y="28" font-family="Arial, sans-serif" font-size="24" font-weight="800" fill="#0b75bb">PAY</text>
+  <text x="145" y="18" font-family="Arial, sans-serif" font-size="13" font-weight="800" fill="#d71920">QR</text>
+  <path d="M30 45h26v3H33v23h-3zM184 45h26v26h-3V48h-23zM30 213h3v23h23v3H30zM207 213h3v26h-26v-3h23z" fill="#2671a8"/>
+  <g transform="translate(45 58) scale(.72)">
+    <rect width="210" height="210" fill="#fff"/>
+    <g fill="#111">
+      <path d="M8 8h54v54H8zM16 16v38h38V16zM24 24h22v22H24z"/>
+      <path d="M148 8h54v54h-54zM156 16v38h38V16zM164 24h22v22h-22z"/>
+      <path d="M8 148h54v54H8zM16 156v38h38v-38zM24 164h22v22H24z"/>
+      <path d="M78 8h10v10H78zM98 8h20v10H98zM128 8h10v20h-10zM68 18h10v20H68zM88 28h20v10H88zM118 38h20v10h-20zM78 48h10v20H78zM98 58h30v10H98zM138 68h10v20h-10zM158 78h20v10h-20zM188 68h10v20h-10z"/>
+      <path d="M68 78h20v10H68zM98 78h10v20H98zM118 78h20v10h-20zM148 98h20v10h-20zM178 98h20v10h-20zM68 108h10v20H68zM88 108h40v10H88zM138 118h20v20h-20zM168 118h30v10h-30z"/>
+      <path d="M8 78h20v10H8zM38 78h20v10H38zM18 98h40v10H18zM8 118h10v20H8zM28 118h20v10H28zM58 128h20v10H58zM88 128h20v20H88zM118 138h30v10h-30zM158 138h10v20h-10zM178 138h20v10h-20z"/>
+      <path d="M68 158h10v30H68zM88 158h30v10H88zM128 158h20v20h-20zM158 168h40v10h-40zM88 188h20v10H88zM118 188h20v10h-20zM148 188h10v10h-10zM178 188h20v10h-20z"/>
+    </g>
+    <rect x="82" y="82" width="46" height="46" rx="6" fill="#fff" opacity=".93"/>
+    <path d="M94 94h8l5 13 5-13h8l-11 27h-7z" fill="#d71920"/>
+  </g>
+  <text x="70" y="266" font-family="Arial, sans-serif" font-size="22" font-style="italic" font-weight="800" fill="#188bc5">Scan to Pay</text>
+</svg>

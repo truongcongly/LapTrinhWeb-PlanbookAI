@@ -24,7 +24,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     <li><span class="material-symbols-outlined">check_circle</span>Kho học liệu cộng đồng</li>
                     <li><span class="material-symbols-outlined">check_circle</span>Xuất PDF cơ bản</li>
                 </ul>
-                <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn home-btn-secondary w-100 py-3">Bắt đầu ngay</a>
+                <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn home-btn-secondary w-100 py-3">Bắt đầu ngay</a>
             </article>
 
             <article class="home-pricing-card is-featured">
@@ -39,7 +39,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     <li><span class="material-symbols-outlined">check_circle</span>Tích hợp Google Classroom</li>
                     <li><span class="material-symbols-outlined">check_circle</span>Xuất Word và PowerPoint nâng cao</li>
                 </ul>
-                <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn home-btn-primary w-100 py-3">Nâng cấp ngay</a>
+                <a href="/LapTrinhWeb-PlanbookAI/public/thanh-toan?plan=professional" class="btn home-btn-primary w-100 py-3">Nâng cấp ngay</a>
             </article>
 
             <article class="home-pricing-card">

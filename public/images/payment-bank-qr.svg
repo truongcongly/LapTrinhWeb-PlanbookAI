@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1020" role="img" aria-label="Vietcombank bank transfer QR code">
+  <rect width="760" height="1020" fill="#fff"/>
+  <g transform="translate(315 36)">
+    <path d="M65 0c50 0 84 16 91 26L80 116 0 26C8 16 21 0 65 0z" fill="url(#leaf)"/>
+  </g>
+  <text x="110" y="185" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="#0b4d32">Vietcombank</text>
+  <text x="302" y="216" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#78a941">Chung niềm tin vững tương lai</text>
+  <rect x="114" y="270" width="532" height="532" fill="#fff" stroke="#8fbe45" stroke-width="6"/>
+  <g transform="translate(145 301) scale(2.25)">
+    <rect width="210" height="210" fill="#fff"/>
+    <g fill="#111">
+      <path d="M8 8h54v54H8zM16 16v38h38V16zM24 24h22v22H24z"/>
+      <path d="M148 8h54v54h-54zM156 16v38h38V16zM164 24h22v22h-22z"/>
+      <path d="M8 148h54v54H8zM16 156v38h38v-38zM24 164h22v22H24z"/>
+      <path d="M78 8h10v10H78zM98 8h20v10H98zM128 8h10v20h-10zM68 18h10v20H68zM88 28h20v10H88zM118 38h20v10h-20zM78 48h10v20H78zM98 58h30v10H98zM138 68h10v20h-10zM158 78h20v10h-20zM188 68h10v20h-10z"/>
+      <path d="M68 78h20v10H68zM98 78h10v20H98zM118 78h20v10h-20zM148 98h20v10h-20zM178 98h20v10h-20zM68 108h10v20H68zM88 108h40v10H88zM138 118h20v20h-20zM168 118h30v10h-30z"/>
+      <path d="M8 78h20v10H8zM38 78h20v10H38zM18 98h40v10H18zM8 118h10v20H8zM28 118h20v10H28zM58 128h20v10H58zM88 128h20v20H88zM118 138h30v10h-30zM158 138h10v20h-10zM178 138h20v10h-20z"/>
+      <path d="M68 158h10v30H68zM88 158h30v10H88zM128 158h20v20h-20zM158 168h40v10h-40zM88 188h20v10H88zM118 188h20v10h-20zM148 188h10v10h-10zM178 188h20v10h-20z"/>
+    </g>
+  </g>
+  <text x="190" y="895" font-family="Arial, sans-serif" font-size="44" font-weight="900" fill="#61b51e">PLANBOOKAI JSC</text>
+  <text x="232" y="955" font-family="Arial, sans-serif" font-size="44" font-weight="900" fill="#61b51e">0123456789</text>
+  <defs>
+    <linearGradient id="leaf" x1="0" y1="0" x2="160" y2="100">
+      <stop stop-color="#7dbb2f"/>
+      <stop offset="1" stop-color="#0b4d32"/>
+    </linearGradient>
+  </defs>
+</svg>
