@@ -9,7 +9,7 @@ include __DIR__ . '/layouts/marketing_header.php';
         <div class="row justify-content-center text-center">
             <div class="col-xl-10">
                 <span class="home-pill home-pill--soft mb-4">
-                    <span class="material-symbols-outlined">auto_awesome</span>
+                    <i class="bi bi-stars"></i>
                     Kỷ nguyên giáo dục 4.0 đã bắt đầu
                 </span>
                 <h1 class="home-hero-title mb-4">
@@ -27,7 +27,7 @@ include __DIR__ . '/layouts/marketing_header.php';
         </div>
 
         <div class="home-glass-card p-3 p-lg-4 mx-auto" style="max-width: 1120px;">
-            <img class="home-dashboard-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCkjf91EoMaBBkMjSeoFBLEO869rUPoFgING_aKQFalx9pywct2qYKOhOoyvlhICE29H7-ArYspn7_DSCHRGy8LqRwM3d-eNpmVpyBYCgTsicnUGPfzKRRVqb2Zg2KL05QvH8mVEFWoknPPAuP-gkAJykHT79EJvWXbpYooetqMyLGUFFVZhfgx-JWP-nC-XBqErDD_-RW_S5CUG5L6YSZphemvG0ZHl793cdVvZWf9Zeksr9HU7vxg_waj_x_XKKm8Evf9Nn1Dx1J" alt="PlanbookAI Dashboard">
+            <img class="home-dashboard-image" src="/LapTrinhWeb-PlanbookAI/public/images/home-classroom.jpg" alt="Giáo viên và học sinh trong lớp học">
         </div>
     </div>
 </section>
@@ -37,7 +37,7 @@ include __DIR__ . '/layouts/marketing_header.php';
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
                 <div class="position-relative">
-                    <img class="img-fluid rounded-5 shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvzRu7TYokBYOg42WxP36sWHCGRibueVJt7mVHFTiOB-WspEvP1kJ0SIuWG_ABGOJCI_sxfdwkunIe9gYDZcjz1EbmGgcN5-Cni4t5IYEouymV9xzmfLXxk2iEwuGj06IZodqXbhcH-A5Vyh2DIduZXfMGKsPs_ekWQNZ6yEqFlh1wVmV8sVszo4xnA3ogeaqQdWSR14kW-EtS4LhDE-NWhkQdCBL2U6dKyhcwN6C6BX45-Gsj4QLKQEKnHfc0nPHxYNjz54cUC1pT" alt="Work life balance">
+                    <img class="img-fluid rounded-5 shadow-lg" src="/LapTrinhWeb-PlanbookAI/public/images/home-teacher-desk.jpg" alt="Bàn làm việc giáo viên với sách vở">
                     <div class="home-float-card home-glass-card d-none d-md-block">
                         <span class="home-price d-block">15h</span>
                         <p class="fw-bold mb-1">Thời gian lấy lại mỗi tuần</p>
@@ -55,7 +55,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     <div class="col-sm-6">
                         <div class="home-card h-100">
                             <div class="home-feature-icon mb-3">
-                                <span class="material-symbols-outlined">auto_fix</span>
+                                <i class="bi bi-magic"></i>
                             </div>
                             <h3 class="home-headline fw-bold fs-4 mb-2">Tự động hóa hoàn toàn</h3>
                             <p class="home-card-copy mb-0">Soạn giáo án chuẩn và tạo học liệu chỉ với vài câu lệnh ngắn.</p>
@@ -64,7 +64,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     <div class="col-sm-6">
                         <div class="home-card h-100">
                             <div class="home-feature-icon mb-3" style="background: rgba(0, 191, 165, 0.12); color: #00bfa5;">
-                                <span class="material-symbols-outlined">balance</span>
+                                <i class="bi bi-circle-half"></i>
                             </div>
                             <h3 class="home-headline fw-bold fs-4 mb-2">Cân bằng cuộc sống</h3>
                             <p class="home-card-copy mb-0">Giảm tải giấy tờ để mỗi ngày đến trường là một trải nghiệm nhẹ nhàng hơn.</p>
@@ -89,7 +89,7 @@ include __DIR__ . '/layouts/marketing_header.php';
         <div class="home-bento">
             <article class="home-card home-card--feature home-card--span-4">
                 <div class="home-feature-icon mb-4">
-                    <span class="material-symbols-outlined">co_present</span>
+                    <i class="bi bi-person-video3"></i>
                 </div>
                 <h3 class="home-headline fw-bold mb-3">Giáo viên</h3>
                 <p class="home-card-copy mb-4">Soạn giáo án AI, tạo đề, chấm OCR và xem báo cáo lớp học.</p>
@@ -98,7 +98,7 @@ include __DIR__ . '/layouts/marketing_header.php';
 
             <article class="home-card home-card--gradient home-card--span-4">
                 <div class="home-round-icon mb-4">
-                    <span class="material-symbols-outlined">school</span>
+                    <i class="bi bi-mortarboard-fill"></i>
                 </div>
                 <h3 class="home-headline fw-bold mb-3">Trường học</h3>
                 <p class="text-white-50 mb-4">Quản trị tiến độ, kiểm duyệt giáo án, thống kê theo tổ và điều hành toàn trường.</p>
@@ -106,8 +106,8 @@ include __DIR__ . '/layouts/marketing_header.php';
             </article>
 
             <article class="home-card home-card--feature home-card--span-4">
-                <div class="home-feature-icon mb-4" style="background: rgba(180, 0, 93, 0.12); color: #b4005d;">
-                    <span class="material-symbols-outlined">smartphone</span>
+                <div class="home-feature-icon mb-4" style="background: rgba(219, 234, 254, 0.9); color: #1d4ed8;">
+                    <i class="bi bi-phone-fill"></i>
                 </div>
                 <h3 class="home-headline fw-bold mb-3">Ứng dụng di động</h3>
                 <p class="home-card-copy mb-4">Dạy học, chấm bài và theo dõi lịch trình ở bất cứ đâu trên điện thoại.</p>
@@ -134,7 +134,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     </div>
                     <div class="col-sm-6">
                         <div class="home-dark-stat">
-                            <div class="home-price" style="color: #7c4dff;">2 triệu</div>
+                            <div class="home-price" style="color: #2563eb;">2 triệu</div>
                             <p class="mb-0 text-white-50">Giáo án được AI hỗ trợ</p>
                         </div>
                     </div>

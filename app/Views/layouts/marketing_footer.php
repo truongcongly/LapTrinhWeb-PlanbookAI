@@ -4,7 +4,10 @@
         <div class="container">
             <div class="home-footer-grid">
                 <div>
-                    <div class="home-brand mb-3 d-inline-block">PlanbookAI</div>
+                    <div class="home-brand mb-3">
+                        <i class="bi bi-mortarboard-fill"></i>
+                        <span>PlanbookAI</span>
+                    </div>
                     <p class="home-muted mb-0">Nền tảng quản lý giáo án thông minh giúp giáo viên, nhà trường và học sinh kết nối hiệu quả hơn trong môi trường số.</p>
                 </div>
                 <div>

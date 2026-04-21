@@ -2,7 +2,7 @@
 $title = $title ?? 'PlanbookAI';
 $currentPage = $currentPage ?? 'home';
 $extraStylesheets = $extraStylesheets ?? [
-    '/LapTrinhWeb-PlanbookAI/public/css/home-modern.css?v=20260422-real-gateway',
+    '/LapTrinhWeb-PlanbookAI/public/css/home-modern.css?v=20260422-crisp-images',
 ];
 $extraHeadTags = $extraHeadTags ?? <<<HTML
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,10 @@ include __DIR__ . '/head.php';
 <div class="home-shell">
     <nav class="navbar navbar-expand-lg fixed-top home-navbar">
         <div class="container py-2">
-            <a class="navbar-brand home-brand me-4" href="/LapTrinhWeb-PlanbookAI/public/">PlanbookAI</a>
+            <a class="navbar-brand home-brand me-4" href="/LapTrinhWeb-PlanbookAI/public/">
+                <i class="bi bi-mortarboard-fill"></i>
+                <span>PlanbookAI</span>
+            </a>
 
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#marketingNav" aria-controls="marketingNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

@@ -19,7 +19,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <div class="d-grid gap-4">
                     <div class="home-contact-card">
                         <div class="d-flex gap-3">
-                            <div class="home-feature-icon"><span class="material-symbols-outlined">location_on</span></div>
+                            <div class="home-feature-icon"><i class="bi bi-geo-alt-fill"></i></div>
                             <div>
                                 <h3 class="home-headline fw-bold fs-4 mb-2">Văn phòng chính</h3>
                                 <p class="home-card-copy mb-0">Tầng 12, Tòa nhà Innovation, Công viên phần mềm Quang Trung, Quận 12, TP. Hồ Chí Minh.</p>
@@ -28,7 +28,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     </div>
                     <div class="home-contact-card">
                         <div class="d-flex gap-3">
-                            <div class="home-feature-icon"><span class="material-symbols-outlined">mail</span></div>
+                            <div class="home-feature-icon"><i class="bi bi-envelope-fill"></i></div>
                             <div>
                                 <h3 class="home-headline fw-bold fs-4 mb-2">Email hỗ trợ</h3>
                                 <p class="home-card-copy mb-0">hotro@planbookai.com<br>kinhdoanh@planbookai.com</p>
@@ -37,7 +37,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     </div>
                     <div class="home-contact-card">
                         <div class="d-flex gap-3">
-                            <div class="home-feature-icon" style="background: rgba(255,142,177,.25); color: #b4005d;"><span class="material-symbols-outlined">call</span></div>
+                            <div class="home-feature-icon" style="background: rgba(219,234,254,.9); color: #1d4ed8;"><i class="bi bi-telephone-fill"></i></div>
                             <div>
                                 <h3 class="home-headline fw-bold fs-4 mb-2">Điện thoại</h3>
                                 <p class="home-card-copy mb-0">+84 1900 8888<br>Thứ 2 - Thứ 7 (8:00 - 18:00)</p>

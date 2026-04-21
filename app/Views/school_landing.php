@@ -18,7 +18,7 @@ include __DIR__ . '/layouts/marketing_header.php';
             </div>
             <div class="col-lg-6">
                 <div class="home-glass-card p-3">
-                    <img class="home-dashboard-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfWmBCoT21dREbe-vVDGz5wJu_mSSXtTFsxyTtuBcETUpDDde97wOzFjPdS2u02QVpXE9o7f7DHzEufP-ASLgLRKdhxMtwGBZ2yx-GRW_weeOv0YDgTtLcTLCQ88PmurTaOLdSk4tA7isXRKlsn9Bg-ELol_rsCipECZ9ITRvXC7DHFvXpNTOIREEERMVrn82oA1fSfvK1ktmXneD791oU0YSdhfaZqLAx8fTB9Oey7WIRQfbhaWmjsdzxQkX9RG6PP2oGBeWAnqCW" alt="School dashboard">
+                    <img class="home-dashboard-image" src="/LapTrinhWeb-PlanbookAI/public/images/school-campus.jpg" alt="Khuôn viên trường học hiện đại">
                 </div>
             </div>
         </div>
@@ -54,20 +54,20 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <p class="home-card-copy mb-4">Hiển thị nhanh dữ liệu theo từng tổ chuyên môn để nhà trường nắm rõ nơi nào đang dẫn đầu và nơi nào cần hỗ trợ.</p>
                 <div class="d-flex align-items-end gap-3" style="height: 220px;">
                     <div class="rounded-top-4" style="width: 25%; height: 52%; background: #bed6f9;"></div>
-                    <div class="rounded-top-4" style="width: 25%; height: 84%; background: #702ae1;"></div>
-                    <div class="rounded-top-4" style="width: 25%; height: 40%; background: #b4005d;"></div>
+                    <div class="rounded-top-4" style="width: 25%; height: 84%; background: #2563eb;"></div>
+                    <div class="rounded-top-4" style="width: 25%; height: 40%; background: #1d4ed8;"></div>
                     <div class="rounded-top-4" style="width: 25%; height: 70%; background: #465d7b;"></div>
                 </div>
             </article>
 
             <article class="home-card home-card--gradient home-card--span-5">
-                <div class="home-round-icon mb-4"><span class="material-symbols-outlined">verified_user</span></div>
+                <div class="home-round-icon mb-4"><i class="bi bi-shield-check"></i></div>
                 <h3 class="home-headline fw-bold mb-3">Kiểm duyệt nhanh</h3>
                 <p class="text-white-50 mb-4">Bạn có thể theo dõi và duyệt giáo án mới, xuất báo cáo tức thời và chuẩn hóa quy trình nội bộ.</p>
                 <ul class="home-check-list">
-                    <li><span class="material-symbols-outlined text-white">check_circle</span>Xuất PDF hoặc Excel chỉ với 1 click</li>
-                    <li><span class="material-symbols-outlined text-white">check_circle</span>Phân quyền chi tiết theo tổ</li>
-                    <li><span class="material-symbols-outlined text-white">check_circle</span>Lưu trữ cloud an toàn</li>
+                    <li><i class="bi bi-check-circle-fill text-white"></i>Xuất PDF hoặc Excel chỉ với 1 click</li>
+                    <li><i class="bi bi-check-circle-fill text-white"></i>Phân quyền chi tiết theo tổ</li>
+                    <li><i class="bi bi-check-circle-fill text-white"></i>Lưu trữ cloud an toàn</li>
                 </ul>
             </article>
         </div>
@@ -92,7 +92,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                     <div class="home-panel p-4">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="fw-bold">Phân bổ khối lớp</div>
-                            <span class="material-symbols-outlined home-muted">more_horiz</span>
+                            <i class="bi bi-three-dots home-muted"></i>
                         </div>
                         <div class="home-bar-list">
                             <div class="home-bar-line is-primary"><span></span></div>

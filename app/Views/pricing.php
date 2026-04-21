@@ -20,9 +20,9 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <p class="home-muted mb-3">Trải nghiệm những tính năng cơ bản nhất.</p>
                 <div class="home-price mb-3">0đ<span class="fs-6 fw-semibold home-muted">/tháng</span></div>
                 <ul class="home-check-list mb-4">
-                    <li><span class="material-symbols-outlined">check_circle</span>Tối đa 3 giáo án mỗi tháng</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Kho học liệu cộng đồng</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Xuất PDF cơ bản</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Tối đa 3 giáo án mỗi tháng</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Kho học liệu cộng đồng</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Xuất PDF cơ bản</li>
                 </ul>
                 <a href="/LapTrinhWeb-PlanbookAI/public/login" class="btn home-btn-secondary w-100 py-3">Bắt đầu ngay</a>
             </article>
@@ -34,10 +34,10 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <div class="home-price mb-2">199.000đ<span class="fs-6 fw-semibold home-muted">/tháng</span></div>
                 <p class="small fw-bold" style="color: var(--home-secondary);">Thanh toán theo năm để tiết kiệm 20%</p>
                 <ul class="home-check-list mb-4">
-                    <li><span class="material-symbols-outlined">check_circle</span>Giáo án AI không giới hạn</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Trợ lý soạn bài AI thế hệ mới</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Tích hợp Google Classroom</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Xuất Word và PowerPoint nâng cao</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Giáo án AI không giới hạn</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Trợ lý soạn bài AI thế hệ mới</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Tích hợp Google Classroom</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Xuất Word và PowerPoint nâng cao</li>
                 </ul>
                 <a href="/LapTrinhWeb-PlanbookAI/public/thanh-toan?plan=professional" class="btn home-btn-primary w-100 py-3">Nâng cấp ngay</a>
             </article>
@@ -47,10 +47,10 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <p class="home-muted mb-3">Giải pháp toàn diện cho trường học.</p>
                 <div class="home-price mb-3">Liên hệ</div>
                 <ul class="home-check-list mb-4">
-                    <li><span class="material-symbols-outlined">check_circle</span>Quản lý tập trung giáo viên</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Thư viện giáo án dùng chung</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Phân tích và báo cáo chuyên sâu</li>
-                    <li><span class="material-symbols-outlined">check_circle</span>Hỗ trợ 24/7 và training trực tiếp</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Quản lý tập trung giáo viên</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Thư viện giáo án dùng chung</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Phân tích và báo cáo chuyên sâu</li>
+                    <li><i class="bi bi-check-circle-fill"></i>Hỗ trợ 24/7 và training trực tiếp</li>
                 </ul>
                 <a href="/LapTrinhWeb-PlanbookAI/public/lien-he" class="btn home-btn-secondary w-100 py-3">Đặt lịch tư vấn</a>
             </article>
