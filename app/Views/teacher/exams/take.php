@@ -16,7 +16,6 @@ ob_start();
         <h3>Làm bài kiểm tra</h3>
         <p>Mô phỏng quy trình học sinh làm bài và hệ thống tự chấm điểm.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Take Exam">
 </div>
 
 <div class="dashboard-card">

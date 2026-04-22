@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa câu hỏi mẫu</h3>
         <p>Cập nhật môn học, chủ đề, độ khó, đáp án và nội dung các lựa chọn.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Edit Question Sample">
 </div>
 
 <div class="row justify-content-center">

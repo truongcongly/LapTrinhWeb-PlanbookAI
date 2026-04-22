@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 260" role="img" aria-labelledby="title desc">
+  <title id="title">Staff workspace</title>
+  <desc id="desc">A staff dashboard with prompt templates, content cards, and review indicators.</desc>
+  <defs>
+    <linearGradient id="panel" x1="96" x2="430" y1="36" y2="224" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4FBF8"/>
+      <stop offset="1" stop-color="#DDF3EA"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="82" x2="226" y1="76" y2="218" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0D6EFD"/>
+      <stop offset="1" stop-color="#19A974"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#17324D" flood-opacity=".14"/>
+    </filter>
+  </defs>
+  <rect width="520" height="260" fill="none"/>
+  <ellipse cx="264" cy="226" rx="210" ry="18" fill="#DDE9E8"/>
+  <g filter="url(#shadow)">
+    <rect x="92" y="42" width="332" height="178" rx="22" fill="url(#panel)"/>
+    <rect x="118" y="70" width="280" height="36" rx="12" fill="#FFFFFF"/>
+    <circle cx="140" cy="88" r="9" fill="#0D6EFD"/>
+    <rect x="160" y="82" width="94" height="11" rx="5.5" fill="#0B1F3A"/>
+    <rect x="288" y="80" width="82" height="16" rx="8" fill="#E7F1FF"/>
+    <rect x="118" y="126" width="82" height="68" rx="14" fill="#FFFFFF"/>
+    <rect x="218" y="126" width="82" height="68" rx="14" fill="#FFFFFF"/>
+    <rect x="318" y="126" width="80" height="68" rx="14" fill="#FFFFFF"/>
+    <path d="M136 150h44M136 169h32" stroke="#9DB0C4" stroke-width="8" stroke-linecap="round"/>
+    <path d="M236 150h44M236 169h32" stroke="#9DB0C4" stroke-width="8" stroke-linecap="round"/>
+    <path d="M336 150h42M336 169h30" stroke="#9DB0C4" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="48" y="92" width="132" height="118" rx="18" fill="#FFFFFF"/>
+    <path d="M76 126h76M76 150h56M76 174h72" stroke="#C3D0DE" stroke-width="9" stroke-linecap="round"/>
+    <path d="M76 194l19 14 46-53" fill="none" stroke="url(#accent)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="386" y="84" width="86" height="118" rx="18" fill="#FFFFFF"/>
+    <circle cx="429" cy="122" r="24" fill="#EAF7F2"/>
+    <path d="M416 122l10 10 18-24" fill="none" stroke="#19A974" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="410" y="162" width="38" height="10" rx="5" fill="#0D6EFD"/>
+  </g>
+  <circle cx="72" cy="64" r="17" fill="#FFB020"/>
+  <circle cx="452" cy="58" r="12" fill="#0D6EFD" opacity=".28"/>
+  <path d="M218 34c22-13 48-13 70 0" fill="none" stroke="#19A974" stroke-width="9" stroke-linecap="round"/>
+</svg>

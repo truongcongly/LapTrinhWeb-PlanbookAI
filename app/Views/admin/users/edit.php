@@ -15,7 +15,6 @@ ob_start();
         <h3>Chinh sua nguoi dung</h3>
         <p>Cap nhat thong tin, vai tro va goi dich vu phu hop voi nhiem vu trong he thong.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Edit User">
 </div>
 
 <div class="row justify-content-center">

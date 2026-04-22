@@ -18,7 +18,6 @@ ob_start();
         <h3>Question Bank Sample</h3>
         <p>Danh sách câu hỏi mẫu (thêm, sửa, xóa) và lọc theo môn/chủ đề/độ khó.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Question Samples">
 </div>
 
 <div class="dashboard-card">

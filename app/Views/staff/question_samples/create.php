@@ -16,7 +16,6 @@ ob_start();
         <h3>Tạo câu hỏi mẫu mới</h3>
         <p>Chọn môn học, chủ đề, độ khó và đáp án chính xác.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Create Question Sample">
 </div>
 
 <div class="row justify-content-center">

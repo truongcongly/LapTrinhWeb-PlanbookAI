@@ -16,7 +16,6 @@ ob_start();
         <h3>System Settings</h3>
         <p>Quản lý tên hệ thống, logo text, AI, OCR và workflow mode.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Settings">
 </div>
 
 <div class="row justify-content-center">

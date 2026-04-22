@@ -16,7 +16,6 @@ ob_start();
         <h3>Tạo lesson plan mới</h3>
         <p>Xây dựng giáo án theo môn học, khối lớp, mục tiêu, hoạt động và hình thức đánh giá.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Create Lesson Plan">
 </div>
 
 <div class="row justify-content-center">

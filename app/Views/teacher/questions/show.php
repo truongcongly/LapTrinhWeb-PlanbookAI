@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết câu hỏi</h3>
         <p>Xem đầy đủ nội dung câu hỏi, các lựa chọn và đáp án đúng.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Question Detail">
 </div>
 
 <div class="dashboard-card">

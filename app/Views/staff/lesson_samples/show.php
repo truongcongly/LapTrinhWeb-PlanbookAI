@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết lesson sample</h3>
         <p>Xem đầy đủ nội dung giáo án mẫu đã được tạo trong hệ thống.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Lesson Sample Detail">
 </div>
 
 <div class="dashboard-card">

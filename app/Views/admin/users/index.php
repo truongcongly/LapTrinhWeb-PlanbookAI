@@ -15,7 +15,6 @@ ob_start();
         <h3>Quan ly nguoi dung</h3>
         <p>Theo doi danh sach tai khoan, chinh sua thong tin va phan quyen trong toan he thong.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="User Management">
 </div>
 
 <div class="dashboard-card">

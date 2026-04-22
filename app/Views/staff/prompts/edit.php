@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa prompt template</h3>
         <p>Cập nhật category, nội dung và trạng thái của prompt mẫu.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Edit Prompt">
 </div>
 
 <div class="row justify-content-center">

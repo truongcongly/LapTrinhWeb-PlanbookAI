@@ -18,7 +18,6 @@ ob_start();
         <h3>Lesson Samples</h3>
         <p>Danh sách giáo án mẫu (thêm, sửa, xóa) và lọc theo môn học / khối lớp / trạng thái.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Lesson Samples">
 </div>
 
 <div class="dashboard-card">

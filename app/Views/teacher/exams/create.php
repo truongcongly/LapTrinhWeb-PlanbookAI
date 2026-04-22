@@ -16,7 +16,6 @@ ob_start();
         <h3>Tạo đề kiểm tra mới</h3>
         <p>Chọn nhiều câu hỏi từ question bank để tạo một bài kiểm tra hoàn chỉnh.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Create Exam">
 </div>
 
 <div class="row justify-content-center">

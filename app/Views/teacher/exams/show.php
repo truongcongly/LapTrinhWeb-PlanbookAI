@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết đề kiểm tra</h3>
         <p>Xem thông tin đề thi, answer key và danh sách câu hỏi đã chọn.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Exam Detail">
 </div>
 
 <div class="dashboard-card mb-4">

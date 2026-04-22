@@ -16,7 +16,6 @@ ob_start();
         <h3>Exercises</h3>
         <p>Tạo, chỉnh sửa và quản lý bài tập theo môn học, chủ đề và trạng thái sử dụng.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Exercises">
 </div>
 
 <div class="dashboard-card">

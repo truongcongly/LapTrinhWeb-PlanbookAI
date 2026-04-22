@@ -16,7 +16,6 @@ ob_start();
         <h3>Tạo câu hỏi mới</h3>
         <p>Xây dựng câu hỏi theo môn học, chủ đề, độ khó và đáp án chính xác.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Create Question">
 </div>
 
 <div class="row justify-content-center">

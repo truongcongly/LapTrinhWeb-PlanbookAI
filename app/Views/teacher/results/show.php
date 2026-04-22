@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết kết quả</h3>
         <p>Xem thông tin bài làm, điểm số, đáp án nhận diện và trạng thái xử lý.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Result Detail">
 </div>
 
 <div class="dashboard-card">

@@ -16,7 +16,6 @@ ob_start();
         <h3>Exams</h3>
         <p>Tạo, chỉnh sửa và quản lý đề kiểm tra cùng answer key phục vụ chấm bài.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Exams">
 </div>
 
 <div class="dashboard-card">

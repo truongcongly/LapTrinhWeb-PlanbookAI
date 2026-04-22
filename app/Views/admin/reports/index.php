@@ -16,7 +16,6 @@ ob_start();
         <h3>Reports</h3>
         <p>Theo dõi số liệu tổng quan về users, frameworks, lesson plans, questions, exams và results.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Reports">
 </div>
 
 <div class="row g-4">

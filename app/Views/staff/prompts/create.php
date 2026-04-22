@@ -15,7 +15,6 @@ ob_start();
         <h3>Tạo prompt template mới</h3>
         <p>Xây dựng prompt mẫu để phục vụ các tác vụ AI trong hệ thống.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Create Prompt">
 </div>
 
 <div class="row justify-content-center">

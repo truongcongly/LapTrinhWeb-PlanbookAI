@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết lesson plan</h3>
         <p>Xem đầy đủ nội dung giáo án đã tạo để phục vụ giảng dạy và chỉnh sửa khi cần.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Lesson Plan Detail">
 </div>
 
 <div class="dashboard-card">

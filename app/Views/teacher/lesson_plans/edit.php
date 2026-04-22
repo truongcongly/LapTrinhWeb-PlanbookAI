@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa lesson plan</h3>
         <p>Cập nhật lại tiêu đề, mục tiêu, hoạt động và đánh giá theo nhu cầu giảng dạy.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Edit Lesson Plan">
 </div>
 
 <div class="row justify-content-center">

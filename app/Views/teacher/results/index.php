@@ -16,7 +16,6 @@ ob_start();
         <h3>Results</h3>
         <p>Theo dõi kết quả auto grading, xem điểm và cập nhật feedback cho từng học sinh.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Results">
 </div>
 
 <div class="dashboard-card">

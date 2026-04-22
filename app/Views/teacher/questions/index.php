@@ -16,7 +16,6 @@ ob_start();
         <h3>Question Bank</h3>
         <p>Tạo, chỉnh sửa và quản lý ngân hàng câu hỏi theo môn học, chủ đề và độ khó.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Question Bank">
 </div>
 
 <div class="dashboard-card">

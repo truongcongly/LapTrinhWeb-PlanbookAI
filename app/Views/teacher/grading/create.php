@@ -16,7 +16,6 @@ ob_start();
         <h3>Tạo phiên chấm bài</h3>
         <p>Chọn đề thi và nhập đáp án nhận diện dạng A,B,C,D để mô phỏng OCR grading.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Create Grading Session">
 </div>
 
 <div class="row justify-content-center">

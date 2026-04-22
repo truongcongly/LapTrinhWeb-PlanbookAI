@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa bài tập</h3>
         <p>Cập nhật thông tin, mô tả và nội dung bài tập theo nhu cầu giảng dạy.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Edit Exercise">
 </div>
 
 <div class="row justify-content-center">

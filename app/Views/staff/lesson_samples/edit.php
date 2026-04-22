@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa lesson sample</h3>
         <p>Cập nhật lại tiêu đề, mục tiêu, hoạt động và đánh giá của giáo án mẫu.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Edit Lesson Sample">
 </div>
 
 <div class="row justify-content-center">

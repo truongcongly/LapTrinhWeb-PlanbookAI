@@ -16,7 +16,6 @@ ob_start();
         <h3>OCR Mock Grading</h3>
         <p>Mô phỏng quy trình nhận diện đáp án từ bài làm và chấm tự động theo answer key.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="OCR Mock Grading">
 </div>
 
 <div class="dashboard-card text-center py-5">

@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết prompt template</h3>
         <p>Xem đầy đủ nội dung prompt mẫu và mục đích sử dụng của nó.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Prompt Detail">
 </div>
 
 <div class="dashboard-card">

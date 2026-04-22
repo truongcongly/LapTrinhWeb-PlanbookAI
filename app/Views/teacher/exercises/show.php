@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết bài tập</h3>
         <p>Xem đầy đủ thông tin, mô tả và nội dung của bài tập đã tạo.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Exercise Detail">
 </div>
 
 <div class="dashboard-card">

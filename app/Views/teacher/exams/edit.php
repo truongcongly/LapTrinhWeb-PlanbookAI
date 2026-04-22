@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa đề kiểm tra</h3>
         <p>Cập nhật thông tin đề thi và các câu hỏi đã chọn.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Edit Exam">
 </div>
 
 <div class="row justify-content-center">

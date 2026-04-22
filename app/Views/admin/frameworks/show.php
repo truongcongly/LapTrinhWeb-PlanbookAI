@@ -16,7 +16,6 @@ ob_start();
         <h3>Chi tiết framework</h3>
         <p>Xem đầy đủ template chương trình và cấu trúc giáo án.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Framework Detail">
 </div>
 
 <div class="dashboard-card">

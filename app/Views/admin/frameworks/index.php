@@ -16,7 +16,6 @@ ob_start();
         <h3>Curriculum Frameworks</h3>
         <p>Tạo và quản lý template giáo án với objectives, activities và assessment.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Frameworks">
 </div>
 
 <div class="dashboard-card">

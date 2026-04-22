@@ -15,7 +15,6 @@ ob_start();
         <h3>Them nguoi dung moi</h3>
         <p>Tao tai khoan Admin, Staff hoac Teacher voi thong tin day du va ro rang.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Create User">
 </div>
 
 <div class="row justify-content-center">

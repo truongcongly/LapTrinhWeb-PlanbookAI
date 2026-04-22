@@ -16,7 +16,6 @@ ob_start();
         <h3>Tạo bài tập mới</h3>
         <p>Thiết lập thông tin bài tập, mô tả và nội dung cho hoạt động luyện tập của học sinh.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Create Exercise">
 </div>
 
 <div class="row justify-content-center">

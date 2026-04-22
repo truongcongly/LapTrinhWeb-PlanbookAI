@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa framework</h3>
         <p>Cập nhật template objectives, activities và assessment.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Edit Framework">
 </div>
 
 <div class="row justify-content-center">

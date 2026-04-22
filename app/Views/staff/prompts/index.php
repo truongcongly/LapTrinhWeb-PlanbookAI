@@ -16,7 +16,6 @@ ob_start();
     <h3>Prompt Templates</h3>
     <p>Tao va quan ly prompt mau cho lesson plan, bai tap, de thi va phan hoi AI.</p>
 </div>
-<img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Prompt Templates">
 </div>
 
 <div class="dashboard-card">

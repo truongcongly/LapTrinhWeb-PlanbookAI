@@ -16,7 +16,6 @@ ob_start();
         <h3>Chỉnh sửa kết quả</h3>
         <p>Thêm phản hồi cho học sinh và điều chỉnh điểm nếu cần.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Edit Result">
 </div>
 
 <div class="row justify-content-center">

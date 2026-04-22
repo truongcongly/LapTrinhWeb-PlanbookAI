@@ -16,7 +16,6 @@ ob_start();
         <h3>Thêm lesson sample mới</h3>
         <p>Xây dựng giáo án mẫu theo môn học, khối lớp, mục tiêu, hoạt động và hình thức đánh giá.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/staff-workspace.svg" alt="Create Lesson Sample">
 </div>
 
 <div class="row justify-content-center">

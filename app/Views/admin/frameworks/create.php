@@ -16,7 +16,6 @@ ob_start();
         <h3>Tạo curriculum framework mới</h3>
         <p>Xây dựng template chuẩn cho giáo án và hoạt động giảng dạy.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/admin-panel.svg" alt="Create Framework">
 </div>
 
 <div class="row justify-content-center">

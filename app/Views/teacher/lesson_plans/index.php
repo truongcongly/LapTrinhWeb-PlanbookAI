@@ -16,7 +16,6 @@ ob_start();
         <h3>Lesson Plans</h3>
         <p>Tạo, chỉnh sửa và theo dõi giáo án theo từng môn học, khối lớp và trạng thái hoàn thiện.</p>
     </div>
-    <img src="/LapTrinhWeb-PlanbookAI/public/images/teacher-workspace.svg" alt="Lesson Plans">
 </div>
 
 <div class="dashboard-card">
