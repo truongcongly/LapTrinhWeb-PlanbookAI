@@ -29,6 +29,19 @@ ob_start();
             </div>
 
             <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/teacher/questions/update?id=<?= $question['id']; ?>">
+                <?php
+                $promptTemplateCategoryLabel = 'Question Bank';
+                $promptPanelId = 'question-bank-prompt-panel';
+                $promptImportTargets = [
+                    ['selector' => 'textarea[name="question_text"]', 'label' => 'Chen vao cau hoi'],
+                    ['selector' => 'input[name="option_a"]', 'label' => 'Chen vao A'],
+                    ['selector' => 'input[name="option_b"]', 'label' => 'Chen vao B'],
+                    ['selector' => 'input[name="option_c"]', 'label' => 'Chen vao C'],
+                    ['selector' => 'input[name="option_d"]', 'label' => 'Chen vao D'],
+                ];
+                include __DIR__ . '/../partials/prompt_template_panel.php';
+                ?>
+
                 <div class="row g-4">
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Môn học</label>

@@ -7,7 +7,9 @@ use App\Core\Auth;
 use App\Core\Session;
 use App\Middleware\RoleMiddleware;
 use App\Models\Exercise;
+use App\Models\ExerciseQuestion;
 use App\Models\PromptTemplate;
+use App\Models\Question;
 
 class ExerciseController extends Controller
 {
@@ -30,9 +32,12 @@ class ExerciseController extends Controller
     public function create()
     {
         $this->authorize();
+        $teacher = Auth::user();
         $promptModel = new PromptTemplate();
         $promptTemplates = $promptModel->getActiveTemplates('exercise');
-        $this->view('teacher/exercises/create', compact('promptTemplates'));
+        $questionModel = new Question();
+        $questions = $questionModel->getAllByTeacherSimple($teacher['id']);
+        $this->view('teacher/exercises/create', compact('promptTemplates', 'questions'));
     }
 
     public function store()
@@ -41,8 +46,10 @@ class ExerciseController extends Controller
 
         $teacher = Auth::user();
         $model = new Exercise();
+        $exerciseQuestionModel = new ExerciseQuestion();
+        $selectedQuestions = $_POST['questions'] ?? [];
 
-        $model->create([
+        $exerciseId = $model->create([
             'teacher_id' => $teacher['id'],
             'title' => $_POST['title'] ?? '',
             'subject' => $_POST['subject'] ?? '',
@@ -51,6 +58,12 @@ class ExerciseController extends Controller
             'content' => $_POST['content'] ?? '',
             'status' => $_POST['status'] ?? 'draft',
         ]);
+
+        if ($exerciseId) {
+            foreach ($selectedQuestions as $questionId) {
+                $exerciseQuestionModel->create($exerciseId, $questionId);
+            }
+        }
 
         Session::flash('success', 'Tạo bài tập thành công.');
         $this->redirect('/teacher/exercises');
@@ -61,15 +74,19 @@ class ExerciseController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
         $model = new Exercise();
-        $exercise = $model->findById($id);
+        $exercise = $model->findByIdForTeacher($id, $teacher['id']);
 
         if (!$exercise) {
             Session::flash('error', 'Không tìm thấy bài tập.');
             $this->redirect('/teacher/exercises');
         }
 
-        $this->view('teacher/exercises/show', compact('exercise'));
+        $exerciseQuestionModel = new ExerciseQuestion();
+        $questions = $exerciseQuestionModel->getQuestionsByExercise($id);
+
+        $this->view('teacher/exercises/show', compact('exercise', 'questions'));
     }
 
     public function edit()
@@ -77,8 +94,9 @@ class ExerciseController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
         $model = new Exercise();
-        $exercise = $model->findById($id);
+        $exercise = $model->findByIdForTeacher($id, $teacher['id']);
 
         if (!$exercise) {
             Session::flash('error', 'Không tìm thấy bài tập.');
@@ -87,7 +105,12 @@ class ExerciseController extends Controller
 
         $promptModel = new PromptTemplate();
         $promptTemplates = $promptModel->getActiveTemplates('exercise');
-        $this->view('teacher/exercises/edit', compact('exercise', 'promptTemplates'));
+        $questionModel = new Question();
+        $questions = $questionModel->getAllByTeacherSimple($teacher['id']);
+        $exerciseQuestionModel = new ExerciseQuestion();
+        $selectedQuestionIds = $exerciseQuestionModel->getQuestionIdsByExercise($id);
+
+        $this->view('teacher/exercises/edit', compact('exercise', 'promptTemplates', 'questions', 'selectedQuestionIds'));
     }
 
     public function update()
@@ -95,8 +118,9 @@ class ExerciseController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
         $model = new Exercise();
-        $exercise = $model->findById($id);
+        $exercise = $model->findByIdForTeacher($id, $teacher['id']);
 
         if (!$exercise) {
             Session::flash('error', 'Không tìm thấy bài tập.');
@@ -112,6 +136,12 @@ class ExerciseController extends Controller
             'status' => $_POST['status'] ?? 'draft',
         ]);
 
+        $exerciseQuestionModel = new ExerciseQuestion();
+        $exerciseQuestionModel->deleteByExerciseId($id);
+        foreach (($_POST['questions'] ?? []) as $questionId) {
+            $exerciseQuestionModel->create($id, $questionId);
+        }
+
         Session::flash('success', 'Cập nhật bài tập thành công.');
         $this->redirect('/teacher/exercises');
     }
@@ -121,8 +151,9 @@ class ExerciseController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
         $model = new Exercise();
-        $exercise = $model->findById($id);
+        $exercise = $model->findByIdForTeacher($id, $teacher['id']);
 
         if (!$exercise) {
             Session::flash('error', 'Không tìm thấy bài tập.');

@@ -7,6 +7,7 @@ use App\Core\Auth;
 use App\Core\Session;
 use App\Middleware\RoleMiddleware;
 use App\Models\Question;
+use App\Models\PromptTemplate;
 
 class QuestionController extends Controller
 {
@@ -26,29 +27,14 @@ class QuestionController extends Controller
         $this->view('teacher/questions/index', compact('questions'));
     }
 
-    public function create($data)
+    public function create()
     {
-        $teacherId = (int)$data['teacher_id'];
-        $questionText = $this->conn->real_escape_string($data['question_text']);
-        $subject = $this->conn->real_escape_string($data['subject']);
-        $topic = $this->conn->real_escape_string($data['topic']);
-        $difficulty = $this->conn->real_escape_string($data['difficulty']);
-        $optionA = $this->conn->real_escape_string($data['option_a']);
-        $optionB = $this->conn->real_escape_string($data['option_b']);
-        $optionC = $this->conn->real_escape_string($data['option_c']);
-        $optionD = $this->conn->real_escape_string($data['option_d']);
-        $correctAnswer = $this->conn->real_escape_string($data['correct_answer']);
+        $this->authorize();
 
-        $sql = "INSERT INTO questions
-        (teacher_id, question_text, subject, topic, difficulty, option_a, option_b, option_c, option_d, correct_answer)
-        VALUES
-        ($teacherId, '$questionText', '$subject', '$topic', '$difficulty', '$optionA', '$optionB', '$optionC', '$optionD', '$correctAnswer')";
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('question_bank');
 
-        if (!$this->conn->query($sql)) {
-            die('SQL ERROR in Question::create(): ' . $this->conn->error);
-        }
-
-        return true;
+        $this->view('teacher/questions/create', compact('promptTemplates'));
     }
 
     public function store()
@@ -104,7 +90,10 @@ class QuestionController extends Controller
             $this->redirect('/teacher/questions');
         }
 
-        $this->view('teacher/questions/edit', compact('question'));
+        $promptModel = new PromptTemplate();
+        $promptTemplates = $promptModel->getActiveTemplates('question_bank');
+
+        $this->view('teacher/questions/edit', compact('question', 'promptTemplates'));
     }
 
     public function update()

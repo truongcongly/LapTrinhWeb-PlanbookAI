@@ -47,8 +47,7 @@ ob_start();
                             <option value="lesson_plan">Lesson Plan</option>
                             <option value="exercise">Exercise</option>
                             <option value="exam">Exam</option>
-                            <option value="feedback">Feedback</option>
-                            <option value="grading">Grading</option>
+                            <option value="question_bank">Question Bank</option>
                         </select>
                     </div>
 

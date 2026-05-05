@@ -1,6 +1,7 @@
 DROP DATABASE IF EXISTS planbookai;
 CREATE DATABASE IF NOT EXISTS planbookai;
 USE planbookai;
+SET NAMES utf8mb4;
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -16,17 +17,6 @@ INSERT INTO users (name, email, password, role, service_plan) VALUES
 ('Admin', 'admin@planbookai.com', MD5('123456'), 'admin', 'professional'),
 ('Staff', 'staff@planbookai.com', MD5('123456'), 'staff', 'professional'),
 ('Teacher', 'teacher@planbookai.com', MD5('123456'), 'teacher', 'free');
-
-CREATE TABLE exams (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    date DATE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-ALTER TABLE exams ADD created_by INT;
 
 CREATE TABLE lesson_plans (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -59,7 +49,6 @@ CREATE TABLE questions (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-DROP TABLE exams;
 CREATE TABLE exams (
     id INT AUTO_INCREMENT PRIMARY KEY,
     teacher_id INT NOT NULL,
@@ -100,18 +89,32 @@ CREATE TABLE exam_results (
     exam_id INT NOT NULL,
     teacher_id INT NOT NULL,
     student_name VARCHAR(255) NOT NULL,
+    scan_file VARCHAR(255) DEFAULT NULL,
     scanned_answers TEXT NOT NULL,
+    submitted_answers TEXT NULL,
     total_questions INT NOT NULL DEFAULT 0,
     correct_count INT NOT NULL DEFAULT 0,
     score DECIMAL(5,2) NOT NULL DEFAULT 0,
     feedback TEXT,
-    status ENUM('auto_graded', 'reviewed') DEFAULT 'auto_graded',
+    status ENUM('auto_graded', 'needs_review', 'reviewed', 'failed') DEFAULT 'auto_graded',
+    ocr_status ENUM('manual', 'uploaded', 'processing', 'needs_review', 'completed', 'failed') DEFAULT 'manual',
+    ocr_confidence DECIMAL(5,2) DEFAULT NULL,
+    ocr_error TEXT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-ALTER TABLE exam_results
-ADD COLUMN submitted_answers TEXT NULL AFTER scanned_answers;
+CREATE TABLE exam_result_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    result_id INT NOT NULL,
+    question_number INT NOT NULL,
+    student_answer VARCHAR(10) DEFAULT NULL,
+    correct_answer VARCHAR(10) DEFAULT NULL,
+    is_correct TINYINT(1) DEFAULT 0,
+    confidence DECIMAL(5,2) DEFAULT NULL,
+    note TEXT DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE lesson_plan_samples (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -119,6 +122,7 @@ CREATE TABLE lesson_plan_samples (
     title VARCHAR(255) NOT NULL,
     subject VARCHAR(100) NOT NULL,
     grade_level VARCHAR(50) NOT NULL,
+    topic VARCHAR(255) NULL,
     objectives TEXT,
     activities TEXT,
     assessment TEXT,
@@ -126,8 +130,6 @@ CREATE TABLE lesson_plan_samples (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-ALTER TABLE lesson_plan_samples ADD COLUMN topic VARCHAR(255) NULL;
 
 CREATE TABLE question_samples (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -181,26 +183,24 @@ CREATE TABLE exam_questions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE exercise_questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    exercise_id INT NOT NULL,
+    question_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE TABLE prompt_templates (
     id INT AUTO_INCREMENT PRIMARY KEY,
     staff_id INT NOT NULL,
     title VARCHAR(255) NOT NULL,
     category VARCHAR(100) DEFAULT NULL,
     prompt_content TEXT NOT NULL,
+    description TEXT DEFAULT NULL,
     status ENUM('draft', 'active', 'archived') DEFAULT 'draft',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-SELECT id, teacher_id, question_text, subject, topic, difficulty
-FROM questions
-ORDER BY id DESC;
-
-DESCRIBE questions;
-SELECT id, name, email, role FROM users;
-
-ALTER TABLE prompt_templates
-ADD COLUMN description TEXT DEFAULT NULL AFTER prompt_content;
 
 -- Sample IT learning resources for staff to import into teacher modules.
 -- Default staff_id = 2 and default teacher_id used by import controllers = 3.
@@ -269,9 +269,6 @@ VALUES
 (2, 'IT Prompt - Tao de kiem tra trac nghiem CNTT', 'exam',
 'Hay tao de kiem tra trac nghiem mon Cong nghe thong tin ve chu de: {topic}, khoi lop: {grade_level}, so cau: {question_count}. Moi cau co 4 lua chon A/B/C/D, chi mot dap an dung, phan bo do kho easy/medium/hard va kem dap an cuoi de.',
 'Prompt tao de kiem tra tu ngan hang kien thuc CNTT.', 'active'),
-(2, 'IT Prompt - Nhan xet va phan hoi bai lam', 'feedback',
-'Dua tren bai lam cua hoc sinh: {student_work}, hay viet phan hoi ngan gon, cu the va mang tinh khich le. Can neu 2 diem manh, 2 diem can cai thien va 1 goi y hanh dong tiep theo lien quan den chu de CNTT: {topic}.',
-'Prompt ho tro teacher viet feedback cho hoc sinh trong cac bai CNTT.', 'active'),
-(2, 'IT Prompt - Rubric cham diem bai thuc hanh CNTT', 'grading',
-'Hay tao rubric cham diem cho bai thuc hanh CNTT ve chu de: {topic}. Rubric gom 4 tieu chi, moi tieu chi co 4 muc: xuat sac, tot, dat, can co gang. Tong diem 10 va mo ta ro bieu hien cho tung muc.',
-'Prompt tao rubric grading cho bai thuc hanh lap trinh, web, co so du lieu hoac an toan thong tin.', 'active');
+(2, 'IT Prompt - Tao cau hoi cho Question Bank CNTT', 'question_bank',
+'Hay tao cau hoi trac nghiem mon Cong nghe thong tin ve chu de: {topic}, khoi lop: {grade_level}, do kho: {difficulty}. Ket qua can co: noi dung cau hoi ro rang, 4 lua chon A/B/C/D, chi mot dap an dung, giai thich ngan vi sao dap an dung.',
+'Prompt ho tro teacher tao cau hoi chat luong de dua vao question bank.', 'active');

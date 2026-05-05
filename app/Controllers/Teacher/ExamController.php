@@ -93,10 +93,11 @@ class ExamController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
         $examModel = new Exam();
         $examQuestionModel = new ExamQuestion();
 
-        $exam = $examModel->findById($id);
+        $exam = $examModel->findByIdForTeacher($id, $teacher['id']);
 
         if (!$exam) {
             Session::flash('error', 'Không tìm thấy đề thi.');
@@ -119,7 +120,7 @@ class ExamController extends Controller
         $questionModel = new Question();
         $examQuestionModel = new ExamQuestion();
 
-        $exam = $examModel->findById($id);
+        $exam = $examModel->findByIdForTeacher($id, $teacher['id']);
 
         if (!$exam) {
             Session::flash('error', 'Không tìm thấy đề thi.');
@@ -139,12 +140,13 @@ class ExamController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
 
         $examModel = new Exam();
         $examQuestionModel = new ExamQuestion();
         $questionModel = new Question();
 
-        $exam = $examModel->findById($id);
+        $exam = $examModel->findByIdForTeacher($id, $teacher['id']);
         if (!$exam) {
             Session::flash('error', 'Không tìm thấy đề thi.');
             $this->redirect('/teacher/exams');
@@ -191,9 +193,10 @@ class ExamController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
         $examModel = new Exam();
 
-        $exam = $examModel->findById($id);
+        $exam = $examModel->findByIdForTeacher($id, $teacher['id']);
         if (!$exam) {
             Session::flash('error', 'Không tìm thấy đề thi.');
             $this->redirect('/teacher/exams');
@@ -209,10 +212,11 @@ class ExamController extends Controller
         $this->authorize();
 
         $id = $_GET['id'] ?? 0;
+        $teacher = Auth::user();
         $examModel = new Exam();
         $examQuestionModel = new ExamQuestion();
 
-        $exam = $examModel->findById($id);
+        $exam = $examModel->findByIdForTeacher($id, $teacher['id']);
 
         if (!$exam) {
             Session::flash('error', 'Không tìm thấy đề thi.');
@@ -235,7 +239,7 @@ class ExamController extends Controller
         $examQuestionModel = new ExamQuestion();
         $resultModel = new ExamResult();
 
-        $exam = $examModel->findById($examId);
+        $exam = $examModel->findByIdForTeacher($examId, $teacher['id']);
 
         if (!$exam) {
             Session::flash('error', 'Không tìm thấy đề thi.');

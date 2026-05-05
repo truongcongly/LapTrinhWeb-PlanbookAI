@@ -50,6 +50,22 @@ class Exam
         return $result ? $result->fetch_assoc() : null;
     }
 
+    public function findByIdForTeacher($id, $teacherId)
+    {
+        $id = (int)$id;
+        $teacherId = (int)$teacherId;
+
+        $sql = "SELECT e.*, k.answer_key
+                FROM exams e
+                LEFT JOIN exam_answer_keys k ON e.id = k.exam_id
+                WHERE e.id = $id AND e.teacher_id = $teacherId
+                LIMIT 1";
+
+        $result = $this->conn->query($sql);
+
+        return $result ? $result->fetch_assoc() : null;
+    }
+
     public function create($data)
     {
         $teacherId = (int)$data['teacher_id'];

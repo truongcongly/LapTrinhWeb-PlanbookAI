@@ -3,6 +3,7 @@ $promptTemplates = $promptTemplates ?? [];
 $promptTemplateCategoryLabel = $promptTemplateCategoryLabel ?? 'Prompt';
 $promptPanelId = $promptPanelId ?? ('prompt-panel-' . uniqid());
 $promptImportTargets = $promptImportTargets ?? [];
+$promptTemplateVariables = $promptTemplateVariables ?? [];
 ?>
 
 <div class="prompt-template-panel mb-4" id="<?= htmlspecialchars($promptPanelId); ?>">
@@ -25,6 +26,7 @@ $promptImportTargets = $promptImportTargets ?? [];
                             data-title="<?= htmlspecialchars($prompt['title'], ENT_QUOTES, 'UTF-8'); ?>"
                             data-description="<?= htmlspecialchars($prompt['description'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                             data-content="<?= htmlspecialchars($prompt['prompt_content'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                            data-rendered-content="<?= htmlspecialchars($prompt['rendered_content'] ?? ($prompt['prompt_content'] ?? ''), ENT_QUOTES, 'UTF-8'); ?>"
                             data-staff="<?= htmlspecialchars($prompt['staff_name'] ?? 'Staff', ENT_QUOTES, 'UTF-8'); ?>"
                         >
                             <?= htmlspecialchars($prompt['title']); ?>
@@ -90,7 +92,7 @@ $promptImportTargets = $promptImportTargets ?? [];
 
         title.textContent = option.dataset.title || '';
         description.textContent = option.dataset.description || 'Prompt nay chua co mo ta.';
-        content.value = option.dataset.content || '';
+        content.value = option.dataset.renderedContent || option.dataset.content || '';
         staff.textContent = 'Tao boi: ' + (option.dataset.staff || 'Staff');
     };
 

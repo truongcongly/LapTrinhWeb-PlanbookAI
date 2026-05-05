@@ -14,7 +14,6 @@ use App\Controllers\Teacher\LessonPlanController;
 use App\Controllers\Teacher\QuestionController;
 use App\Controllers\Teacher\ExerciseController;
 use App\Controllers\Admin\CurriculumFrameworkController;
-use App\Controllers\Admin\SystemSettingController;
 use App\Controllers\Admin\ReportController;
 use App\Controllers\Staff\PromptTemplateController;
 
@@ -38,6 +37,7 @@ return [
     ['POST', '/thanh-toan/hoan-tat', [PaymentController::class, 'complete']],
     ['GET', '/ung-dung-di-dong', [HomeController::class, 'mobileApp']],
     ['GET', '/lien-he', [HomeController::class, 'contact']],
+    ['POST', '/lien-he', [HomeController::class, 'sendContact']],
     ['GET', '/roles', [HomeController::class, 'roles']],
     ['GET', '/workflow', [HomeController::class, 'workflow']],
     ['GET', '/about', [HomeController::class, 'about']],
@@ -91,6 +91,9 @@ return [
     ['GET', '/teacher/results/show', [ResultController::class, 'show']],
     ['GET', '/teacher/results/edit', [ResultController::class, 'edit']],
     ['POST', '/teacher/results/update', [ResultController::class, 'update']],
+    ['POST', '/teacher/results/generate-feedback', [ResultController::class, 'generateFeedback']],
+    ['GET', '/teacher/results/review', [ResultController::class, 'review']],
+    ['POST', '/teacher/results/review-update', [ResultController::class, 'reviewUpdate']],
     ['GET', '/teacher/results/delete', [ResultController::class, 'delete']],
 
     // Lesson Plan routes
@@ -128,10 +131,6 @@ return [
     ['GET', '/admin/frameworks/edit', [CurriculumFrameworkController::class, 'edit']],
     ['POST', '/admin/frameworks/update', [CurriculumFrameworkController::class, 'update']],
     ['GET', '/admin/frameworks/delete', [CurriculumFrameworkController::class, 'delete']],
-
-    // Admin System Setting routes
-    ['GET', '/admin/settings', [SystemSettingController::class, 'index']],
-    ['POST', '/admin/settings/update', [SystemSettingController::class, 'update']],
 
     // Admin Report routes
     ['GET', '/admin/reports', [ReportController::class, 'index']],

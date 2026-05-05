@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use App\Core\Auth;
 
@@ -228,10 +228,6 @@ ob_start();
                 <i class="bi bi-journal-plus"></i>
                 Tạo Chương Trình
             </a>
-            <a href="/LapTrinhWeb-PlanbookAI/public/admin/settings" class="action-btn">
-                <i class="bi bi-gear-fill"></i>
-                Cài Đặt Hệ Thống
-            </a>
             <a href="/LapTrinhWeb-PlanbookAI/public/admin/reports" class="action-btn">
                 <i class="bi bi-file-earmark-pdf"></i>
                 Tạo Báo Cáo
@@ -249,7 +245,7 @@ ob_start();
                 <div class="activity-dot success"></div>
                 <div class="activity-content">
                     <h6>Tài khoản giáo viên mới được kích hoạt</h6>
-                    <p>John Smith đã đăng ký thành công và kích hoạt tài khoản giáo viên của anh ta.</p>
+                    <p>John Smith đã đăng ký thành công và kích hoạt tài khoản giáo viên.</p>
                     <div class="activity-time">5 phút trước</div>
                 </div>
             </div>
@@ -267,7 +263,7 @@ ob_start();
                 <div class="activity-dot warning"></div>
                 <div class="activity-content" style="flex: 1;">
                     <h6>Báo Cáo Hệ Thống được tạo</h6>
-                    <p>Báo cáo hiệu suất hệ thống hàng tháng đã được tạo và lưu thành công.</p>
+                    <p>Báo cáo hiệu suất hệ thống hằng tháng đã được tạo và lưu thành công.</p>
                     <div class="activity-time">47 phút trước</div>
                 </div>
             </div>

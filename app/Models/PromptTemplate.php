@@ -15,7 +15,10 @@ class PromptTemplate
     public function getAllByStaff($staffId)
     {
         $staffId = (int)$staffId;
-        $sql = "SELECT * FROM prompt_templates WHERE staff_id = $staffId ORDER BY id DESC";
+        $sql = "SELECT * FROM prompt_templates
+                WHERE staff_id = $staffId
+                AND category NOT IN ('feedback', 'grading')
+                ORDER BY id DESC";
         $result = $this->conn->query($sql);
 
         $items = [];
@@ -30,7 +33,7 @@ class PromptTemplate
 
     public function getActiveTemplates($category = '')
     {
-        $conditions = ["status IN ('active', 'published')"];
+        $conditions = ["status IN ('active', 'published')", "category NOT IN ('feedback', 'grading')"];
 
         if ($category !== '') {
             $category = $this->conn->real_escape_string($category);

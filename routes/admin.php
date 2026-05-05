@@ -3,7 +3,6 @@
 use App\Controllers\Admin\DashboardController;
 use App\Controllers\Admin\UserController;
 use App\Controllers\Admin\CurriculumFrameworkController;
-use App\Controllers\Admin\SystemSettingController;
 use App\Controllers\Admin\ReportController;
 
 return [
@@ -23,9 +22,6 @@ return [
     ['GET', '/admin/frameworks/edit', [CurriculumFrameworkController::class, 'edit']],
     ['POST', '/admin/frameworks/update', [CurriculumFrameworkController::class, 'update']],
     ['GET', '/admin/frameworks/delete', [CurriculumFrameworkController::class, 'delete']],
-
-    ['GET', '/admin/settings', [SystemSettingController::class, 'index']],
-    ['POST', '/admin/settings/update', [SystemSettingController::class, 'update']],
 
     ['GET', '/admin/reports', [ReportController::class, 'index']],
 ];

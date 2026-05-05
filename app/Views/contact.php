@@ -1,4 +1,6 @@
 <?php
+use App\Core\Session;
+
 $title = 'Liên hệ | PlanbookAI';
 $currentPage = 'contact';
 include __DIR__ . '/layouts/marketing_header.php';
@@ -58,18 +60,28 @@ include __DIR__ . '/layouts/marketing_header.php';
             <div class="col-lg-7">
                 <div class="home-contact-card h-100">
                     <h3 class="home-headline fw-bold mb-4">Gửi tin nhắn cho chúng tôi</h3>
-                    <form class="row g-4">
+                    <?php if (Session::hasFlash('success')): ?>
+                        <div class="alert alert-success rounded-4 border-0 mb-4" role="alert">
+                            <?= htmlspecialchars(Session::getFlash('success')); ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if (Session::hasFlash('error')): ?>
+                        <div class="alert alert-danger rounded-4 border-0 mb-4" role="alert">
+                            <?= htmlspecialchars(Session::getFlash('error')); ?>
+                        </div>
+                    <?php endif; ?>
+                    <form class="row g-4" method="POST" action="/LapTrinhWeb-PlanbookAI/public/lien-he">
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Họ và tên</label>
-                            <input type="text" class="form-control rounded-4 border-0 py-3 px-4" placeholder="Nguyễn Văn A" style="background: rgba(217,221,224,.35);">
+                            <input type="text" name="name" class="form-control rounded-4 border-0 py-3 px-4" placeholder="Nguyễn Văn A" style="background: rgba(217,221,224,.35);" required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Email</label>
-                            <input type="email" class="form-control rounded-4 border-0 py-3 px-4" placeholder="email@vi-du.com" style="background: rgba(217,221,224,.35);">
+                            <input type="email" name="email" class="form-control rounded-4 border-0 py-3 px-4" placeholder="email@vi-du.com" style="background: rgba(217,221,224,.35);" required>
                         </div>
                         <div class="col-12">
                             <label class="form-label fw-semibold">Chủ đề</label>
-                            <select class="form-select rounded-4 border-0 py-3 px-4" style="background: rgba(217,221,224,.35);">
+                            <select class="form-select rounded-4 border-0 py-3 px-4" name="subject" style="background: rgba(217,221,224,.35);" required>
                                 <option>Hỗ trợ kỹ thuật</option>
                                 <option>Hợp tác trường học</option>
                                 <option>Báo giá và gói dịch vụ</option>
@@ -78,7 +90,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                         </div>
                         <div class="col-12">
                             <label class="form-label fw-semibold">Lời nhắn</label>
-                            <textarea class="form-control rounded-4 border-0 py-3 px-4" rows="6" placeholder="Hãy cho chúng tôi biết bạn cần hỗ trợ gì..." style="background: rgba(217,221,224,.35);"></textarea>
+                            <textarea class="form-control rounded-4 border-0 py-3 px-4" rows="6" name="message" placeholder="Hãy cho chúng tôi biết bạn cần hỗ trợ gì..." style="background: rgba(217,221,224,.35);" required></textarea>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn home-btn-primary w-100 py-3">Gửi tin nhắn ngay</button>

@@ -81,9 +81,6 @@ include __DIR__ . '/layouts/marketing_header.php';
         <div class="home-section-header text-center">
             <span class="home-pill home-pill--secondary mb-3">Hệ sinh thái thông minh</span>
             <h2 class="home-section-title">Chọn đúng hành trình cho từng nhóm người dùng</h2>
-            <p class="home-section-desc mx-auto" style="max-width: 760px;">
-                Sáu file HTML mẫu giờ đã được tách thành sáu trang public riêng. Từ đây người dùng có thể đi thẳng đến đúng nội dung họ cần.
-            </p>
         </div>
 
         <div class="home-bento">

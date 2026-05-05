@@ -71,7 +71,41 @@ ob_start();
 
                     <div class="col-12">
                         <label class="form-label fw-semibold">Nội dung bài tập</label>
-                        <textarea class="form-control rounded-4" name="content" rows="8" required><?= htmlspecialchars($exercise['content']); ?></textarea>
+                        <textarea class="form-control rounded-4" name="content" rows="8"><?= htmlspecialchars($exercise['content']); ?></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Chọn câu hỏi từ Question Bank</label>
+                        <div class="border rounded-4 p-3 bg-light">
+                            <?php if (!empty($questions)): ?>
+                                <div class="row g-3">
+                                    <?php foreach ($questions as $q): ?>
+                                        <div class="col-md-6">
+                                            <label class="d-block border rounded-4 p-3 bg-white h-100">
+                                                <div class="form-check">
+                                                    <input
+                                                        class="form-check-input"
+                                                        type="checkbox"
+                                                        name="questions[]"
+                                                        value="<?= $q['id']; ?>"
+                                                        <?= in_array((int)$q['id'], $selectedQuestionIds ?? [], true) ? 'checked' : ''; ?>
+                                                    >
+                                                    <span class="fw-semibold ms-2">Question #<?= $q['id']; ?></span>
+                                                </div>
+                                                <div class="mt-2 small text-dark" style="white-space: pre-line;">
+                                                    <?= htmlspecialchars($q['question_text']); ?>
+                                                </div>
+                                                <div class="mt-2 text-secondary small">
+                                                    <?= htmlspecialchars($q['subject']); ?> • <?= htmlspecialchars($q['topic']); ?> • <?= strtoupper($q['difficulty']); ?> • Đáp án: <?= strtoupper($q['correct_answer']); ?>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="text-secondary">Chưa có câu hỏi nào trong question bank.</div>
+                            <?php endif; ?>
+                        </div>
                     </div>
                 </div>
 

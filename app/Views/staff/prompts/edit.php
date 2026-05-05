@@ -48,8 +48,7 @@ ob_start();
                             <option value="lesson_plan" <?= ($prompt['category']==='lesson_plan')?'selected':''; ?>>Lesson Plan</option>
                             <option value="exercise" <?= ($prompt['category']==='exercise')?'selected':''; ?>>Exercise</option>
                             <option value="exam" <?= ($prompt['category']==='exam')?'selected':''; ?>>Exam</option>
-                            <option value="feedback" <?= ($prompt['category']==='feedback')?'selected':''; ?>>Feedback</option>
-                            <option value="grading" <?= ($prompt['category']==='grading')?'selected':''; ?>>Grading</option>
+                            <option value="question_bank" <?= ($prompt['category']==='question_bank')?'selected':''; ?>>Question Bank</option>
                         </select>
                     </div>
 

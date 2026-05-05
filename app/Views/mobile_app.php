@@ -60,7 +60,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                         </ul>
                     </div>
                     <div class="col-lg-6">
-                        <img class="img-fluid rounded-4 shadow-sm" src="/LapTrinhWeb-PlanbookAI/public/images/teacher-grading.jpg" alt="Chấm bài bằng camera">
+                        <img class="img-fluid rounded-4 shadow-sm" src="/LapTrinhWeb-PlanbookAI/public/images/camera-grading.svg" alt="Chấm bài bằng camera" style="height: 250px; object-fit: contain; width: 100%; background: #f8fafc;">
                     </div>
                 </div>
             </article>

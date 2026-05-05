@@ -38,6 +38,16 @@ class Exercise
         return $result ? $result->fetch_assoc() : null;
     }
 
+    public function findByIdForTeacher($id, $teacherId)
+    {
+        $id = (int)$id;
+        $teacherId = (int)$teacherId;
+        $sql = "SELECT * FROM exercises WHERE id = $id AND teacher_id = $teacherId LIMIT 1";
+        $result = $this->conn->query($sql);
+
+        return $result ? $result->fetch_assoc() : null;
+    }
+
     public function create($data)
     {
         $teacherId = (int)$data['teacher_id'];
@@ -53,7 +63,11 @@ class Exercise
                 VALUES
                 ($teacherId, '$title', '$subject', '$topic', '$description', '$content', '$status')";
 
-        return $this->conn->query($sql);
+        if (!$this->conn->query($sql)) {
+            return false;
+        }
+
+        return $this->conn->insert_id;
     }
 
     public function update($id, $data)
@@ -81,6 +95,7 @@ class Exercise
     public function delete($id)
     {
         $id = (int)$id;
+        $this->conn->query("DELETE FROM exercise_questions WHERE exercise_id = $id");
         $sql = "DELETE FROM exercises WHERE id = $id";
         return $this->conn->query($sql);
     }

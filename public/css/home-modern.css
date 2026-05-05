@@ -404,6 +404,32 @@
     background: rgba(255, 255, 255, 0.92);
 }
 
+.teacher-report-card {
+    display: flex;
+    align-items: center;
+}
+
+.teacher-report-card > .row {
+    width: 100%;
+}
+
+.teacher-report-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.teacher-report-copy .home-card-copy {
+    max-width: 36rem;
+}
+
+.teacher-report-image {
+    width: 100%;
+    height: 16.5rem;
+    object-fit: cover;
+    object-position: center;
+}
+
 .home-bar-list {
     display: grid;
     gap: 0.8rem;
@@ -2082,6 +2108,14 @@
 
     .home-pricing-card.is-featured {
         transform: none;
+    }
+
+    .teacher-report-card {
+        display: block;
+    }
+
+    .teacher-report-image {
+        height: 14rem;
     }
 }
 

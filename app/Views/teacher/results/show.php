@@ -29,6 +29,9 @@ ob_start();
             <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/edit?id=<?= $result['id']; ?>" class="btn btn-outline-primary rounded-pill px-4">
                 <i class="bi bi-pencil-square me-2"></i>Feedback
             </a>
+            <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/review?id=<?= $result['id']; ?>" class="btn btn-outline-success rounded-pill px-4">
+                <i class="bi bi-check2-square me-2"></i>Review OCR
+            </a>
             <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results" class="btn btn-outline-secondary rounded-pill px-4">
                 <i class="bi bi-arrow-left me-2"></i>Quay lại
             </a>
@@ -70,6 +73,63 @@ ob_start();
         <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($result['scanned_answers']); ?></p>
     </div>
 
+    <?php if (!empty($result['scan_file'])): ?>
+        <div class="small-panel mb-4">
+            <h6>File scan bài làm</h6>
+            <?php
+                $scanFile = (string) $result['scan_file'];
+                $scanUrl = '/LapTrinhWeb-PlanbookAI/public/' . ltrim($scanFile, '/');
+                $extension = strtolower(pathinfo($scanFile, PATHINFO_EXTENSION));
+            ?>
+            <?php if (in_array($extension, ['jpg', 'jpeg', 'png', 'webp'], true)): ?>
+                <img src="<?= htmlspecialchars($scanUrl); ?>" alt="Scan file" class="img-fluid rounded-4 border mb-3" style="max-height: 420px; object-fit: contain;">
+            <?php endif; ?>
+            <div>
+                <a href="<?= htmlspecialchars($scanUrl); ?>" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                    <i class="bi bi-box-arrow-up-right me-1"></i>Mở file scan
+                </a>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($details)): ?>
+        <div class="small-panel mb-4">
+            <h6>Chi tiết chấm từng câu</h6>
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Câu</th>
+                            <th>Đáp án HS</th>
+                            <th>Đáp án đúng</th>
+                            <th>Kết quả</th>
+                            <th>Confidence</th>
+                            <th>Ghi chú</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($details as $detail): ?>
+                            <tr>
+                                <td>#<?= (int)$detail['question_number']; ?></td>
+                                <td><?= htmlspecialchars($detail['student_answer'] ?: '-'); ?></td>
+                                <td><?= htmlspecialchars($detail['correct_answer'] ?: '-'); ?></td>
+                                <td>
+                                    <?php if ((int)$detail['is_correct'] === 1): ?>
+                                        <span class="badge bg-success-subtle text-success">Đúng</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-danger-subtle text-danger">Sai</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td><?= htmlspecialchars($detail['confidence'] ?? '-'); ?>%</td>
+                                <td><?= htmlspecialchars($detail['note'] ?? ''); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <div class="small-panel mb-4">
         <h6>Bài nộp của học sinh</h6>
         <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($result['submitted_answers'] ?? ''); ?></p>
@@ -85,10 +145,23 @@ ob_start();
         <p class="mb-0">
             <?php if (($result['status'] ?? '') === 'reviewed'): ?>
                 <span class="badge bg-success-subtle text-success">Reviewed</span>
+            <?php elseif (($result['status'] ?? '') === 'needs_review'): ?>
+                <span class="badge bg-warning-subtle text-warning">Needs Review</span>
+            <?php elseif (($result['status'] ?? '') === 'failed'): ?>
+                <span class="badge bg-danger-subtle text-danger">Failed</span>
             <?php else: ?>
                 <span class="badge bg-info-subtle text-info">Auto Graded</span>
             <?php endif; ?>
         </p>
+    </div>
+
+    <div class="small-panel mt-4">
+        <h6>OCR</h6>
+        <p class="mb-1">Status: <?= htmlspecialchars($result['ocr_status'] ?? 'manual'); ?></p>
+        <p class="mb-1">Confidence: <?= htmlspecialchars($result['ocr_confidence'] ?? '-'); ?>%</p>
+        <?php if (!empty($result['ocr_error'])): ?>
+            <p class="mb-0 text-danger"><?= htmlspecialchars($result['ocr_error']); ?></p>
+        <?php endif; ?>
     </div>
 </div>
 

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">OCR camera grading</title>
+  <desc id="desc">A phone scanning a multiple choice answer sheet</desc>
+  <defs>
+    <linearGradient id="desk" x1="0" y1="0" x2="900" y2="560" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7a4d22"/>
+      <stop offset="1" stop-color="#b87939"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="72" y1="34" x2="314" y2="514" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#121822"/>
+      <stop offset="1" stop-color="#05070b"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="100" y1="66" x2="292" y2="489" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="1" stop-color="#d8e7f7"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0f172a" flood-opacity=".35"/>
+    </filter>
+    <filter id="paperShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#1f2937" flood-opacity=".22"/>
+    </filter>
+  </defs>
+  <rect width="900" height="560" fill="url(#desk)"/>
+  <path d="M374 38c129 7 270 25 408 53 35 7 55 37 50 72L787 480c-5 36-38 61-74 56L351 484c-32-5-55-33-52-65l29-332c2-29 17-51 46-49Z" fill="#f9fafb" filter="url(#paperShadow)"/>
+  <path d="M384 68c114 4 262 23 403 53" fill="none" stroke="#d1d5db" stroke-width="3"/>
+  <text x="500" y="86" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">PHIEU TRA LOI TRAC NGHIEM</text>
+  <text x="410" y="128" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">KIEM TRA MON:</text>
+  <line x1="562" y1="130" x2="725" y2="130" stroke="#111827" stroke-width="2" stroke-dasharray="6 6"/>
+  <text x="586" y="124" font-family="Comic Sans MS, Arial, sans-serif" font-size="22" fill="#2f367d">Vat li</text>
+  <text x="410" y="174" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">HO VA TEN</text>
+  <rect x="530" y="142" width="204" height="54" rx="5" fill="#f4f4f5" stroke="#111827" stroke-width="2"/>
+  <text x="548" y="176" font-family="Comic Sans MS, Arial, sans-serif" font-size="21" fill="#2f367d">Nguyen Tien Phat</text>
+  <text x="754" y="176" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">LOP</text>
+  <text x="800" y="176" font-family="Comic Sans MS, Arial, sans-serif" font-size="21" fill="#2f367d">12A2</text>
+  <rect x="728" y="232" width="96" height="58" rx="5" fill="#f8fafc" stroke="#111827" stroke-width="2"/>
+  <text x="737" y="222" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">DIEM SO</text>
+  <rect x="414" y="220" width="256" height="82" rx="8" fill="#f3f4f6" stroke="#111827" stroke-width="1.4"/>
+  <text x="428" y="246" font-family="Arial, sans-serif" font-size="17" fill="#111827">Luu y:</text>
+  <text x="428" y="272" font-family="Arial, sans-serif" font-size="14" fill="#374151">- Ghi day du cac muc, giu phieu phang.</text>
+  <text x="428" y="294" font-family="Arial, sans-serif" font-size="14" fill="#374151">- To dap an dung bang but muc xanh/den.</text>
+  <text x="414" y="346" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">SO BAO DANH</text>
+  <text x="578" y="346" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">MA DE</text>
+  <rect x="410" y="360" width="140" height="48" fill="#f9fafb" stroke="#111827" stroke-width="2"/>
+  <rect x="574" y="360" width="84" height="48" fill="#f9fafb" stroke="#111827" stroke-width="2"/>
+  <text x="590" y="391" font-family="Comic Sans MS, Arial, sans-serif" font-size="24" fill="#2f367d">001</text>
+  <g fill="#111827">
+    <rect x="566" y="370" width="18" height="18"/>
+    <rect x="718" y="370" width="18" height="18"/>
+    <rect x="818" y="420" width="22" height="22"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#111827">
+    <text x="742" y="388">A</text><text x="775" y="388">B</text><text x="808" y="388">C</text><text x="841" y="388">D</text>
+  </g>
+  <g transform="translate(718 404)" fill="none" stroke="#111827" stroke-width="1.5">
+    <g id="row">
+      <circle cx="35" cy="0" r="10"/><circle cx="68" cy="0" r="10"/><circle cx="101" cy="0" r="10"/><circle cx="134" cy="0" r="10"/>
+    </g>
+    <use href="#row" y="31"/><use href="#row" y="62"/><use href="#row" y="93"/><use href="#row" y="124"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="20" fill="#111827">
+    <text x="704" y="411">1</text><text x="704" y="442">2</text><text x="704" y="473">3</text><text x="704" y="504">4</text><text x="704" y="535">5</text>
+  </g>
+  <g fill="#1f2a8a" opacity=".95">
+    <ellipse cx="786" cy="404" rx="8" ry="11" transform="rotate(18 786 404)"/>
+    <ellipse cx="819" cy="435" rx="8" ry="11" transform="rotate(-12 819 435)"/>
+    <ellipse cx="753" cy="466" rx="8" ry="11" transform="rotate(18 753 466)"/>
+    <ellipse cx="819" cy="497" rx="8" ry="11" transform="rotate(-9 819 497)"/>
+    <ellipse cx="786" cy="528" rx="8" ry="11" transform="rotate(12 786 528)"/>
+  </g>
+  <g transform="translate(420 384)" fill="none" stroke="#9ca3af" stroke-width="1.1">
+    <g id="bubbleCol">
+      <circle cx="0" cy="0" r="10"/><circle cx="28" cy="0" r="10"/><circle cx="56" cy="0" r="10"/><circle cx="84" cy="0" r="10"/>
+    </g>
+    <use href="#bubbleCol" y="32"/><use href="#bubbleCol" y="64"/><use href="#bubbleCol" y="96"/><use href="#bubbleCol" y="128"/>
+  </g>
+  <rect x="72" y="46" width="246" height="468" rx="42" fill="url(#phone)" filter="url(#shadow)"/>
+  <rect x="94" y="78" width="202" height="400" rx="20" fill="url(#screen)"/>
+  <circle cx="118" cy="106" r="20" fill="#fb6b2d"/>
+  <path d="M123 97l-10 9 10 9" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="166" y="108" font-family="Arial, sans-serif" font-size="21" fill="#111827">Ma De</text>
+  <text x="242" y="108" font-family="Arial, sans-serif" font-size="21" fill="#111827">001</text>
+  <text x="166" y="132" font-family="Arial, sans-serif" font-size="17" fill="#374151">5 / 40 = 1,25</text>
+  <rect x="110" y="150" width="166" height="302" fill="#eef2f7" stroke="#cbd5e1" stroke-width="1"/>
+  <g transform="translate(126 206)" fill="none" stroke="#7a8795" stroke-width="1">
+    <g id="miniGrid">
+      <rect x="0" y="0" width="75" height="82"/>
+      <path d="M0 14h75M0 28h75M0 42h75M0 56h75M0 70h75M15 0v82M30 0v82M45 0v82M60 0v82"/>
+    </g>
+    <use href="#miniGrid" x="88"/>
+    <use href="#miniGrid" y="116"/>
+    <use href="#miniGrid" x="88" y="116"/>
+  </g>
+  <g fill="#23c55e">
+    <circle cx="138" cy="222" r="5"/><circle cx="153" cy="222" r="5"/><circle cx="168" cy="222" r="5"/><circle cx="183" cy="222" r="5"/>
+    <circle cx="226" cy="222" r="5"/><circle cx="241" cy="222" r="5"/><circle cx="256" cy="222" r="5"/>
+  </g>
+  <g fill="#ef4444">
+    <circle cx="226" cy="254" r="5"/><circle cx="241" cy="268" r="5"/><circle cx="256" cy="282" r="5"/>
+    <circle cx="138" cy="370" r="5"/><circle cx="153" cy="384" r="5"/><circle cx="168" cy="398" r="5"/>
+  </g>
+  <g fill="#facc15">
+    <circle cx="226" cy="240" r="6"/><circle cx="256" cy="254" r="6"/><circle cx="241" cy="282" r="6"/>
+    <circle cx="138" cy="398" r="6"/><circle cx="168" cy="412" r="6"/>
+  </g>
+  <g fill="#2563eb" opacity=".9">
+    <circle cx="242" cy="240" r="4"/><circle cx="226" cy="282" r="4"/><circle cx="153" cy="398" r="4"/>
+  </g>
+  <rect x="108" y="448" width="172" height="24" rx="2" fill="#e5e7eb"/>
+  <text x="142" y="465" font-family="Arial, sans-serif" font-size="13" fill="#6b7280">Scanning answer sheet</text>
+  <path d="M110 206h168v246H110z" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 8" opacity=".8"/>
+</svg>

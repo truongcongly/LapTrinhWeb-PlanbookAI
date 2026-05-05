@@ -60,12 +60,12 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <div class="home-feature-icon mb-4" style="background: rgba(219,234,254,.9); color: #1d4ed8;"><i class="bi bi-file-earmark-text-fill"></i></div>
                 <h3 class="home-headline fw-bold mb-3">Chấm OCR nhanh</h3>
                 <p class="home-card-copy mb-4">Quét bài làm bằng camera, thống kê lỗi sai phổ biến và lưu kết quả ngay vào hệ thống.</p>
-                <img class="img-fluid rounded-4" src="/LapTrinhWeb-PlanbookAI/public/images/teacher-grading.jpg" alt="Chấm bài và học tập trên giấy">
+                <img class="img-fluid rounded-4" src="/LapTrinhWeb-PlanbookAI/public/images/ocr-camera-scan.svg" alt="Chấm OCR nhanh bằng camera">
             </article>
 
-            <article class="home-card home-card--soft home-card--span-8">
-                <div class="row align-items-center g-4">
-                    <div class="col-lg-7">
+            <article class="home-card home-card--soft home-card--span-8 teacher-report-card">
+                <div class="row align-items-center g-4 h-100">
+                    <div class="col-lg-7 teacher-report-copy">
                         <h3 class="home-headline fw-bold mb-3">Báo cáo và phân tích</h3>
                         <p class="home-card-copy mb-4">Xem nhanh tiến độ lớp học, mức độ hoàn thành, nhóm học sinh cần hỗ trợ và xu hướng cải thiện theo thời gian.</p>
                         <div class="row g-3">
@@ -84,7 +84,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <img class="img-fluid rounded-4 shadow-sm" src="/LapTrinhWeb-PlanbookAI/public/images/teacher-analytics.jpg" alt="Báo cáo và phân tích dữ liệu">
+                        <img class="img-fluid rounded-4 shadow-sm teacher-report-image" src="/LapTrinhWeb-PlanbookAI/public/images/teacher-analytics.jpg" alt="Báo cáo và phân tích dữ liệu">
                     </div>
                 </div>
             </article>

@@ -77,6 +77,41 @@ ob_start();
     </div>
 </div>
 
+<div class="dashboard-card mt-4">
+    <div class="card-header-custom">
+        <h5>Câu hỏi từ Question Bank</h5>
+    </div>
+
+    <?php if (!empty($questions)): ?>
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Câu hỏi</th>
+                        <th>Chủ đề</th>
+                        <th>Độ khó</th>
+                        <th>Đáp án</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($questions as $index => $q): ?>
+                        <tr>
+                            <td><?= $index + 1; ?></td>
+                            <td style="white-space: pre-line;"><?= htmlspecialchars($q['question_text']); ?></td>
+                            <td><?= htmlspecialchars($q['topic']); ?></td>
+                            <td><?= htmlspecialchars(strtoupper($q['difficulty'])); ?></td>
+                            <td><span class="badge bg-primary-subtle text-primary"><?= htmlspecialchars(strtoupper($q['correct_answer'])); ?></span></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <p class="mb-0 text-secondary">Bài tập này chưa gắn câu hỏi nào từ Question Bank.</p>
+    <?php endif; ?>
+</div>
+
 <?php
 $content = ob_get_clean();
 $tempFile = sys_get_temp_dir() . '/teacher_exercises_show.php';

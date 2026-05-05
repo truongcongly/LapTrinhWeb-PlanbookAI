@@ -55,6 +55,10 @@ ob_start();
                             <td>
                                 <?php if (($result['status'] ?? '') === 'reviewed'): ?>
                                     <span class="badge bg-success-subtle text-success">Reviewed</span>
+                                <?php elseif (($result['status'] ?? '') === 'needs_review'): ?>
+                                    <span class="badge bg-warning-subtle text-warning">Needs Review</span>
+                                <?php elseif (($result['status'] ?? '') === 'failed'): ?>
+                                    <span class="badge bg-danger-subtle text-danger">Failed</span>
                                 <?php else: ?>
                                     <span class="badge bg-info-subtle text-info">Auto Graded</span>
                                 <?php endif; ?>
@@ -65,6 +69,9 @@ ob_start();
                                 </a>
                                 <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/edit?id=<?= $result['id']; ?>" class="btn btn-sm btn-outline-primary rounded-pill px-3">
                                     <i class="bi bi-pencil-square"></i> Feedback
+                                </a>
+                                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/review?id=<?= $result['id']; ?>" class="btn btn-sm btn-outline-success rounded-pill px-3">
+                                    <i class="bi bi-check2-square"></i> Review
                                 </a>
                                 <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/delete?id=<?= $result['id']; ?>" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="return confirmDelete()">
                                     <i class="bi bi-trash"></i> Xóa
