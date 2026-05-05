@@ -1,10 +1,10 @@
 <?php
 use App\Core\Auth;
 
-$title = 'Create User - PlanbookAI';
+$title = 'Thêm người dùng - PlanbookAI';
 $currentUser = Auth::user();
-$pageTitle = 'Create User';
-$pageDesc = 'Tao tai khoan moi trong he thong';
+$pageTitle = 'Thêm người dùng';
+$pageDesc = 'Tạo tài khoản mới trong hệ thống';
 $role = 'admin';
 
 ob_start();
@@ -12,8 +12,8 @@ ob_start();
 
 <div class="hero-mini-banner mb-4">
     <div>
-        <h3>Them nguoi dung moi</h3>
-        <p>Tao tai khoan Admin, Staff hoac Teacher voi thong tin day du va ro rang.</p>
+        <h3>Thêm người dùng mới</h3>
+        <p>Tạo tài khoản Admin, Staff hoặc Teacher với thông tin đầy đủ và rõ ràng.</p>
     </div>
 </div>
 
@@ -21,31 +21,31 @@ ob_start();
     <div class="col-xl-8 col-lg-10">
         <div class="dashboard-card">
             <div class="card-header-custom">
-                <h5>User Information Form</h5>
+                <h5>Thông tin người dùng</h5>
                 <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="btn btn-outline-secondary rounded-pill px-4">
-                    <i class="bi bi-arrow-left me-2"></i>Quay lai
+                    <i class="bi bi-arrow-left me-2"></i>Quay lại
                 </a>
             </div>
 
             <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/admin/users/store">
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Ho ten</label>
-                        <input type="text" class="form-control form-control-lg rounded-4" name="name" placeholder="Nhap ho ten" required>
+                        <label class="form-label fw-semibold">Họ tên</label>
+                        <input type="text" class="form-control form-control-lg rounded-4" name="name" placeholder="Nhập họ tên" required>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Email</label>
-                        <input type="email" class="form-control form-control-lg rounded-4" name="email" placeholder="Nhap email" required>
+                        <input type="email" class="form-control form-control-lg rounded-4" name="email" placeholder="Nhập email" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Mat khau</label>
-                        <input type="password" class="form-control form-control-lg rounded-4" name="password" placeholder="Nhap mat khau" required>
+                        <label class="form-label fw-semibold">Mật khẩu</label>
+                        <input type="password" class="form-control form-control-lg rounded-4" name="password" placeholder="Nhập mật khẩu" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Vai tro</label>
+                        <label class="form-label fw-semibold">Vai trò</label>
                         <select class="form-select form-select-lg rounded-4" name="role" required>
                             <option value="admin">Admin</option>
                             <option value="staff">Staff</option>
@@ -54,20 +54,20 @@ ob_start();
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Dich vu</label>
+                        <label class="form-label fw-semibold">Dịch vụ</label>
                         <select class="form-select form-select-lg rounded-4" name="service_plan" required>
-                            <option value="free">Goi mien phi</option>
-                            <option value="professional">Goi chuyen nghiep</option>
+                            <option value="free">Gói miễn phí</option>
+                            <option value="professional">Gói chuyên nghiệp</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="mt-4 d-flex gap-3">
                     <button type="submit" class="btn btn-primary rounded-pill px-4">
-                        <i class="bi bi-save-fill me-2"></i>Luu nguoi dung
+                        <i class="bi bi-save-fill me-2"></i>Lưu người dùng
                     </button>
                     <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="btn btn-light border rounded-pill px-4">
-                        Huy
+                        Hủy
                     </a>
                 </div>
             </form>

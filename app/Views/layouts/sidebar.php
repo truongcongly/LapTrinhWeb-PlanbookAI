@@ -28,11 +28,20 @@
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/users">
             <i class="bi bi-people-fill"></i><span>User Management</span>
         </a>
-        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/frameworks">
-            <i class="bi bi-journal-richtext"></i><span>Curriculum Frameworks</span>
-        </a>
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/reports">
             <i class="bi bi-bar-chart-fill"></i><span>Reports</span>
+        </a>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/charts">
+            <i class="bi bi-pie-chart-fill"></i><span>Charts</span>
+        </a>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/authentication">
+            <i class="bi bi-shield-lock-fill"></i><span>Authentication</span>
+        </a>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/errors">
+            <i class="bi bi-exclamation-triangle-fill"></i><span>Errors</span>
+        </a>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/admin/settings">
+            <i class="bi bi-gear-fill"></i><span>System Settings</span>
         </a>
     <?php elseif ($role === 'staff'): ?>
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/staff/dashboard">
@@ -68,6 +77,9 @@
         </a>
         <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/teacher/results">
             <i class="bi bi-graph-up-arrow"></i><span>Results</span>
+        </a>
+        <a class="nav-item-link" href="/LapTrinhWeb-PlanbookAI/public/bang-gia">
+            <i class="bi bi-credit-card-2-front-fill"></i><span>Pricing</span>
         </a>
     <?php endif; ?>
 

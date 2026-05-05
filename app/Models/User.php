@@ -133,6 +133,18 @@ class User
         return $this->conn->query($sql);
     }
 
+    public function updateServicePlan($id, string $servicePlan): bool
+    {
+        if (!$this->hasServicePlanColumn()) {
+            return false;
+        }
+
+        $id = (int) $id;
+        $servicePlan = $this->conn->real_escape_string($this->normalizeServicePlan($servicePlan));
+
+        return (bool) $this->conn->query("UPDATE users SET service_plan='$servicePlan' WHERE id=$id");
+    }
+
     public function delete($id)
     {
         $id = (int) $id;

@@ -2,16 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Core\Auth;
 use App\Core\Controller;
 use App\Core\Session;
+use App\Models\User;
 
 class PaymentController extends Controller
 {
     private const PROFESSIONAL_PLAN = [
         'key' => 'professional',
-        'name' => 'Chuyên nghiệp',
+        'name' => 'Chuyen nghiep',
         'price' => 199000,
-        'cycle' => 'tháng',
+        'cycle' => 'thang',
     ];
 
     public function checkout()
@@ -41,15 +43,44 @@ class PaymentController extends Controller
     public function complete()
     {
         $method = $_POST['method'] ?? '';
+        $plan = $_POST['plan'] ?? self::PROFESSIONAL_PLAN['key'];
         $paymentMethods = $this->paymentMethods();
 
         if (!isset($paymentMethods[$method])) {
-            Session::flash('error', 'Vui lòng chọn phương thức thanh toán hợp lệ.');
+            Session::flash('error', 'Vui long chon phuong thuc thanh toan hop le.');
             $this->redirect('/thanh-toan?plan=professional');
         }
 
-        Session::flash('success', 'Thanh toán gói Chuyên nghiệp thành công qua ' . $paymentMethods[$method]['name'] . '. Hãy đăng nhập để tiếp tục sử dụng PlanbookAI.');
-        $this->redirect('/login');
+        if ($plan !== self::PROFESSIONAL_PLAN['key']) {
+            Session::flash('error', 'Goi dich vu khong hop le.');
+            $this->redirect('/bang-gia');
+        }
+
+        if (!Auth::check()) {
+            Session::flash('success', 'Thanh toan goi Chuyen nghiep thanh cong qua ' . $paymentMethods[$method]['name'] . '. Vui long dang nhap de tiep tuc.');
+            $this->redirect('/login');
+        }
+
+        $currentUser = Auth::user();
+        $userModel = new User();
+
+        if (!$userModel->updateServicePlan((int)($currentUser['id'] ?? 0), self::PROFESSIONAL_PLAN['key'])) {
+            Session::flash('error', 'Thanh toan thanh cong nhung chua cap nhat duoc goi dich vu. Vui long lien he admin.');
+            $this->redirect('/bang-gia');
+        }
+
+        $updatedUser = $userModel->findById((int)$currentUser['id']);
+        if ($updatedUser) {
+            Auth::login($updatedUser);
+        }
+
+        Session::flash('success', 'Thanh toan goi Chuyen nghiep thanh cong qua ' . $paymentMethods[$method]['name'] . '. Goi dich vu cua ban da duoc cap nhat.');
+
+        if (($updatedUser['role'] ?? $currentUser['role'] ?? '') === 'teacher') {
+            $this->redirect('/teacher/dashboard');
+        }
+
+        $this->redirect('/bang-gia');
     }
 
     public function gateway(string $method)
@@ -74,20 +105,20 @@ class PaymentController extends Controller
             'vnpay' => [
                 'name' => 'VNPay',
                 'icon' => 'bi-credit-card-2-front-fill',
-                'description' => 'Thanh toán qua cổng VNPay bằng thẻ ATM, Visa, MasterCard hoặc QR ngân hàng.',
-                'note' => 'Bản demo sẽ xác nhận thành công ngay khi bạn bấm thanh toán.',
+                'description' => 'Thanh toan qua cong VNPay bang the ATM, Visa, MasterCard hoac QR ngan hang.',
+                'note' => 'Ban demo se xac nhan thanh cong ngay khi ban bam thanh toan.',
             ],
             'momo' => [
                 'name' => 'MoMo',
                 'icon' => 'bi-wallet2',
-                'description' => 'Thanh toán nhanh bằng ví MoMo hoặc quét mã QR trên ứng dụng MoMo.',
-                'note' => 'Khi tích hợp thật, hệ thống sẽ chuyển sang trang/ứng dụng MoMo để xác thực.',
+                'description' => 'Thanh toan nhanh bang vi MoMo hoac quet ma QR tren ung dung MoMo.',
+                'note' => 'Khi tich hop that, he thong se chuyen sang trang/ung dung MoMo de xac thuc.',
             ],
             'bank' => [
-                'name' => 'Ngân hàng',
+                'name' => 'Ngan hang',
                 'icon' => 'bi-bank2',
-                'description' => 'Chuyển khoản ngân hàng theo thông tin đơn hàng và nội dung thanh toán.',
-                'note' => 'Nội dung chuyển khoản nên bao gồm mã đơn để đối soát tự động.',
+                'description' => 'Chuyen khoan ngan hang theo thong tin don hang va noi dung thanh toan.',
+                'note' => 'Noi dung chuyen khoan nen bao gom ma don de doi soat tu dong.',
             ],
         ];
     }

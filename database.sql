@@ -263,12 +263,6 @@ VALUES
 (2, 'IT Prompt - Tao giao an theo chu de CNTT', 'lesson_plan',
 'Ban la tro ly giao vien mon Cong nghe thong tin. Hay tao giao an chi tiet cho chu de: {topic}. Dau vao gom khoi lop: {grade_level}, thoi luong: {duration}, muc tieu can dat: {objectives}. Ket qua can co: muc tieu, chuan bi, tien trinh day hoc theo tung hoat dong, cau hoi goi mo, bai tap thuc hanh va tieu chi danh gia.',
 'Prompt ho tro teacher tao lesson plan CNTT co muc tieu, hoat dong va danh gia ro rang.', 'active'),
-(2, 'IT Prompt - Tao bai tap thuc hanh lap trinh/web', 'exercise',
-'Hay tao mot bai tap thuc hanh mon Cong nghe thong tin ve chu de: {topic}. Bai tap can co: boi canh, yeu cau dau ra, du lieu mau neu co, cac buoc goi y, tieu chi cham diem theo thang 10 va phan mo rong cho hoc sinh kha gioi.',
-'Prompt tao bai tap thuc hanh CNTT de teacher dua vao module Exercises.', 'active'),
-(2, 'IT Prompt - Tao de kiem tra trac nghiem CNTT', 'exam',
-'Hay tao de kiem tra trac nghiem mon Cong nghe thong tin ve chu de: {topic}, khoi lop: {grade_level}, so cau: {question_count}. Moi cau co 4 lua chon A/B/C/D, chi mot dap an dung, phan bo do kho easy/medium/hard va kem dap an cuoi de.',
-'Prompt tao de kiem tra tu ngan hang kien thuc CNTT.', 'active'),
 (2, 'IT Prompt - Tao cau hoi cho Question Bank CNTT', 'question_bank',
 'Hay tao cau hoi trac nghiem mon Cong nghe thong tin ve chu de: {topic}, khoi lop: {grade_level}, do kho: {difficulty}. Ket qua can co: noi dung cau hoi ro rang, 4 lua chon A/B/C/D, chi mot dap an dung, giai thich ngan vi sao dap an dung.',
 'Prompt ho tro teacher tao cau hoi chat luong de dua vao question bank.', 'active');

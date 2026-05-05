@@ -5,7 +5,7 @@ use App\Core\Auth;
 $title = 'System Settings - PlanbookAI';
 $currentUser = Auth::user();
 $pageTitle = 'System Settings';
-$pageDesc = 'Cấu hình chung của hệ thống';
+$pageDesc = 'Configure global system options';
 $role = 'admin';
 
 ob_start();
@@ -14,7 +14,7 @@ ob_start();
 <div class="hero-mini-banner mb-4">
     <div>
         <h3>System Settings</h3>
-        <p>Quản lý tên hệ thống, logo text, AI, OCR và workflow mode.</p>
+        <p>Manage the system name, logo text, AI, OCR, and workflow mode.</p>
     </div>
 </div>
 
@@ -64,7 +64,9 @@ ob_start();
                 </div>
 
                 <div class="mt-4">
-                    <button type="submit" class="btn btn-primary rounded-pill px-4">Lưu cấu hình</button>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">
+                        <i class="bi bi-save-fill me-2"></i>Save Settings
+                    </button>
                 </div>
             </form>
         </div>

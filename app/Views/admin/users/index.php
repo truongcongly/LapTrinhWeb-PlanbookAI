@@ -1,10 +1,10 @@
 <?php
 use App\Core\Auth;
 
-$title = 'User Management - PlanbookAI';
+$title = 'Quản lý người dùng - PlanbookAI';
 $currentUser = Auth::user();
-$pageTitle = 'User Management';
-$pageDesc = 'Quan ly tai khoan Admin, Staff va Teacher';
+$pageTitle = 'Quản lý người dùng';
+$pageDesc = 'Quản lý tài khoản Admin, Staff và Teacher';
 $role = 'admin';
 
 ob_start();
@@ -12,36 +12,58 @@ ob_start();
 
 <div class="hero-mini-banner mb-4">
     <div>
-        <h3>Quan ly nguoi dung</h3>
-        <p>Theo doi danh sach tai khoan, chinh sua thong tin va phan quyen trong toan he thong.</p>
+        <h3>Quản lý người dùng</h3>
+        <p>Theo dõi danh sách tài khoản, chỉnh sửa thông tin và phân quyền trong toàn hệ thống.</p>
     </div>
 </div>
 
 <div class="dashboard-card">
     <div class="card-header-custom">
         <div>
-            <h5>Danh sach nguoi dung</h5>
-            <small class="text-secondary">Quan ly role, goi dich vu va thong tin tai khoan he thong</small>
+            <h5>Danh sách người dùng</h5>
+            <small class="text-secondary">Quản lý vai trò, gói dịch vụ và thông tin tài khoản hệ thống</small>
         </div>
 
         <div class="d-flex gap-2">
             <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/create" class="btn btn-primary rounded-pill px-4">
-                <i class="bi bi-person-plus-fill me-2"></i>Them nguoi dung
+                <i class="bi bi-person-plus-fill me-2"></i>Thêm người dùng
             </a>
         </div>
     </div>
+
+    <form method="GET" action="/LapTrinhWeb-PlanbookAI/public/admin/users" class="row g-3 align-items-end mb-4">
+        <div class="col-md-6">
+            <label class="form-label fw-semibold">Tìm kiếm</label>
+            <input type="text" class="form-control rounded-4" name="keyword" value="<?= htmlspecialchars($keyword ?? ''); ?>" placeholder="Tên hoặc email">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label fw-semibold">Vai trò</label>
+            <select class="form-select rounded-4" name="role">
+                <option value="">Tất cả vai trò</option>
+                <option value="admin" <?= (($role ?? '') === 'admin') ? 'selected' : ''; ?>>Admin</option>
+                <option value="staff" <?= (($role ?? '') === 'staff') ? 'selected' : ''; ?>>Staff</option>
+                <option value="teacher" <?= (($role ?? '') === 'teacher') ? 'selected' : ''; ?>>Teacher</option>
+            </select>
+        </div>
+        <div class="col-md-3 d-flex gap-2">
+            <button type="submit" class="btn btn-outline-primary rounded-pill px-4">
+                <i class="bi bi-search me-2"></i>Lọc
+            </button>
+            <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="btn btn-light border rounded-pill px-4">Đặt lại</a>
+        </div>
+    </form>
 
     <div class="table-responsive">
         <table class="table align-middle mb-0">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Ho ten</th>
+                    <th>Họ tên</th>
                     <th>Email</th>
-                    <th>Vai tro</th>
-                    <th>Dich vu</th>
-                    <th>Ngay tao</th>
-                    <th class="text-center">Hanh dong</th>
+                    <th>Vai trò</th>
+                    <th>Dịch vụ</th>
+                    <th>Ngày tạo</th>
+                    <th class="text-center">Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,18 +84,18 @@ ob_start();
                             </td>
                             <td>
                                 <?php if (($user['service_plan'] ?? 'free') === 'professional'): ?>
-                                    <span class="role-badge service-badge service-professional">Chuyen nghiep</span>
+                                    <span class="role-badge service-badge service-professional">Chuyên nghiệp</span>
                                 <?php else: ?>
-                                    <span class="role-badge service-badge service-free">Mien phi</span>
+                                    <span class="role-badge service-badge service-free">Miễn phí</span>
                                 <?php endif; ?>
                             </td>
                             <td><?= $user['created_at'] ?? '-'; ?></td>
                             <td class="text-center">
                                 <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/edit?id=<?= $user['id']; ?>" class="btn btn-sm btn-outline-primary rounded-pill px-3">
-                                    <i class="bi bi-pencil-square"></i> Sua
+                                    <i class="bi bi-pencil-square"></i> Sửa
                                 </a>
                                 <a href="/LapTrinhWeb-PlanbookAI/public/admin/users/delete?id=<?= $user['id']; ?>" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="return confirmDelete()">
-                                    <i class="bi bi-trash"></i> Xoa
+                                    <i class="bi bi-trash"></i> Xóa
                                 </a>
                             </td>
                         </tr>
@@ -82,7 +104,7 @@ ob_start();
                     <tr>
                         <td colspan="7" class="text-center py-5">
                             <img src="/LapTrinhWeb-PlanbookAI/public/images/empty-state.svg" alt="No data" style="max-width: 160px;" class="mb-3">
-                            <div class="text-secondary">Chua co du lieu nguoi dung.</div>
+                            <div class="text-secondary">Chưa có dữ liệu người dùng.</div>
                         </td>
                     </tr>
                 <?php endif; ?>

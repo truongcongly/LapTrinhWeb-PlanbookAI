@@ -10,10 +10,10 @@ $role = 'admin';
 
 // Ensure stats have default values
 $stats = $stats ?? [
-    'users' => 0,
-    'staff' => 0,
-    'teachers' => 0,
-    'reports' => 0,
+    'total_users' => 0,
+    'staff_count' => 0,
+    'teacher_count' => 0,
+    'active_accounts' => 0,
 ];
 
 ob_start();
@@ -39,7 +39,7 @@ ob_start();
             <div class="stat-header">
                 <div>
                     <div class="stat-label">Tổng Người Dùng</div>
-                    <div class="stat-number"><?= number_format($stats['users'] ?? 0); ?></div>
+                    <div class="stat-number"><?= number_format($stats['total_users'] ?? 0); ?></div>
                     <div class="stat-change positive">
                         <i class="bi bi-arrow-up"></i> +12% tháng này
                     </div>
@@ -54,7 +54,7 @@ ob_start();
             <div class="stat-header">
                 <div>
                     <div class="stat-label">Nhân Viên Nội Bộ</div>
-                    <div class="stat-number"><?= number_format($stats['staff'] ?? 0); ?></div>
+                    <div class="stat-number"><?= number_format($stats['staff_count'] ?? 0); ?></div>
                     <div class="stat-change positive">
                         <i class="bi bi-arrow-up"></i> +2 tháng này
                     </div>
@@ -69,7 +69,7 @@ ob_start();
             <div class="stat-header">
                 <div>
                     <div class="stat-label">Giáo Viên</div>
-                    <div class="stat-number"><?= number_format($stats['teachers'] ?? 0); ?></div>
+                    <div class="stat-number"><?= number_format($stats['teacher_count'] ?? 0); ?></div>
                     <div class="stat-change positive">
                         <i class="bi bi-arrow-up"></i> +8% từ tháng trước
                     </div>
@@ -129,10 +129,8 @@ ob_start();
         </div>
     </div>
 
-    <!-- Recent Users & Frameworks -->
-    <div class="dashboard-grid-2">
-        <!-- Recent Users -->
-        <div class="card-section">
+    <!-- Recent Users -->
+    <div class="card-section">
             <div class="card-header">
                 <h5>Người Dùng Gần Đây</h5>
                 <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="view-all-link">Xem Tất Cả</a>
@@ -170,52 +168,6 @@ ob_start();
             </div>
         </div>
 
-        <!-- Curriculum Frameworks -->
-        <div class="card-section">
-            <div class="card-header">
-                <h5>Khung Chương Trình</h5>
-                <a href="/LapTrinhWeb-PlanbookAI/public/admin/frameworks" class="view-all-link">Xem Tất Cả</a>
-            </div>
-            <div>
-                <div class="activity-item">
-                    <div class="activity-dot success"></div>
-                    <div class="flex-1">
-                        <h6>Chương Trình Khoa Học Máy Tính</h6>
-                        <p>Tạo 2 tuần trước • 45 chủ đề</p>
-                        <div class="progress" style="height: 5px;">
-                            <div class="progress-bar" role="progressbar" style="width: 100%;"></div>
-                        </div>
-                    </div>
-                    <span class="badge bg-success">Active</span>
-                </div>
-
-                <div class="activity-item">
-                    <div class="activity-dot info"></div>
-                    <div class="flex-1">
-                        <h6>Khung Quản Lý Kinh Doanh</h6>
-                        <p>Tạo 1 tháng trước • 38 chủ đề</p>
-                        <div class="progress" style="height: 5px;">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <span class="badge bg-success">Active</span>
-                </div>
-
-                <div class="activity-item">
-                    <div class="activity-dot warning"></div>
-                    <div class="flex-1">
-                        <h6>Chương Trình Kỹ Thuật</h6>
-                        <p>Tạo 3 ngày trước • 52 chủ đề</p>
-                        <div class="progress" style="height: 5px;">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"></div>
-                        </div>
-                    </div>
-                    <span class="badge bg-warning">Draft</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Quick Actions -->
     <div class="quick-actions">
         <h5 class="quick-actions-title">Hành Động Nhanh</h5>
@@ -224,9 +176,9 @@ ob_start();
                 <i class="bi bi-person-plus-fill"></i>
                 Thêm Người Dùng
             </a>
-            <a href="/LapTrinhWeb-PlanbookAI/public/admin/frameworks/create" class="action-btn">
-                <i class="bi bi-journal-plus"></i>
-                Tạo Chương Trình
+            <a href="/LapTrinhWeb-PlanbookAI/public/admin/charts" class="action-btn">
+                <i class="bi bi-pie-chart-fill"></i>
+                Xem Biểu Đồ
             </a>
             <a href="/LapTrinhWeb-PlanbookAI/public/admin/reports" class="action-btn">
                 <i class="bi bi-file-earmark-pdf"></i>
@@ -253,8 +205,8 @@ ob_start();
             <div class="activity-item">
                 <div class="activity-dot info"></div>
                 <div class="activity-content">
-                    <h6>Khung Chương Trình được cập nhật</h6>
-                    <p>Chương trình Khoa Học Máy Tính đã được cập nhật với các chủ đề và nội dung mới.</p>
+                    <h6>Gói dịch vụ được cập nhật</h6>
+                    <p>Bảng giá và quyền lợi gói Professional đã được điều chỉnh trong trang quản trị.</p>
                     <div class="activity-time">22 phút trước</div>
                 </div>
             </div>
@@ -273,6 +225,23 @@ ob_start();
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+if (window.Chart) {
+    Chart.defaults.animation = {
+        duration: 1100,
+        easing: 'easeOutQuart',
+        delay: context => context.type === 'data' ? context.dataIndex * 70 + context.datasetIndex * 110 : 0
+    };
+    Chart.defaults.transitions = Chart.defaults.transitions || {};
+    Chart.defaults.transitions.active = Chart.defaults.transitions.active || {};
+    Chart.defaults.transitions.active.animation = Chart.defaults.transitions.active.animation || {};
+    Chart.defaults.transitions.active.animation.duration = 260;
+    Chart.defaults.plugins.tooltip = Chart.defaults.plugins.tooltip || {};
+    Chart.defaults.plugins.tooltip.animation = {
+        duration: 180,
+        easing: 'easeOutQuart'
+    };
+}
+
 // System Growth Trend
 const lineCtx = document.getElementById('adminLineChart');
 if (lineCtx) {

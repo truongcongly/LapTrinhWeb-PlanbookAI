@@ -271,6 +271,23 @@ ob_start();
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+if (window.Chart) {
+    Chart.defaults.animation = {
+        duration: 1100,
+        easing: 'easeOutQuart',
+        delay: context => context.type === 'data' ? context.dataIndex * 70 + context.datasetIndex * 110 : 0
+    };
+    Chart.defaults.transitions = Chart.defaults.transitions || {};
+    Chart.defaults.transitions.active = Chart.defaults.transitions.active || {};
+    Chart.defaults.transitions.active.animation = Chart.defaults.transitions.active.animation || {};
+    Chart.defaults.transitions.active.animation.duration = 260;
+    Chart.defaults.plugins.tooltip = Chart.defaults.plugins.tooltip || {};
+    Chart.defaults.plugins.tooltip.animation = {
+        duration: 180,
+        easing: 'easeOutQuart'
+    };
+}
+
 // Teaching Activity Trend
 const lineCtx = document.getElementById('teacherLineChart');
 if (lineCtx) {

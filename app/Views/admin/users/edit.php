@@ -1,10 +1,10 @@
 <?php
 use App\Core\Auth;
 
-$title = 'Edit User - PlanbookAI';
+$title = 'Chỉnh sửa người dùng - PlanbookAI';
 $currentUser = Auth::user();
-$pageTitle = 'Edit User';
-$pageDesc = 'Cap nhat thong tin tai khoan trong he thong';
+$pageTitle = 'Chỉnh sửa người dùng';
+$pageDesc = 'Cập nhật thông tin tài khoản trong hệ thống';
 $role = 'admin';
 
 ob_start();
@@ -12,8 +12,8 @@ ob_start();
 
 <div class="hero-mini-banner mb-4">
     <div>
-        <h3>Chinh sua nguoi dung</h3>
-        <p>Cap nhat thong tin, vai tro va goi dich vu phu hop voi nhiem vu trong he thong.</p>
+        <h3>Chỉnh sửa người dùng</h3>
+        <p>Cập nhật thông tin, vai trò và gói dịch vụ phù hợp với nhiệm vụ trong hệ thống.</p>
     </div>
 </div>
 
@@ -21,16 +21,16 @@ ob_start();
     <div class="col-xl-8 col-lg-10">
         <div class="dashboard-card">
             <div class="card-header-custom">
-                <h5>Edit User Form</h5>
+                <h5>Thông tin người dùng</h5>
                 <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="btn btn-outline-secondary rounded-pill px-4">
-                    <i class="bi bi-arrow-left me-2"></i>Quay lai
+                    <i class="bi bi-arrow-left me-2"></i>Quay lại
                 </a>
             </div>
 
             <form method="POST" action="/LapTrinhWeb-PlanbookAI/public/admin/users/update?id=<?= $user['id']; ?>">
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Ho ten</label>
+                        <label class="form-label fw-semibold">Họ tên</label>
                         <input type="text" class="form-control form-control-lg rounded-4" name="name" value="<?= htmlspecialchars($user['name']); ?>" required>
                     </div>
 
@@ -40,7 +40,7 @@ ob_start();
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Vai tro</label>
+                        <label class="form-label fw-semibold">Vai trò</label>
                         <select class="form-select form-select-lg rounded-4" name="role" required>
                             <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : ''; ?>>Admin</option>
                             <option value="staff" <?= $user['role'] === 'staff' ? 'selected' : ''; ?>>Staff</option>
@@ -49,20 +49,20 @@ ob_start();
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-semibold">Dich vu</label>
+                        <label class="form-label fw-semibold">Dịch vụ</label>
                         <select class="form-select form-select-lg rounded-4" name="service_plan" required>
-                            <option value="free" <?= ($user['service_plan'] ?? 'free') === 'free' ? 'selected' : ''; ?>>Goi mien phi</option>
-                            <option value="professional" <?= ($user['service_plan'] ?? 'free') === 'professional' ? 'selected' : ''; ?>>Goi chuyen nghiep</option>
+                            <option value="free" <?= ($user['service_plan'] ?? 'free') === 'free' ? 'selected' : ''; ?>>Gói miễn phí</option>
+                            <option value="professional" <?= ($user['service_plan'] ?? 'free') === 'professional' ? 'selected' : ''; ?>>Gói chuyên nghiệp</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="mt-4 d-flex gap-3">
                     <button type="submit" class="btn btn-primary rounded-pill px-4">
-                        <i class="bi bi-check-circle-fill me-2"></i>Cap nhat
+                        <i class="bi bi-check-circle-fill me-2"></i>Cập nhật
                     </button>
                     <a href="/LapTrinhWeb-PlanbookAI/public/admin/users" class="btn btn-light border rounded-pill px-4">
-                        Huy
+                        Hủy
                     </a>
                 </div>
             </form>

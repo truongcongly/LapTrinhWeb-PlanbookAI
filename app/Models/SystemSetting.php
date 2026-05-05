@@ -32,6 +32,11 @@ class SystemSetting
         $key = $this->conn->real_escape_string($key);
         $value = $this->conn->real_escape_string($value);
 
-        return $this->conn->query("UPDATE system_settings SET setting_value = '$value' WHERE setting_key = '$key'");
+        $exists = $this->conn->query("SELECT id FROM system_settings WHERE setting_key = '$key' LIMIT 1");
+        if ($exists && $exists->num_rows > 0) {
+            return $this->conn->query("UPDATE system_settings SET setting_value = '$value' WHERE setting_key = '$key'");
+        }
+
+        return $this->conn->query("INSERT INTO system_settings (setting_key, setting_value) VALUES ('$key', '$value')");
     }
 }
