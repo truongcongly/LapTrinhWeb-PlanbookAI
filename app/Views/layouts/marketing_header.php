@@ -2,7 +2,7 @@
 $title = $title ?? 'PlanbookAI';
 $currentPage = $currentPage ?? 'home';
 $extraStylesheets = $extraStylesheets ?? [
-    '/LapTrinhWeb-PlanbookAI/public/css/home-modern.css?v=20260422-crisp-images',
+    '/LapTrinhWeb-PlanbookAI/public/css/home-modern.css?v=20260505-white-cards',
 ];
 $extraHeadTags = $extraHeadTags ?? <<<HTML
 <link rel="preconnect" href="https://fonts.googleapis.com">

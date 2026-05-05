@@ -23,7 +23,7 @@ class RegisterController extends Controller
             'name' => trim($_POST['name'] ?? ''),
             'email' => trim($_POST['email'] ?? ''),
             'password' => $_POST['password'] ?? '',
-            'role' => $_POST['role'] ?? 'teacher',
+            'role' => 'teacher',
         ];
 
         $userModel = new User();

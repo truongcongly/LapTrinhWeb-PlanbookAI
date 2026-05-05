@@ -13,11 +13,11 @@ include __DIR__ . '/layouts/marketing_header.php';
                     Kỷ nguyên giáo dục 4.0 đã bắt đầu
                 </span>
                 <h1 class="home-hero-title mb-4">
-                    Trao quyền cho
-                    <span class="home-gradient-text">người khai sáng hiện đại</span>
+                    Planbook AI -
+                <span class="home-gradient-text">Nền tảng hỗ trợ giáo viên thời đại số</span>
                 </h1>
                 <p class="home-hero-desc fs-4 mx-auto mb-5" style="max-width: 920px;">
-                    PlanbookAI không chỉ là một công cụ. Đây là hệ sinh thái giúp giáo viên, nhà trường và học sinh cùng làm việc thông minh hơn bằng AI.
+                    Soạn giáo án thông minh, dạy học hiệu quả hơn với AI.
                 </p>
                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
                     <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn home-btn-primary px-5 py-3">Khởi tạo miễn phí ngay</a>
@@ -84,7 +84,8 @@ include __DIR__ . '/layouts/marketing_header.php';
         </div>
 
         <div class="home-bento">
-            <article class="home-card home-card--feature home-card--span-4">
+            <article class="home-card home-card--feature home-card--span-4 home-journey-card">
+                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-teacher-green.jpg" alt="Giáo viên">
                 <div class="home-feature-icon mb-4">
                     <i class="bi bi-person-video3"></i>
                 </div>
@@ -93,7 +94,8 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <a href="/LapTrinhWeb-PlanbookAI/public/giao-vien" class="btn home-btn-secondary">Xem trang giáo viên</a>
             </article>
 
-            <article class="home-card home-card--gradient home-card--span-4">
+            <article class="home-card home-card--gradient home-card--span-4 home-journey-card">
+                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-school-uth.jpg" alt="Trường UTH">
                 <div class="home-round-icon mb-4">
                     <i class="bi bi-mortarboard-fill"></i>
                 </div>
@@ -102,7 +104,8 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <a href="/LapTrinhWeb-PlanbookAI/public/truong-hoc" class="btn home-btn-secondary">Xem trang trường học</a>
             </article>
 
-            <article class="home-card home-card--feature home-card--span-4">
+            <article class="home-card home-card--feature home-card--span-4 home-journey-card">
+                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-mobile-app.png" alt="Ứng dụng di động">
                 <div class="home-feature-icon mb-4" style="background: rgba(219, 234, 254, 0.9); color: #1d4ed8;">
                     <i class="bi bi-phone-fill"></i>
                 </div>

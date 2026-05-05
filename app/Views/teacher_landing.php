@@ -46,14 +46,11 @@ include __DIR__ . '/layouts/marketing_header.php';
                 </div>
             </article>
 
-            <article class="home-card home-card--gradient home-card--span-4">
+            <article class="home-card home-card--gradient home-card--span-4 teacher-matrix-card">
                 <div class="home-round-icon mb-4"><i class="bi bi-ui-checks-grid"></i></div>
                 <h3 class="home-headline fw-bold mb-3">Ma trận đề tự động</h3>
                 <p class="text-white-50 mb-4">Tạo đề từ ngân hàng câu hỏi hoặc tài liệu riêng, cân bằng theo mức độ nhận thức.</p>
-                <div class="home-panel p-4 bg-white bg-opacity-10 border-0">
-                    <div class="home-progress mb-3"><span style="width: 70%;"></span></div>
-                    <p class="small text-white-50 mb-0">Đang tạo đề kiểm tra giữa kỳ cho khối 11.</p>
-                </div>
+                <img class="teacher-matrix-image" src="/LapTrinhWeb-PlanbookAI/public/images/ma_tran.jpg" alt="Ma trận đề tự động">
             </article>
 
             <article class="home-card home-card--feature home-card--span-4">
@@ -66,6 +63,7 @@ include __DIR__ . '/layouts/marketing_header.php';
             <article class="home-card home-card--soft home-card--span-8 teacher-report-card">
                 <div class="row align-items-center g-4 h-100">
                     <div class="col-lg-7 teacher-report-copy">
+                        <div class="home-feature-icon mb-4"><i class="bi bi-bar-chart-line-fill"></i></div>
                         <h3 class="home-headline fw-bold mb-3">Báo cáo và phân tích</h3>
                         <p class="home-card-copy mb-4">Xem nhanh tiến độ lớp học, mức độ hoàn thành, nhóm học sinh cần hỗ trợ và xu hướng cải thiện theo thời gian.</p>
                         <div class="row g-3">

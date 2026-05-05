@@ -86,16 +86,7 @@ include __DIR__ . '/../layouts/head.php';
                                         </div>
                                     </div>
 
-                                    <div class="mb-4">
-                                        <label class="form-label fw-semibold">Vai trò</label>
-                                        <div class="input-group input-modern">
-                                            <span class="input-group-text"><i class="bi bi-person-badge-fill"></i></span>
-                                            <select class="form-select" name="role" required>
-                                                <option value="teacher">Teacher</option>
-                                                <option value="staff">Staff</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" name="role" value="teacher">
 
                                     <button type="submit" class="btn btn-auth-submit w-100">
                                         <i class="bi bi-person-plus-fill me-2"></i>Đăng ký tài khoản

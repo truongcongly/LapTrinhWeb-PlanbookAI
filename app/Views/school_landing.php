@@ -10,7 +10,7 @@ include __DIR__ . '/layouts/marketing_header.php';
             <div class="col-lg-6">
                 <span class="home-pill home-pill--soft mb-4">Giải pháp enterprise</span>
                 <h1 class="home-hero-title mb-4">Quản trị trường học trong kỷ nguyên AI</h1>
-                <p class="home-hero-desc fs-5 mb-4">Ban giám hiệu có thể theo dõi tiến độ giảng dạy, chất lượng giáo án và hiệu suất chuyên môn trên cùng một dashboard điều hành.</p>
+                <p class="home-hero-desc fs-5 mb-4">Ban giám hiệu có thể theo dõi tiến độ giảng dạy, chất lượng giáo án và hiệu suất chuyên môn trên cùng một điều hành.</p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="/LapTrinhWeb-PlanbookAI/public/lien-he" class="btn home-btn-primary px-4 py-3">Nhận tư vấn</a>
                     <a href="/LapTrinhWeb-PlanbookAI/public/bang-gia" class="btn home-btn-secondary px-4 py-3">Xem gói doanh nghiệp</a>
@@ -18,7 +18,7 @@ include __DIR__ . '/layouts/marketing_header.php';
             </div>
             <div class="col-lg-6">
                 <div class="home-glass-card p-3">
-                    <img class="home-dashboard-image" src="/LapTrinhWeb-PlanbookAI/public/images/school-campus.jpg" alt="Khuôn viên trường học hiện đại">
+                    <img class="home-dashboard-image" src="/LapTrinhWeb-PlanbookAI/public/images/uth-campus.jpg" alt="Trường Đại học Giao thông vận tải Thành phố Hồ Chí Minh">
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ include __DIR__ . '/layouts/marketing_header.php';
 
         <div class="home-bento">
             <article class="home-card home-card--soft home-card--span-7">
-                <h3 class="home-headline fw-bold mb-3">Tổng quan năm học 2024</h3>
+                <h3 class="home-headline fw-bold mb-3">Tổng quan năm học 2026</h3>
                 <p class="home-card-copy mb-4">Hiển thị nhanh dữ liệu theo từng tổ chuyên môn để nhà trường nắm rõ nơi nào đang dẫn đầu và nơi nào cần hỗ trợ.</p>
                 <div class="d-flex align-items-end gap-3" style="height: 220px;">
                     <div class="rounded-top-4" style="width: 25%; height: 52%; background: #bed6f9;"></div>
