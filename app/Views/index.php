@@ -79,32 +79,32 @@ include __DIR__ . '/layouts/marketing_header.php';
 
         <div class="home-bento">
             <article class="home-card home-card--feature home-card--span-4 home-journey-card">
-                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-teacher-green.jpg" alt="Giáo viên">
                 <div class="home-feature-icon mb-4">
                     <i class="bi bi-person-video3"></i>
                 </div>
                 <h3 class="home-headline fw-bold mb-3">Giáo viên</h3>
                 <p class="home-card-copy mb-4">Soạn giáo án AI, tạo đề, chấm OCR và xem báo cáo lớp học.</p>
+                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-teacher-green.jpg" alt="Giáo viên">
                 <a href="/LapTrinhWeb-PlanbookAI/public/giao-vien" class="btn home-btn-secondary">Xem trang giáo viên</a>
             </article>
 
             <article class="home-card home-card--gradient home-card--span-4 home-journey-card">
-                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-school-uth.jpg" alt="Trường UTH">
                 <div class="home-round-icon mb-4">
                     <i class="bi bi-mortarboard-fill"></i>
                 </div>
                 <h3 class="home-headline fw-bold mb-3">Trường học</h3>
                 <p class="text-white-50 mb-4">Quản trị tiến độ, kiểm duyệt giáo án, thống kê theo tổ và điều hành toàn trường.</p>
+                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-school-uth.jpg" alt="Trường UTH">
                 <a href="/LapTrinhWeb-PlanbookAI/public/truong-hoc" class="btn home-btn-secondary">Xem trang trường học</a>
             </article>
 
             <article class="home-card home-card--feature home-card--span-4 home-journey-card">
-                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-mobile-app.png" alt="Ứng dụng di động">
                 <div class="home-feature-icon mb-4" style="background: rgba(219, 234, 254, 0.9); color: #1d4ed8;">
                     <i class="bi bi-phone-fill"></i>
                 </div>
                 <h3 class="home-headline fw-bold mb-3">Ứng dụng di động</h3>
                 <p class="home-card-copy mb-4">Dạy học, chấm bài và theo dõi lịch trình ở bất cứ đâu trên điện thoại.</p>
+                <img class="home-journey-image" src="/LapTrinhWeb-PlanbookAI/public/images/journey-mobile-app.png" alt="Ứng dụng di động">
                 <a href="/LapTrinhWeb-PlanbookAI/public/ung-dung-di-dong" class="btn home-btn-secondary">Xem mobile app</a>
             </article>
         </div>

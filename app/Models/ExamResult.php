@@ -13,14 +13,24 @@ class ExamResult
         $this->conn = Database::getInstance()->getConnection();
     }
 
+    private function completedGradingCondition()
+    {
+        return "NOT (
+            r.status = 'needs_review'
+            AND r.ocr_error LIKE '%chua cham diem%'
+        )";
+    }
+
     public function getAllByTeacher($teacherId)
     {
         $teacherId = (int)$teacherId;
+        $completedGradingCondition = $this->completedGradingCondition();
 
         $sql = "SELECT r.*, e.title AS exam_title
                 FROM exam_results r
                 LEFT JOIN exams e ON r.exam_id = e.id
                 WHERE r.teacher_id = $teacherId
+                AND $completedGradingCondition
                 ORDER BY r.id DESC";
 
         $result = $this->conn->query($sql);
@@ -39,11 +49,13 @@ class ExamResult
     {
         $teacherId = (int)$teacherId;
         $limit = max(1, (int)$limit);
+        $completedGradingCondition = $this->completedGradingCondition();
 
         $sql = "SELECT r.*, e.title AS exam_title
                 FROM exam_results r
                 LEFT JOIN exams e ON r.exam_id = e.id
                 WHERE r.teacher_id = $teacherId
+                AND $completedGradingCondition
                 ORDER BY r.id DESC
                 LIMIT $limit";
 
@@ -62,6 +74,7 @@ class ExamResult
     public function getStatsByTeacher($teacherId)
     {
         $teacherId = (int)$teacherId;
+        $completedGradingCondition = $this->completedGradingCondition();
         $stats = [
             'total' => 0,
             'auto_graded' => 0,
@@ -71,8 +84,9 @@ class ExamResult
         ];
 
         $sql = "SELECT status, COUNT(*) AS total
-                FROM exam_results
-                WHERE teacher_id = $teacherId
+                FROM exam_results r
+                WHERE r.teacher_id = $teacherId
+                AND $completedGradingCondition
                 GROUP BY status";
         $result = $this->conn->query($sql);
 

@@ -80,6 +80,8 @@ return [
 
     ['GET', '/teacher/exams/take', [ExamController::class, 'take']],
     ['POST', '/teacher/exams/submit', [ExamController::class, 'submit']],
+    ['GET', '/teacher/exams/submission-success', [ExamController::class, 'submissionSuccess']],
+    ['GET', '/teacher/exams/download-submission-pdf', [ExamController::class, 'downloadSubmissionPdf']],
 
     // Grading routes
     ['GET', '/teacher/grading', [GradingController::class, 'index']],

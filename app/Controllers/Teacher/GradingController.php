@@ -7,6 +7,7 @@ use App\Core\Auth;
 use App\Core\Session;
 use App\Middleware\RoleMiddleware;
 use App\Models\Exam;
+use App\Models\ExamQuestion;
 use App\Models\ExamResult;
 use App\Models\ExamResultDetail;
 
@@ -83,6 +84,39 @@ class GradingController extends Controller
         return ['path' => 'uploads/answer-scans/' . $fileName, 'error' => ''];
     }
 
+    private function extractAnswersFromPdf($scanPath)
+    {
+        $scanPath = (string)$scanPath;
+        if ($scanPath === '' || strtolower(pathinfo($scanPath, PATHINFO_EXTENSION)) !== 'pdf') {
+            return [];
+        }
+
+        $basePath = dirname(__DIR__, 3);
+        $absolutePath = realpath($basePath . '/public/' . ltrim($scanPath, '/'));
+        $uploadRoot = realpath($basePath . '/public/uploads/answer-scans');
+
+        if (!$absolutePath || !$uploadRoot || !str_starts_with($absolutePath, $uploadRoot) || !is_file($absolutePath)) {
+            return [];
+        }
+
+        $pdfContent = file_get_contents($absolutePath);
+        if ($pdfContent === false || $pdfContent === '') {
+            return [];
+        }
+
+        preg_match_all('/Selected answer:\s*([A-D])/i', $pdfContent, $matches);
+        if (!empty($matches[1])) {
+            return array_map('strtoupper', $matches[1]);
+        }
+
+        preg_match_all('/\(\s*\d+\.\s*([A-D])\s*\)\s*Tj/i', $pdfContent, $legacyMatches);
+        if (!empty($legacyMatches[1])) {
+            return array_map('strtoupper', $legacyMatches[1]);
+        }
+
+        return [];
+    }
+
     public function index()
     {
         $this->authorize();
@@ -133,7 +167,19 @@ class GradingController extends Controller
         }
 
         $scannedAnswers = $this->normalizeAnswers($scannedAnswersRaw);
-        $answerKey = $this->normalizeAnswers($exam['answer_key'] ?? '');
+        if (empty($scannedAnswers) && $scanUpload['path'] !== '') {
+            $scannedAnswers = $this->extractAnswersFromPdf($scanUpload['path']);
+            if (!empty($scannedAnswers)) {
+                $scannedAnswersRaw = implode(',', $scannedAnswers);
+            }
+        }
+        $examQuestionModel = new ExamQuestion();
+        $examQuestions = $examQuestionModel->getQuestionsByExam($examId);
+        $answerKey = array_map(
+            fn($question) => strtoupper(trim($question['correct_answer'] ?? '')),
+            $examQuestions
+        );
+        $answerKey = array_values(array_filter($answerKey, fn($answer) => in_array($answer, ['A', 'B', 'C', 'D'], true)));
 
         $totalQuestions = count($answerKey);
         $correctCount = 0;

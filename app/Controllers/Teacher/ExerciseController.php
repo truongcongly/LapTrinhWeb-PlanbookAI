@@ -8,7 +8,6 @@ use App\Core\Session;
 use App\Middleware\RoleMiddleware;
 use App\Models\Exercise;
 use App\Models\ExerciseQuestion;
-use App\Models\PromptTemplate;
 use App\Models\Question;
 
 class ExerciseController extends Controller
@@ -33,11 +32,9 @@ class ExerciseController extends Controller
     {
         $this->authorize();
         $teacher = Auth::user();
-        $promptModel = new PromptTemplate();
-        $promptTemplates = $promptModel->getActiveTemplates('exercise');
         $questionModel = new Question();
         $questions = $questionModel->getAllByTeacherSimple($teacher['id']);
-        $this->view('teacher/exercises/create', compact('promptTemplates', 'questions'));
+        $this->view('teacher/exercises/create', compact('questions'));
     }
 
     public function store()
@@ -103,14 +100,12 @@ class ExerciseController extends Controller
             $this->redirect('/teacher/exercises');
         }
 
-        $promptModel = new PromptTemplate();
-        $promptTemplates = $promptModel->getActiveTemplates('exercise');
         $questionModel = new Question();
         $questions = $questionModel->getAllByTeacherSimple($teacher['id']);
         $exerciseQuestionModel = new ExerciseQuestion();
         $selectedQuestionIds = $exerciseQuestionModel->getQuestionIdsByExercise($id);
 
-        $this->view('teacher/exercises/edit', compact('exercise', 'promptTemplates', 'questions', 'selectedQuestionIds'));
+        $this->view('teacher/exercises/edit', compact('exercise', 'questions', 'selectedQuestionIds'));
     }
 
     public function update()

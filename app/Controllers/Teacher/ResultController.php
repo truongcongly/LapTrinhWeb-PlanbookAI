@@ -73,90 +73,14 @@ class ResultController extends Controller
     {
         $this->authorize();
 
-        $id = $_GET['id'] ?? 0;
-        $teacher = Auth::user();
-        $model = new ExamResult();
-        $detailModel = new ExamResultDetail();
-        $result = $model->findByIdForTeacher($id, $teacher['id']);
-
-        if (!$result) {
-            Session::flash('error', 'Khong tim thay ket qua.');
-            $this->redirect('/teacher/results');
-        }
-
-        $details = $detailModel->getByResult($id);
-        $this->view('teacher/results/review', compact('result', 'details'));
+        $this->redirect('/teacher/results');
     }
 
     public function reviewUpdate()
     {
         $this->authorize();
 
-        $id = (int)($_GET['id'] ?? 0);
-        $teacher = Auth::user();
-        $answers = $_POST['student_answers'] ?? [];
-        $model = new ExamResult();
-        $detailModel = new ExamResultDetail();
-        $result = $model->findByIdForTeacher($id, $teacher['id']);
-
-        if (!$result) {
-            Session::flash('error', 'Khong tim thay ket qua.');
-            $this->redirect('/teacher/results');
-        }
-
-        $currentDetails = $detailModel->getByResult($id);
-        $newDetails = [];
-        $scannedAnswers = [];
-        $correctCount = 0;
-        $missingAnswers = 0;
-
-        foreach ($currentDetails as $detail) {
-            $questionNumber = (int)$detail['question_number'];
-            $studentAnswer = strtoupper(trim($answers[$questionNumber] ?? ''));
-            $studentAnswer = in_array($studentAnswer, ['A', 'B', 'C', 'D'], true) ? $studentAnswer : '';
-            $correctAnswer = strtoupper(trim($detail['correct_answer'] ?? ''));
-            $isCorrect = $studentAnswer !== '' && $studentAnswer === $correctAnswer;
-
-            if ($isCorrect) {
-                $correctCount++;
-            }
-
-            if ($studentAnswer === '') {
-                $missingAnswers++;
-            }
-
-            $scannedAnswers[] = $studentAnswer;
-            $newDetails[] = [
-                'question_number' => $questionNumber,
-                'student_answer' => $studentAnswer,
-                'correct_answer' => $correctAnswer,
-                'is_correct' => $isCorrect,
-                'confidence' => $studentAnswer === '' ? 0 : 100,
-                'note' => $studentAnswer === '' ? 'Can review: chua co dap an.' : 'Reviewed by teacher.',
-            ];
-        }
-
-        $totalQuestions = count($newDetails);
-        $score = $totalQuestions > 0 ? round(($correctCount / $totalQuestions) * 10, 2) : 0;
-        $status = $missingAnswers > 0 ? 'needs_review' : 'reviewed';
-        $ocrStatus = $missingAnswers > 0 ? 'needs_review' : 'completed';
-        $confidence = $totalQuestions > 0 ? round((($totalQuestions - $missingAnswers) / $totalQuestions) * 100, 2) : null;
-
-        $detailModel->replaceForResult($id, $newDetails);
-        $model->updateGrading($id, [
-            'scanned_answers' => implode(',', $scannedAnswers),
-            'submitted_answers' => implode(',', $scannedAnswers),
-            'total_questions' => $totalQuestions,
-            'correct_count' => $correctCount,
-            'score' => $score,
-            'status' => $status,
-            'ocr_status' => $ocrStatus,
-            'ocr_confidence' => $confidence,
-            'ocr_error' => '',
-        ]);
-
-        Session::flash('success', 'Da cap nhat review OCR va tinh lai diem.');
-        $this->redirect('/teacher/results/show?id=' . $id);
+        $this->redirect('/teacher/results');
     }
 
     public function update()

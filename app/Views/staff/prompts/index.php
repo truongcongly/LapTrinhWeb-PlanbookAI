@@ -5,7 +5,7 @@ use App\Core\Auth;
 $title = 'Prompt Templates - PlanbookAI';
 $currentUser = Auth::user();
 $pageTitle = 'Prompt Templates';
-$pageDesc = 'Quan ly prompt mau cho AI workflow';
+$pageDesc = 'Tạo, xem, cập nhật và xóa các mẫu prompt AI dùng để sinh nội dung giáo dục.';
 $role = 'staff';
 
 ob_start();
@@ -13,8 +13,8 @@ ob_start();
 
 <div class="hero-mini-banner mb-4">
     <div>
-    <h3>Prompt Templates</h3>
-    <p>Tao va quan ly prompt mau cho lesson plan, bai tap, de thi va phan hoi AI.</p>
+        <h3>Prompt Templates</h3>
+        <p>Tạo, xem, cập nhật và xóa các mẫu prompt AI dùng để sinh nội dung giáo dục.</p>
 </div>
 </div>
 

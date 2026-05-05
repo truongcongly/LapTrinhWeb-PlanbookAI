@@ -105,9 +105,6 @@ ob_start();
                                 <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/show?id=<?= $result['id']; ?>" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
                                     <i class="bi bi-eye"></i> Xem
                                 </a>
-                                <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/review?id=<?= $result['id']; ?>" class="btn btn-sm btn-outline-primary rounded-pill px-3">
-                                    <i class="bi bi-check2-square"></i> Review OCR
-                                </a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

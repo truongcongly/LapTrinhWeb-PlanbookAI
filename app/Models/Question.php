@@ -253,7 +253,7 @@ class Question
         }
 
         $idList = implode(',', $ids);
-        $sql = "SELECT * FROM questions WHERE id IN ($idList) ORDER BY id ASC";
+        $sql = "SELECT * FROM questions WHERE id IN ($idList) ORDER BY FIELD(id, $idList)";
         $result = $this->conn->query($sql);
 
         $items = [];

@@ -29,9 +29,6 @@ ob_start();
             <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/edit?id=<?= $result['id']; ?>" class="btn btn-outline-primary rounded-pill px-4">
                 <i class="bi bi-pencil-square me-2"></i>Feedback
             </a>
-            <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results/review?id=<?= $result['id']; ?>" class="btn btn-outline-success rounded-pill px-4">
-                <i class="bi bi-check2-square me-2"></i>Review OCR
-            </a>
             <a href="/LapTrinhWeb-PlanbookAI/public/teacher/results" class="btn btn-outline-secondary rounded-pill px-4">
                 <i class="bi bi-arrow-left me-2"></i>Quay lại
             </a>

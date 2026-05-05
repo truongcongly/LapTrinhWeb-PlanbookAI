@@ -38,6 +38,7 @@ ob_start();
                     ['selector' => 'input[name="option_b"]', 'label' => 'Chen vao B'],
                     ['selector' => 'input[name="option_c"]', 'label' => 'Chen vao C'],
                     ['selector' => 'input[name="option_d"]', 'label' => 'Chen vao D'],
+                    ['selector' => 'select[name="correct_answer"]', 'label' => 'Chen dap an dung'],
                 ];
                 include __DIR__ . '/../partials/prompt_template_panel.php';
                 ?>

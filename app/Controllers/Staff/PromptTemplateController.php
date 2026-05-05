@@ -8,9 +8,18 @@ use App\Models\PromptTemplate;
 
 class PromptTemplateController extends Controller
 {
+    private const ALLOWED_CATEGORIES = ['lesson_plan', 'question_bank'];
+
     private function authorize()
     {
         RoleMiddleware::handle('staff');
+    }
+
+    private function categoryFromPost(): string
+    {
+        $category = $_POST['category'] ?? 'lesson_plan';
+
+        return in_array($category, self::ALLOWED_CATEGORIES, true) ? $category : 'lesson_plan';
     }
 
     public function index()
@@ -40,7 +49,7 @@ $model = new PromptTemplate();
         $model->create([
             'staff_id' => $staff['id'],
             'title' => $_POST['title'] ?? '',
-            'category' => $_POST['category'] ?? '',
+            'category' => $this->categoryFromPost(),
             'prompt_content' => $_POST['prompt_content'] ?? '',
             'description' => $_POST['description'] ?? '',
             'status' => $_POST['status'] ?? 'draft',
@@ -97,7 +106,7 @@ $model = new PromptTemplate();
 
         $model->update($id, [
             'title' => $_POST['title'] ?? '',
-            'category' => $_POST['category'] ?? '',
+            'category' => $this->categoryFromPost(),
             'prompt_content' => $_POST['prompt_content'] ?? '',
             'description' => $_POST['description'] ?? '',
             'status' => $_POST['status'] ?? 'draft',

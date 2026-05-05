@@ -79,6 +79,37 @@ $promptTemplateVariables = $promptTemplateVariables ?? [];
     const content = panel.querySelector('.prompt-template-content');
     const staff = panel.querySelector('.prompt-template-staff');
     const importButtons = panel.querySelectorAll('.prompt-import-btn');
+    const sectionLabelsByTargetName = {
+        objectives: ['Objectives'],
+        activities: ['Activities'],
+        assessment: ['Assessment'],
+        question_text: ['Nội dung câu hỏi', 'Noi dung cau hoi', 'Question'],
+        option_a: ['Option A', 'A'],
+        option_b: ['Option B', 'B'],
+        option_c: ['Option C', 'C'],
+        option_d: ['Option D', 'D'],
+        correct_answer: ['Đáp án đúng', 'Dap an dung', 'Answer']
+    };
+
+    const extractSection = (text, target) => {
+        const nameMatch = target.match(/\[name="([^"]+)"\]/);
+        const targetName = nameMatch ? nameMatch[1] : '';
+        const labels = sectionLabelsByTargetName[targetName] || [];
+
+        for (const label of labels) {
+            const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const pattern = new RegExp(
+                `(?:^|\\n)\\s*${escapedLabel}\\s*:\\s*([\\s\\S]*?)(?=\\n\\s*(?:Objectives|Activities|Assessment|Nội dung câu hỏi|Noi dung cau hoi|Question|Option A|Option B|Option C|Option D|Đáp án đúng|Dap an dung|Answer)\\s*:|$)`,
+                'i'
+            );
+            const match = text.match(pattern);
+            if (match && match[1].trim()) {
+                return match[1].trim();
+            }
+        }
+
+        return text.trim();
+    };
 
     const render = () => {
         const option = select.options[select.selectedIndex];
@@ -103,11 +134,16 @@ $promptTemplateVariables = $promptTemplateVariables ?? [];
             const target = document.querySelector(selector);
             if (!target) return;
 
-            const imported = content.value.trim();
-            target.value = target.value.trim()
-                ? target.value.replace(/\s*$/, '\n\n') + imported
-                : imported;
+            const imported = extractSection(content.value, selector);
+            if (target.tagName === 'SELECT') {
+                target.value = imported.trim().charAt(0).toUpperCase();
+            } else {
+                target.value = target.value.trim()
+                    ? target.value.replace(/\s*$/, '\n\n') + imported
+                    : imported;
+            }
             target.dispatchEvent(new Event('input', { bubbles: true }));
+            target.dispatchEvent(new Event('change', { bubbles: true }));
             target.focus();
         });
     });
