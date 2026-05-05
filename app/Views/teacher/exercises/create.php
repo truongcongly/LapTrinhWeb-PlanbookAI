@@ -14,7 +14,7 @@ ob_start();
 <div class="hero-mini-banner mb-4">
     <div>
         <h3>Tạo bài tập mới</h3>
-        <p>Thiết lập thông tin bài tập, mô tả và nội dung cho hoạt động luyện tập của học sinh.</p>
+        <p>Thiết lập thông tin bài tập và chọn câu hỏi cho hoạt động luyện tập của học sinh.</p>
     </div>
 </div>
 
@@ -35,7 +35,6 @@ ob_start();
                 $promptPanelId = 'exercise-prompt-panel';
                 $promptImportTargets = [
                     ['selector' => 'textarea[name="description"]', 'label' => 'Chèn vào Mô tả'],
-                    ['selector' => 'textarea[name="content"]', 'label' => 'Chèn vào Nội dung'],
                 ];
                 include __DIR__ . '/../partials/prompt_template_panel.php';
                 ?>
@@ -67,11 +66,6 @@ ob_start();
                     <div class="col-12">
                         <label class="form-label fw-semibold">Mô tả</label>
                         <textarea class="form-control rounded-4" name="description" rows="3" placeholder="Nhập mô tả ngắn về bài tập..."></textarea>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label fw-semibold">Nội dung bài tập</label>
-                        <textarea class="form-control rounded-4" name="content" rows="8" placeholder="Nhập nội dung bài tập, danh sách câu hỏi hoặc hướng dẫn..."></textarea>
                     </div>
 
                     <div class="col-12">

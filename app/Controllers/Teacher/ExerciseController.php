@@ -55,7 +55,7 @@ class ExerciseController extends Controller
             'subject' => $_POST['subject'] ?? '',
             'topic' => $_POST['topic'] ?? '',
             'description' => $_POST['description'] ?? '',
-            'content' => $_POST['content'] ?? '',
+            'content' => '',
             'status' => $_POST['status'] ?? 'draft',
         ]);
 
@@ -132,7 +132,7 @@ class ExerciseController extends Controller
             'subject' => $_POST['subject'] ?? '',
             'topic' => $_POST['topic'] ?? '',
             'description' => $_POST['description'] ?? '',
-            'content' => $_POST['content'] ?? '',
+            'content' => $exercise['content'] ?? '',
             'status' => $_POST['status'] ?? 'draft',
         ]);
 

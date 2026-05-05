@@ -154,6 +154,13 @@
     color: var(--home-secondary);
 }
 
+.home-time-pill {
+    display: flex;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .home-hero {
     padding: 8rem 0 5rem;
 }

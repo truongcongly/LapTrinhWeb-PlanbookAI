@@ -14,7 +14,7 @@ ob_start();
 <div class="hero-mini-banner mb-4">
     <div>
         <h3>Chi tiết bài tập</h3>
-        <p>Xem đầy đủ thông tin, mô tả và nội dung của bài tập đã tạo.</p>
+        <p>Xem đầy đủ thông tin, mô tả và câu hỏi của bài tập đã tạo.</p>
     </div>
 </div>
 
@@ -71,10 +71,6 @@ ob_start();
         <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($exercise['description'] ?? ''); ?></p>
     </div>
 
-    <div class="small-panel">
-        <h6>Nội dung bài tập</h6>
-        <p class="mb-0" style="white-space: pre-line;"><?= htmlspecialchars($exercise['content'] ?? ''); ?></p>
-    </div>
 </div>
 
 <div class="dashboard-card mt-4">

@@ -14,7 +14,7 @@ ob_start();
 <div class="hero-mini-banner mb-4">
     <div>
         <h3>Chỉnh sửa bài tập</h3>
-        <p>Cập nhật thông tin, mô tả và nội dung bài tập theo nhu cầu giảng dạy.</p>
+        <p>Cập nhật thông tin bài tập và danh sách câu hỏi theo nhu cầu giảng dạy.</p>
     </div>
 </div>
 
@@ -35,7 +35,6 @@ ob_start();
                 $promptPanelId = 'exercise-edit-prompt-panel';
                 $promptImportTargets = [
                     ['selector' => 'textarea[name="description"]', 'label' => 'Chèn vào Mô tả'],
-                    ['selector' => 'textarea[name="content"]', 'label' => 'Chèn vào Nội dung'],
                 ];
                 include __DIR__ . '/../partials/prompt_template_panel.php';
                 ?>
@@ -67,11 +66,6 @@ ob_start();
                     <div class="col-12">
                         <label class="form-label fw-semibold">Mô tả</label>
                         <textarea class="form-control rounded-4" name="description" rows="3"><?= htmlspecialchars($exercise['description'] ?? ''); ?></textarea>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label fw-semibold">Nội dung bài tập</label>
-                        <textarea class="form-control rounded-4" name="content" rows="8"><?= htmlspecialchars($exercise['content']); ?></textarea>
                     </div>
 
                     <div class="col-12">

@@ -9,7 +9,6 @@ include __DIR__ . '/layouts/marketing_header.php';
         <div class="row justify-content-center text-center">
             <div class="col-xl-10">
                 <span class="home-pill home-pill--soft mb-4">
-                    <i class="bi bi-stars"></i>
                     Kỷ nguyên giáo dục 4.0 đã bắt đầu
                 </span>
                 <h1 class="home-hero-title mb-4">
@@ -19,10 +18,6 @@ include __DIR__ . '/layouts/marketing_header.php';
                 <p class="home-hero-desc fs-4 mx-auto mb-5" style="max-width: 920px;">
                     Soạn giáo án thông minh, dạy học hiệu quả hơn với AI.
                 </p>
-                <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
-                    <a href="/LapTrinhWeb-PlanbookAI/public/register" class="btn home-btn-primary px-5 py-3">Khởi tạo miễn phí ngay</a>
-                    <a href="/LapTrinhWeb-PlanbookAI/public/giao-vien" class="btn home-btn-secondary px-5 py-3">Xem giải pháp cho giáo viên</a>
-                </div>
             </div>
         </div>
 
@@ -34,6 +29,9 @@ include __DIR__ . '/layouts/marketing_header.php';
 
 <section class="home-section">
     <div class="container">
+        <div class="text-center mb-4">
+            <span class="home-pill home-pill--secondary home-time-pill">Món quà của thời gian</span>
+        </div>
         <div class="row align-items-center g-5">
             <div class="col-lg-6">
                 <div class="position-relative">
@@ -46,11 +44,7 @@ include __DIR__ . '/layouts/marketing_header.php';
                 </div>
             </div>
             <div class="col-lg-6">
-                <span class="home-pill home-pill--secondary mb-3">Món quà của thời gian</span>
                 <h2 class="home-section-title">Khi máy móc làm việc, con người có thể sáng tạo</h2>
-                <p class="home-section-desc mb-4">
-                    PlanbookAI giúp giảm áp lực soạn bài, lên kế hoạch, chấm bài và báo cáo. Khi phần nặng tính thủ tục được tự động hóa, giáo viên có thể quay lại điều cốt lõi của nghề dạy học.
-                </p>
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <div class="home-card h-100">
