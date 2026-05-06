@@ -2,10 +2,10 @@
 
 use App\Core\Auth;
 
-$title = 'Charts - PlanbookAI';
+$title = 'Biểu đồ - PlanbookAI';
 $currentUser = Auth::user();
-$pageTitle = 'Charts';
-$pageDesc = 'Visual overview of platform activity';
+$pageTitle = 'Biểu đồ';
+$pageDesc = 'Tổng quan trực quan về hoạt động của nền tảng';
 $role = 'admin';
 
 $contentCounts = [
@@ -41,15 +41,15 @@ $scatterData = [
     ['x' => (int)($counts['lesson_samples'] ?? 0), 'y' => (int)($counts['question_samples'] ?? 0)],
 ];
 $candles = [
-    ['label' => 'Mon', 'open' => 12, 'high' => 18, 'low' => 9, 'close' => 16],
-    ['label' => 'Tue', 'open' => 16, 'high' => 20, 'low' => 11, 'close' => 13],
-    ['label' => 'Wed', 'open' => 13, 'high' => 23, 'low' => 12, 'close' => 21],
-    ['label' => 'Thu', 'open' => 21, 'high' => 25, 'low' => 17, 'close' => 19],
-    ['label' => 'Fri', 'open' => 19, 'high' => 28, 'low' => 18, 'close' => 26],
+    ['label' => 'T2', 'open' => 12, 'high' => 18, 'low' => 9, 'close' => 16],
+    ['label' => 'T3', 'open' => 16, 'high' => 20, 'low' => 11, 'close' => 13],
+    ['label' => 'T4', 'open' => 13, 'high' => 23, 'low' => 12, 'close' => 21],
+    ['label' => 'T5', 'open' => 21, 'high' => 25, 'low' => 17, 'close' => 19],
+    ['label' => 'T6', 'open' => 19, 'high' => 28, 'low' => 18, 'close' => 26],
 ];
-$contentLabels = ['Lessons', 'Questions', 'Exercises', 'Exams', 'Results'];
+$contentLabels = ['Giáo án', 'Câu hỏi', 'Bài tập', 'Đề thi', 'Kết quả'];
 $topContentIndex = array_search(max($contentCounts), $contentCounts, true);
-$topContentLabel = $contentLabels[$topContentIndex === false ? 0 : $topContentIndex] ?? 'Items';
+$topContentLabel = $contentLabels[$topContentIndex === false ? 0 : $topContentIndex] ?? 'Mục';
 $gradedCount = $resultData[0] ?? 0;
 $reviewedCount = $resultData[1] ?? 0;
 $failedCount = $resultData[2] ?? 0;
@@ -212,31 +212,31 @@ ob_start();
 <div class="charts-page">
     <div class="hero-mini-banner">
         <div>
-            <h3>Charts</h3>
-            <p>Line, bar, candlestick, scatter, pie, and radar views for platform activity.</p>
+            <h3>Biểu đồ</h3>
+            <p>Theo dõi hoạt động nền tảng bằng biểu đồ đường, cột, nến, phân tán, tròn và radar.</p>
         </div>
     </div>
 
     <div class="charts-summary-grid">
         <div class="charts-summary-card">
-            <span>Total Users</span>
+            <span>Tổng người dùng</span>
             <strong><?= (int)$userCount; ?></strong>
-            <p>Accounts currently stored in the system.</p>
+            <p>Tài khoản hiện có trong hệ thống.</p>
         </div>
         <div class="charts-summary-card">
-            <span>Learning Items</span>
+            <span>Dữ liệu học tập</span>
             <strong><?= (int)$totalContent; ?></strong>
-            <p>Lessons, questions, exercises, exams, and results.</p>
+            <p>Giáo án, câu hỏi, bài tập, đề thi và kết quả.</p>
         </div>
         <div class="charts-summary-card">
-            <span>Role Records</span>
+            <span>Phân quyền</span>
             <strong><?= (int)$totalRoles; ?></strong>
-            <p>Admin, staff, and teacher account distribution.</p>
+            <p>Phân bố tài khoản quản trị, nhân viên và giáo viên.</p>
         </div>
         <div class="charts-summary-card">
-            <span>Tracked Results</span>
+            <span>Kết quả theo dõi</span>
             <strong><?= (int)$totalResults; ?></strong>
-            <p>Auto graded, reviewed, and failed grading records.</p>
+            <p>Bản ghi đã chấm tự động, đã duyệt và bị lỗi.</p>
         </div>
     </div>
 
@@ -245,56 +245,56 @@ ob_start();
             $chartCards = [
                 [
                     'id' => 'lineChart',
-                    'title' => 'Line Chart',
-                    'desc' => 'Estimated user growth across the current period.',
+                    'title' => 'Biểu đồ đường',
+                    'desc' => 'Ước tính tăng trưởng người dùng trong giai đoạn hiện tại.',
                     'stats' => [
-                        ['label' => 'Current users', 'value' => $userCount],
-                        ['label' => 'Projected high', 'value' => max($lineData)],
+                        ['label' => 'Người dùng hiện tại', 'value' => $userCount],
+                        ['label' => 'Dự báo cao nhất', 'value' => max($lineData)],
                     ],
                 ],
                 [
                     'id' => 'barChart',
-                    'title' => 'Bar Chart',
-                    'desc' => 'Compares the amount of learning content and grading records.',
+                    'title' => 'Biểu đồ cột',
+                    'desc' => 'So sánh số lượng nội dung học tập và bản ghi chấm điểm.',
                     'stats' => [
-                        ['label' => 'Total items', 'value' => $totalContent],
-                        ['label' => 'Largest group', 'value' => $topContentLabel],
+                        ['label' => 'Tổng số mục', 'value' => $totalContent],
+                        ['label' => 'Nhóm lớn nhất', 'value' => $topContentLabel],
                     ],
                 ],
                 [
                     'id' => 'candlestickChart',
-                    'title' => 'Candlestick Chart',
-                    'desc' => 'Shows sample daily activity range with open, high, low, and close values.',
+                    'title' => 'Biểu đồ nến',
+                    'desc' => 'Hiển thị biên độ hoạt động mẫu theo ngày với giá trị mở, cao, thấp và đóng.',
                     'stats' => [
-                        ['label' => 'Highest value', 'value' => max(array_column($candles, 'high'))],
-                        ['label' => 'Lowest value', 'value' => min(array_column($candles, 'low'))],
+                        ['label' => 'Giá trị cao nhất', 'value' => max(array_column($candles, 'high'))],
+                        ['label' => 'Giá trị thấp nhất', 'value' => min(array_column($candles, 'low'))],
                     ],
                 ],
                 [
                     'id' => 'scatterChart',
-                    'title' => 'Scatter Chart',
-                    'desc' => 'Maps relationships between content modules and grading volume.',
+                    'title' => 'Biểu đồ phân tán',
+                    'desc' => 'Thể hiện mối liên hệ giữa các mô-đun nội dung và khối lượng chấm điểm.',
                     'stats' => [
-                        ['label' => 'Data points', 'value' => count($scatterData)],
-                        ['label' => 'Users/results', 'value' => $userCount . '/' . (int)($counts['results'] ?? 0)],
+                        ['label' => 'Điểm dữ liệu', 'value' => count($scatterData)],
+                        ['label' => 'Người dùng/kết quả', 'value' => $userCount . '/' . (int)($counts['results'] ?? 0)],
                     ],
                 ],
                 [
                     'id' => 'pieChart',
-                    'title' => 'Pie Chart',
-                    'desc' => 'Breaks down accounts by admin, staff, and teacher roles.',
+                    'title' => 'Biểu đồ tròn',
+                    'desc' => 'Phân tách tài khoản theo vai trò quản trị, nhân viên và giáo viên.',
                     'stats' => [
-                        ['label' => 'Accounts', 'value' => $totalRoles],
-                        ['label' => 'Teachers', 'value' => $roleData[2] ?? 0],
+                        ['label' => 'Tài khoản', 'value' => $totalRoles],
+                        ['label' => 'Giáo viên', 'value' => $roleData[2] ?? 0],
                     ],
                 ],
                 [
                     'id' => 'radarChart',
-                    'title' => 'Radar Chart',
-                    'desc' => 'Compares grading result status counts across the platform.',
+                    'title' => 'Biểu đồ radar',
+                    'desc' => 'So sánh số lượng trạng thái kết quả chấm điểm trên toàn hệ thống.',
                     'stats' => [
-                        ['label' => 'Auto graded', 'value' => $gradedCount],
-                        ['label' => 'Reviewed/failed', 'value' => $reviewedCount . '/' . $failedCount],
+                        ['label' => 'Chấm tự động', 'value' => $gradedCount],
+                        ['label' => 'Đã duyệt/bị lỗi', 'value' => $reviewedCount . '/' . $failedCount],
                     ],
                 ],
             ];
@@ -371,7 +371,7 @@ window.addEventListener('DOMContentLoaded', () => {
             data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                 datasets: [{
-                    label: 'Users',
+                    label: 'Người dùng',
                     data: nonZero(lineData, [2, 3, 4, 5, 6, 8]),
                     borderColor: '#2563eb',
                     backgroundColor: 'rgba(37, 99, 235, .14)',
@@ -393,9 +393,9 @@ window.addEventListener('DOMContentLoaded', () => {
         buildChart('barChart', {
             type: 'bar',
             data: {
-                labels: ['Lessons', 'Questions', 'Exercises', 'Exams', 'Results'],
+                labels: ['Giáo án', 'Câu hỏi', 'Bài tập', 'Đề thi', 'Kết quả'],
                 datasets: [{
-                    label: 'Items',
+                    label: 'Số mục',
                     data: nonZero(contentData, [3, 5, 2, 4, 6]),
                     backgroundColor: ['#2563eb', '#14b8a6', '#f59e0b', '#ef4444', '#8b5cf6'],
                     borderRadius: 8,
@@ -416,7 +416,7 @@ window.addEventListener('DOMContentLoaded', () => {
             type: 'scatter',
             data: {
                 datasets: [{
-                    label: 'Module Relationship',
+                    label: 'Mối liên hệ mô-đun',
                     data: validScatter(scatterData) ? scatterData : [{x: 2, y: 4}, {x: 4, y: 3}, {x: 6, y: 8}, {x: 8, y: 5}],
                     backgroundColor: '#f59e0b',
                     borderColor: '#d97706',
@@ -427,8 +427,8 @@ window.addEventListener('DOMContentLoaded', () => {
             options: {
                 ...baseOptions,
                 scales: {
-                    x: { beginAtZero: true, title: { display: true, text: 'Volume A' } },
-                    y: { beginAtZero: true, title: { display: true, text: 'Volume B' } }
+                    x: { beginAtZero: true, title: { display: true, text: 'Khối lượng A' } },
+                    y: { beginAtZero: true, title: { display: true, text: 'Khối lượng B' } }
                 }
             }
         });
@@ -436,7 +436,7 @@ window.addEventListener('DOMContentLoaded', () => {
         buildChart('pieChart', {
             type: 'pie',
             data: {
-                labels: ['Admin', 'Staff', 'Teacher'],
+                labels: ['Quản trị', 'Nhân viên', 'Giáo viên'],
                 datasets: [{
                     data: nonZero(roleData, [1, 1, 1]),
                     backgroundColor: ['#3b82f6', '#f59e0b', '#22c55e'],
@@ -450,9 +450,9 @@ window.addEventListener('DOMContentLoaded', () => {
         buildChart('radarChart', {
             type: 'radar',
             data: {
-                labels: ['Auto Graded', 'Reviewed', 'Failed'],
+                labels: ['Chấm tự động', 'Đã duyệt', 'Bị lỗi'],
                 datasets: [{
-                    label: 'Result Status',
+                    label: 'Trạng thái kết quả',
                     data: nonZero(resultData, [4, 2, 1]),
                     borderColor: '#7c3aed',
                     backgroundColor: 'rgba(124, 58, 237, .18)',

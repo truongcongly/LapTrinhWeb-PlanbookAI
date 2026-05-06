@@ -10,8 +10,8 @@ include __DIR__ . '/../layouts/marketing_header.php';
     <div class="container">
         <div class="row align-items-center g-5">
             <div class="col-lg-7">
-                <span class="home-pill home-pill--secondary mb-4">Thanh toán gói dịch vụ</span>
-                <h1 class="home-hero-title mb-4">Hoàn tất gói <?= htmlspecialchars($plan['name'], ENT_QUOTES, 'UTF-8'); ?></h1>
+                <span class="home-pill home-pill--secondary mb-4">Thanh toán gói dịch vụ.</span>
+                <h1 class="home-hero-title mb-4">Hoàn tất gói <?= htmlspecialchars($plan['name'], ENT_QUOTES, 'UTF-8'); ?>.</h1>
                 <p class="home-hero-desc fs-5 mb-0" style="max-width: 720px;">
                     Chọn VNPay, MoMo hoặc chuyển khoản ngân hàng. Sau khi thanh toán thành công, hệ thống sẽ tự chuyển bạn về trang đăng nhập.
                 </p>
@@ -20,10 +20,10 @@ include __DIR__ . '/../layouts/marketing_header.php';
                 <div class="payment-summary-card">
                     <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
                         <div>
-                            <p class="home-muted fw-bold mb-1">Mã đơn hàng</p>
+                            <p class="home-muted fw-bold mb-1">Mã đơn hàng.</p>
                             <h2 class="home-headline fs-4 fw-bold mb-0"><?= htmlspecialchars($orderCode, ENT_QUOTES, 'UTF-8'); ?></h2>
                         </div>
-                        <span class="payment-status-badge">Đang chờ</span>
+                        <span class="payment-status-badge">Đang chờ.</span>
                     </div>
                     <div class="payment-total">
                         <?= number_format($plan['price'], 0, ',', '.'); ?>đ
@@ -40,7 +40,7 @@ include __DIR__ . '/../layouts/marketing_header.php';
     <div class="container">
         <div class="payment-layout">
             <div class="payment-method-panel">
-                <h2 class="home-headline fw-bold fs-3 mb-4">Chọn phương thức</h2>
+                <h2 class="home-headline fw-bold fs-3 mb-4">Chọn phương thức.</h2>
 
                 <div class="payment-method-grid">
                     <?php foreach ($paymentMethods as $key => $method): ?>
@@ -67,19 +67,19 @@ include __DIR__ . '/../layouts/marketing_header.php';
                 <?php if ($selectedMethod === 'bank'): ?>
                     <div class="payment-bank-box">
                         <div>
-                            <span>Ngân hàng</span>
+                            <span>Ngân hàng.</span>
                             <strong>Vietcombank</strong>
                         </div>
                         <div>
-                            <span>Số tài khoản</span>
+                            <span>Số tài khoản.</span>
                             <strong>0123 456 789</strong>
                         </div>
                         <div>
-                            <span>Chủ tài khoản</span>
+                            <span>Chủ tài khoản.</span>
                             <strong>PLANBOOKAI JSC</strong>
                         </div>
                         <div>
-                            <span>Nội dung</span>
+                            <span>Nội dung.</span>
                             <strong><?= htmlspecialchars($orderCode, ENT_QUOTES, 'UTF-8'); ?> PROFESSIONAL</strong>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ include __DIR__ . '/../layouts/marketing_header.php';
                             <i class="bi bi-qr-code"></i>
                         </div>
                         <div>
-                            <h3 class="home-headline fw-bold fs-5 mb-2">Quét mã hoặc xác nhận thanh toán</h3>
+                            <h3 class="home-headline fw-bold fs-5 mb-2">Quét mã hoặc xác nhận thanh toán.</h3>
                             <p class="home-muted mb-0">Đây là giao diện demo. Khi có tài khoản merchant thật, phần này sẽ chuyển hướng sang cổng <?= htmlspecialchars($selectedPayment['name'], ENT_QUOTES, 'UTF-8'); ?>.</p>
                         </div>
                     </div>
@@ -102,9 +102,9 @@ include __DIR__ . '/../layouts/marketing_header.php';
 
                 <div class="payment-actions">
                     <a href="<?= $baseUrl; ?>/thanh-toan/<?= urlencode($selectedMethod); ?>?order=<?= urlencode($orderCode); ?>" class="btn home-btn-primary px-5 py-3">
-                        <i class="bi bi-box-arrow-up-right me-2"></i>Tiếp tục thanh toán
+                        <i class="bi bi-box-arrow-up-right me-2"></i>Tiếp tục thanh toán.
                     </a>
-                    <a href="<?= $baseUrl; ?>/bang-gia" class="btn home-btn-secondary px-4 py-3">Quay lại bảng giá</a>
+                    <a href="<?= $baseUrl; ?>/bang-gia" class="btn home-btn-secondary px-4 py-3">Quay lại bảng giá.</a>
                 </div>
             </div>
         </div>

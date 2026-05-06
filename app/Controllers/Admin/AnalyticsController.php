@@ -120,24 +120,24 @@ class AnalyticsController extends Controller
 
         $checks = [
             [
-                'name' => 'Database connection',
+                'name' => 'Kết nối cơ sở dữ liệu',
                 'status' => $this->conn()->ping(),
-                'detail' => 'Application can connect to the configured MySQL database.',
+                'detail' => 'Ứng dụng có thể kết nối tới cơ sở dữ liệu MySQL đã cấu hình.',
             ],
             [
-                'name' => 'Answer scan upload folder',
+                'name' => 'Thư mục tải lên bài quét',
                 'status' => is_dir(dirname(__DIR__, 3) . '/public/uploads/answer-scans'),
-                'detail' => 'Required for PDF and scan upload workflows.',
+                'detail' => 'Bắt buộc cho quy trình tải lên PDF và ảnh quét bài làm.',
             ],
             [
-                'name' => 'System settings table',
+                'name' => 'Bảng cài đặt hệ thống',
                 'status' => $this->countTable('system_settings') >= 0,
-                'detail' => 'Core application tables are readable.',
+                'detail' => 'Các bảng cốt lõi của ứng dụng có thể đọc được.',
             ],
             [
-                'name' => 'Failed OCR results',
+                'name' => 'Kết quả OCR bị lỗi',
                 'status' => $this->countWhere('exam_results', "status = 'failed'") === 0,
-                'detail' => $this->countWhere('exam_results', "status = 'failed'") . ' failed grading result(s).',
+                'detail' => $this->countWhere('exam_results', "status = 'failed'") . ' kết quả chấm điểm bị lỗi.',
             ],
         ];
 

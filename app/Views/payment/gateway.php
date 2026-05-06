@@ -104,7 +104,7 @@ include __DIR__ . '/../layouts/head.php';
                     <input type="text" name="account_number" placeholder="Số tài khoản" required>
                 </div>
                 <input type="text" name="bank_transaction" placeholder="Mã giao dịch/OTP bất kỳ" required>
-                <button type="submit">Tôi đã chuyển khoản</button>
+                <button type="submit">Xác nhận thanh toán</button>
             </form>
         </section>
     <?php endif; ?>

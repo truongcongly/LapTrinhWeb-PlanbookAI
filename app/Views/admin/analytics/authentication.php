@@ -2,10 +2,10 @@
 
 use App\Core\Auth;
 
-$title = 'Authentication - PlanbookAI';
+$title = 'Xác thực - PlanbookAI';
 $currentUser = Auth::user();
-$pageTitle = 'Authentication';
-$pageDesc = 'Authentication and role access overview';
+$pageTitle = 'Xác thực';
+$pageDesc = 'Tổng quan xác thực và quyền truy cập theo vai trò';
 $role = 'admin';
 
 $totalAccounts = array_sum($roleCounts ?? []);
@@ -15,9 +15,9 @@ $teacherCount = (int)($roleCounts['teacher'] ?? 0);
 $contentCount = (int)(($counts['lesson_plans'] ?? 0) + ($counts['questions'] ?? 0) + ($counts['exercises'] ?? 0) + ($counts['exams'] ?? 0));
 
 $accessRows = [
-    ['role' => 'Admin', 'class' => 'auth-pill-admin', 'area' => 'Administration', 'access' => 'Users, reports, charts, authentication, errors, and system settings.'],
-    ['role' => 'Staff', 'class' => 'auth-pill-staff', 'area' => 'Content Operations', 'access' => 'Lesson samples, question samples, prompt templates, and content review.'],
-    ['role' => 'Teacher', 'class' => 'auth-pill-teacher', 'area' => 'Teaching Workspace', 'access' => 'Lessons, questions, exercises, exams, OCR grading, and results.'],
+    ['role' => 'Quản trị', 'class' => 'auth-pill-admin', 'area' => 'Khu vực quản trị', 'access' => 'Người dùng, báo cáo, biểu đồ, xác thực, lỗi hệ thống và cài đặt hệ thống.'],
+    ['role' => 'Nhân viên', 'class' => 'auth-pill-staff', 'area' => 'Vận hành nội dung', 'access' => 'Mẫu giáo án, mẫu câu hỏi, mẫu prompt và kiểm duyệt nội dung.'],
+    ['role' => 'Giáo viên', 'class' => 'auth-pill-teacher', 'area' => 'Không gian giảng dạy', 'access' => 'Giáo án, câu hỏi, bài tập, đề thi, chấm OCR và kết quả.'],
 ];
 
 ob_start();
@@ -253,8 +253,8 @@ ob_start();
 <div class="auth-page">
     <div class="hero-mini-banner">
         <div>
-            <h3>Authentication</h3>
-            <p>Monitor account roles, current admin session, and access boundaries.</p>
+            <h3>Xác thực</h3>
+            <p>Theo dõi vai trò tài khoản, phiên quản trị hiện tại và phạm vi truy cập.</p>
         </div>
     </div>
 
@@ -262,28 +262,28 @@ ob_start();
         <div class="auth-card auth-kpi">
             <div class="auth-icon bg-primary"><i class="bi bi-shield-lock-fill"></i></div>
             <div>
-                <div class="auth-label">Signed In As</div>
+                <div class="auth-label">Đang đăng nhập với vai trò</div>
                 <div class="auth-value"><?= htmlspecialchars(ucfirst($currentUser['role'] ?? '-')); ?></div>
             </div>
         </div>
         <div class="auth-card auth-kpi">
             <div class="auth-icon bg-success"><i class="bi bi-people-fill"></i></div>
             <div>
-                <div class="auth-label">Accounts</div>
+                <div class="auth-label">Tài khoản</div>
                 <div class="auth-value"><?= (int)$totalAccounts; ?></div>
             </div>
         </div>
         <div class="auth-card auth-kpi">
             <div class="auth-icon bg-warning"><i class="bi bi-person-badge-fill"></i></div>
             <div>
-                <div class="auth-label">Admins</div>
+                <div class="auth-label">Quản trị viên</div>
                 <div class="auth-value"><?= $adminCount; ?></div>
             </div>
         </div>
         <div class="auth-card auth-kpi">
             <div class="auth-icon bg-info"><i class="bi bi-collection-fill"></i></div>
             <div>
-                <div class="auth-label">Protected Items</div>
+                <div class="auth-label">Mục được bảo vệ</div>
                 <div class="auth-value"><?= $contentCount; ?></div>
             </div>
         </div>
@@ -291,7 +291,7 @@ ob_start();
 
     <div class="auth-main-grid">
         <div class="auth-card">
-            <h5 class="mb-4">Current Session</h5>
+            <h5 class="mb-4">Phiên hiện tại</h5>
             <div class="auth-profile">
                 <div class="auth-avatar"><i class="bi bi-person-fill fs-3"></i></div>
                 <div class="min-w-0">
@@ -301,63 +301,63 @@ ob_start();
             </div>
             <div class="auth-info-list">
                 <div class="auth-info-item">
-                    <h6>Role</h6>
+                    <h6>Vai trò</h6>
                     <span class="auth-pill auth-pill-admin"><?= htmlspecialchars(ucfirst($currentUser['role'] ?? '-')); ?></span>
                 </div>
                 <div class="auth-info-item">
-                    <h6>Session Scope</h6>
-                    <p class="mb-0">This account can manage users, reports, settings, analytics, and platform operations.</p>
+                    <h6>Phạm vi phiên</h6>
+                    <p class="mb-0">Tài khoản này có thể quản lý người dùng, báo cáo, cài đặt, phân tích và vận hành nền tảng.</p>
                 </div>
             </div>
         </div>
 
         <div class="auth-card">
-            <h5 class="mb-4">Role Distribution</h5>
+            <h5 class="mb-4">Phân bố vai trò</h5>
             <div class="auth-role-grid mb-4">
                 <div class="auth-info-item">
-                    <h6>Admin</h6>
+                    <h6>Quản trị</h6>
                     <div class="auth-role-count mb-2"><?= $adminCount; ?></div>
-                    <span class="auth-pill auth-pill-admin">Full access</span>
+                    <span class="auth-pill auth-pill-admin">Toàn quyền</span>
                 </div>
                 <div class="auth-info-item">
-                    <h6>Staff</h6>
+                    <h6>Nhân viên</h6>
                     <div class="auth-role-count mb-2"><?= $staffCount; ?></div>
-                    <span class="auth-pill auth-pill-staff">Content ops</span>
+                    <span class="auth-pill auth-pill-staff">Vận hành nội dung</span>
                 </div>
                 <div class="auth-info-item">
-                    <h6>Teacher</h6>
+                    <h6>Giáo viên</h6>
                     <div class="auth-role-count mb-2"><?= $teacherCount; ?></div>
-                    <span class="auth-pill auth-pill-teacher">Workspace</span>
+                    <span class="auth-pill auth-pill-teacher">Không gian làm việc</span>
                 </div>
             </div>
 
-            <h5 class="mb-3">Access Boundaries</h5>
+            <h5 class="mb-3">Phạm vi truy cập</h5>
             <div class="auth-boundary-list">
                 <div class="auth-boundary-row">
-                    <strong>Admin area</strong>
-                    <span>Dashboard, users, reports, charts, authentication, errors, settings.</span>
+                    <strong>Khu vực quản trị</strong>
+                    <span>Tổng quan, người dùng, báo cáo, biểu đồ, xác thực, lỗi hệ thống và cài đặt.</span>
                 </div>
                 <div class="auth-boundary-row">
-                    <strong>Staff area</strong>
-                    <span>Lesson samples, question samples, prompt templates.</span>
+                    <strong>Khu vực nhân viên</strong>
+                    <span>Mẫu giáo án, mẫu câu hỏi và mẫu prompt.</span>
                 </div>
                 <div class="auth-boundary-row">
-                    <strong>Teacher area</strong>
-                    <span>Lessons, questions, exercises, exams, OCR grading, results.</span>
+                    <strong>Khu vực giáo viên</strong>
+                    <span>Giáo án, câu hỏi, bài tập, đề thi, chấm OCR và kết quả.</span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="auth-card">
-        <h5 class="mb-4">Access Matrix</h5>
+        <h5 class="mb-4">Ma trận truy cập</h5>
         <div class="table-responsive">
             <table class="auth-table">
                 <thead>
                     <tr>
-                        <th style="width: 170px;">Role</th>
-                        <th style="width: 240px;">Primary Area</th>
-                        <th>Access</th>
+                        <th style="width: 170px;">Vai trò</th>
+                        <th style="width: 240px;">Khu vực chính</th>
+                        <th>Quyền truy cập</th>
                     </tr>
                 </thead>
                 <tbody>

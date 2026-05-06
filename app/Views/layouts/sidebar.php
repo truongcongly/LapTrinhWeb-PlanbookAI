@@ -9,11 +9,11 @@
             <div class="brand-title">PlanbookAI</div>
             <div class="brand-subtitle">
                 <?php if ($role === 'admin'): ?>
-                    Administrator Panel
+                    Admin
                 <?php elseif ($role === 'staff'): ?>
-                    Staff Workspace
+                    Không gian nhân viên
                 <?php else: ?>
-                    Teacher Workspace
+                    Không gian giáo viên
                 <?php endif; ?>
             </div>
         </div>

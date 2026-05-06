@@ -11,9 +11,9 @@ class PaymentController extends Controller
 {
     private const PROFESSIONAL_PLAN = [
         'key' => 'professional',
-        'name' => 'Chuyen nghiep',
+        'name' => 'Chuyên nghiệp',
         'price' => 199000,
-        'cycle' => 'thang',
+        'cycle' => 'tháng',
     ];
 
     public function checkout()
@@ -47,17 +47,17 @@ class PaymentController extends Controller
         $paymentMethods = $this->paymentMethods();
 
         if (!isset($paymentMethods[$method])) {
-            Session::flash('error', 'Vui long chon phuong thuc thanh toan hop le.');
+            Session::flash('error', 'Vui lòng chọn phương thức thanh toán hợp lệ.');
             $this->redirect('/thanh-toan?plan=professional');
         }
 
         if ($plan !== self::PROFESSIONAL_PLAN['key']) {
-            Session::flash('error', 'Goi dich vu khong hop le.');
+            Session::flash('error', 'Gói dịch vụ không hợp lệ.');
             $this->redirect('/bang-gia');
         }
 
         if (!Auth::check()) {
-            Session::flash('success', 'Thanh toan goi Chuyen nghiep thanh cong qua ' . $paymentMethods[$method]['name'] . '. Vui long dang nhap de tiep tuc.');
+            Session::flash('success', 'Thanh toán gói Chuyên nghiệp thành công qua ' . $paymentMethods[$method]['name'] . '. Vui lòng đăng nhập để tiếp tục.');
             $this->redirect('/login');
         }
 
@@ -65,7 +65,7 @@ class PaymentController extends Controller
         $userModel = new User();
 
         if (!$userModel->updateServicePlan((int)($currentUser['id'] ?? 0), self::PROFESSIONAL_PLAN['key'])) {
-            Session::flash('error', 'Thanh toan thanh cong nhung chua cap nhat duoc goi dich vu. Vui long lien he admin.');
+            Session::flash('error', 'Thanh toán thành công nhưng chưa cập nhật được gói dịch vụ. Vui lòng liên hệ admin.');
             $this->redirect('/bang-gia');
         }
 
@@ -74,7 +74,7 @@ class PaymentController extends Controller
             Auth::login($updatedUser);
         }
 
-        Session::flash('success', 'Thanh toan goi Chuyen nghiep thanh cong qua ' . $paymentMethods[$method]['name'] . '. Goi dich vu cua ban da duoc cap nhat.');
+        Session::flash('success', 'Thanh toán gói Chuyên nghiệp thành công qua ' . $paymentMethods[$method]['name'] . '. Gói dịch vụ của bạn đã được cập nhật.');
 
         if (($updatedUser['role'] ?? $currentUser['role'] ?? '') === 'teacher') {
             $this->redirect('/teacher/dashboard');
@@ -105,20 +105,20 @@ class PaymentController extends Controller
             'vnpay' => [
                 'name' => 'VNPay',
                 'icon' => 'bi-credit-card-2-front-fill',
-                'description' => 'Thanh toan qua cong VNPay bang the ATM, Visa, MasterCard hoac QR ngan hang.',
-                'note' => 'Ban demo se xac nhan thanh cong ngay khi ban bam thanh toan.',
+                'description' => 'Thanh toán qua cổng VNPay bằng thẻ ATM, Visa, MasterCard hoặc QR ngân hàng.',
+                'note' => 'Bản demo sẽ xác nhận thành công ngay khi bạn bấm thanh toán.',
             ],
             'momo' => [
                 'name' => 'MoMo',
                 'icon' => 'bi-wallet2',
-                'description' => 'Thanh toan nhanh bang vi MoMo hoac quet ma QR tren ung dung MoMo.',
-                'note' => 'Khi tich hop that, he thong se chuyen sang trang/ung dung MoMo de xac thuc.',
+                'description' => 'Thanh toán nhanh bằng ví MoMo hoặc quét mã QR trên ứng dụng MoMo.',
+                'note' => 'Khi tích hợp thật, hệ thống sẽ chuyển sang trang/ứng dụng MoMo để xác thực.',
             ],
             'bank' => [
-                'name' => 'Ngan hang',
+                'name' => 'Ngân hàng',
                 'icon' => 'bi-bank2',
-                'description' => 'Chuyen khoan ngan hang theo thong tin don hang va noi dung thanh toan.',
-                'note' => 'Noi dung chuyen khoan nen bao gom ma don de doi soat tu dong.',
+                'description' => 'Chuyển khoản ngân hàng theo thông tin đơn hàng và nội dung thanh toán.',
+                'note' => 'Nội dung chuyển khoản nên bao gồm mã đơn để đối soát tự động.',
             ],
         ];
     }

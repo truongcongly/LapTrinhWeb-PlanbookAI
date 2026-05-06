@@ -36,7 +36,7 @@ class SystemSettingController extends Controller
             $model->updateValue($field, $_POST[$field] ?? '');
         }
 
-        Session::flash('success', 'System settings updated successfully.');
+        Session::flash('success', 'Cập nhật cài đặt hệ thống thành công.');
         $this->redirect('/admin/settings');
     }
 }
